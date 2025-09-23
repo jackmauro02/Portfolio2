@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sketch</title>
+  <link rel="stylesheet" type="text/css" href="compStyle.css">
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
+</head>
+<body>
+  
+<h1>Image shape art conversion</h1>
+<button id="homeButton" href="Portfolio.html" class="button" onclick="history.back()">Back to Portfolio </button>
+<button id="infoButton">Information</button>
+
+<div class="input-container">
+  <label for="shapeSelect">Input image:</label>
+  <input type="file" id="imageInput" accept="image/*">
+</div>
+<div class="input-container">
+  <label for="shapeSelect">Select Shape:</label>
+  <select id="shapeSelect">
+    <option value="triangle">Triangle</option>
+    <option value="square">Square</option>
+    <option value="circle">Circle</option>
+    <option value="all">All</option>
+  </select>
+</div>
+<div class="input-container">
+  <label for="sizeRange">Size of shapes:</label>
+  <input type="number" id="sizeRange" min="1" max="100" value="20">
+</div>
+<div class="input-container">
+  <label for="randomizeSize">Random sizes:</label>
+  <input type="checkbox" id="randomizeSize">
+  <label for="rotation">Rotation:</label>
+  <input type="checkbox" id="rotation">
+  <label for="outlines">Outlines:</label>
+  <input type="checkbox" id="outlines">
+  <label for="fill">Fill: </label>
+  <input type="checkbox" id="fill">
+</div>
+<div class="input-container">
+  <label for="colourVariation"> colour variation:</label>
+  <input type="number" id="colourVariation" min="1" max="100" value="0">
+</div>
+
+<div class="input-container">
+  <label for="backgroundColor">Background Colour:</label>
+  <input type="color" id="backgroundColor">
+  <label for="backgroundImage">background Image:</label>
+  <input type="checkbox" id="backgroundImage">
+</div>
+
+<button id="startButton">Start</button>
+
+<div id="canvasContainer"></div>
+
+<div id="overlay" class="overlay">
+  <div class="overlay-content">
+    <span class="close" id="closeOverlay">&times;</span>
+    <div id="projectInfo"></div>
+  </div>
+</div>
+
+<script src="testAllFinal.js"></script>
+<script>
+  // Define the function to display project information
+  function displayProjectInfo() {
+    var overlay = document.getElementById('overlay');
+    overlay.style.display = 'block'; // Show the overlay
+
+    var projectInfoDiv = document.getElementById('projectInfo');
+    // Add your project information here
+    var information = "<h2>Project Information</h2>";
+    information += "<p>This project is a tool for converting images into art using various shapes.</p>";
+    information += "<p>Here's how to use it:</p>";
+    information += "<ol>";
+    information += "<li>Upload an image using the 'Input image' button.</li>";
+    information += "<li>Select a shape from the dropdown menu.</li>";
+    information += "<li>Adjust the size and other options as desired.</li>";
+    information += "<li>Random sizes uses a random size up to the selected size.</li>";
+    information += "<li>Rotation randomly rotates the shapes, outlines of shapes can be turned on and off.</li>";
+    information += "<li>Fill will fill any blank space with shapes and colour variation will let the colour value change by a set amount.</li>";
+    information += "<li>The background colour can be set to chosen colour or the original image.</li>";
+    information += "<li>Click the 'Start' button to convert the image into art.</li>";
+    information += "<li>You can also download the resulting artwork using the 'Download' button.</li>";
+    information += "</ol>";
+
+    // Display the information
+    projectInfoDiv.innerHTML = information;
+  }
+
+  // Add event listener to the button
+  document.getElementById('infoButton').addEventListener('click', displayProjectInfo);
+
+  // Add event listener to the close button
+  document.getElementById('closeOverlay').addEventListener('click', function() {
+    var overlay = document.getElementById('overlay');
+    overlay.style.display = 'none'; // Hide the overlay
+  });
+</script>
+
+<button id="download">Download</button>
+</body>
+</html>
+
+<style>
+  /* Overlay styles */
+  .overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  }
+
+  .overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(163, 19, 19);
+    padding: 20px;
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 28px;
+    cursor: pointer;
+  }
+</style>

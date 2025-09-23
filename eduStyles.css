@@ -1,0 +1,229 @@
+/* ====== Base ====== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: #ff3333;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 5px;
+}
+
+/* ====== Navbar ====== */
+.nav {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.brand-badge {
+  background: #ff3333;
+  color: #fff;
+  font-weight: 800;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.brand-logo {
+  height: 40px; /* adjust size */
+  width: auto;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.brand-text {
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav-toggle {
+  display: none;
+}
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.menu a:hover {
+  background: #ff3333;
+}
+.menu a.active {
+  background: #ff3333;
+}
+
+/* ====== Hero ====== */
+.hero {
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+}
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+  color: #000;
+}
+.hero .sub {
+  color: #555;
+  max-width: 70ch;
+}
+.hero-accent {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff3333, transparent);
+}
+
+/* ====== Education Grid ====== */
+#education {
+  padding: 40px 20px 60px;
+  background: #fff;
+}
+.education-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+}
+.education-item {
+  position: relative;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 22px 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.education-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+.edu-logo {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 80px;
+  height: 80px;
+  display: grid;
+  place-items: center;
+}
+.edu-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.edu-head h2 {
+  margin: 6px 0 4px;
+  font-size: 1.4rem;
+  color: #111;
+  padding-right: 90px;
+}
+.edu-time {
+  color: #666;
+  font-size: 0.95rem;
+}
+.edu-cred {
+  margin: 4px 0;
+}
+
+/* ====== Details ====== */
+.edu-details {
+  margin-top: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+.edu-details summary {
+  cursor: pointer;
+  padding: 10px 14px;
+  font-weight: 600;
+}
+.edu-details[open] summary {
+  background: #eee;
+}
+.edu-details .list,
+.edu-details p {
+  padding: 10px 16px 16px;
+  color: #444;
+}
+.list {
+  list-style: disc;
+  padding-left: 20px;
+}
+.list li {
+  margin-bottom: 6px;
+}
+
+.muted {
+  color: #666;
+}
+
+/* ====== Footer ====== */
+.site-footer {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    background: #222;
+    color: #fff;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+  }
+  .menu {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: #000;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  .menu.open {
+    display: flex;
+  }
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Jack Mauro — Work Experience" />
+  <title>Experience — Jack Mauro</title>
+
+  <!-- Fonts + Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="expStyles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#experience">Skip to content</a>
+
+  <!-- Navbar (injected) -->
+  <header id="navbar"></header>
+
+  <!-- Experience -->
+  <section id="experience" class="section section-dark">
+    <div class="wrap">
+      <header class="section-head section-head-invert">
+        <h1>Work Experience</h1>
+      </header>
+
+      <div class="experience-grid">
+        <!-- Surelock -->
+        <article class="experience-item">
+          <img src="images/surelock.png" alt="Surelock McGill logo" class="company-logo">
+          <div class="experience-content">
+            <h3><a href="https://www.surelockmcgill.com/na/" target="_blank" rel="noopener">Assembly and Collations - Surelock McGill</a></h3>
+            <p class="muted">July 2024 - Current</p>
+            <ul>
+              <li>Manufacturing and engineering security systems.</li>
+              <li>Working independently and as a team to complete and deliver orders while maintaining quality.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Wetherspoons -->
+        <article class="experience-item">
+          <img src="images/wetherspoons.jfif" alt="Wetherspoons logo" class="company-logo">
+          <div class="experience-content">
+            <h3><a href="https://www.jdwetherspoon.com/" target="_blank" rel="noopener">Kitchen Assistant - Wetherspoons</a></h3>
+            <p class="muted">June 2022 - Sept 2022, July 2024 - December 2024</p>
+            <ul>
+              <li>Managed time efficiently while preparing meals for customers.</li>
+              <li>Worked in a fast-paced environment with a focus on teamwork and communication.</li>
+              <li>Assisted with stock management and deliveries.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Coral Reef -->
+        <article class="experience-item">
+          <img src="images/coral reef.png" alt="Coral Reef Waterworld logo" class="company-logo">
+          <div class="experience-content">
+            <h3><a href="https://www.everyoneactive.com/centre/coral-reef-waterworld/" target="_blank" rel="noopener">General Assistant - Coral Reef Waterworld</a></h3>
+            <p class="muted">June 2023 - Aug 2024</p>
+            <ul>
+              <li>Assisting with customer queries and maintaining the cleanliness and safety of the water park.</li>
+              <li>Administering first aid with my Lvl 3 emergency first aid qualification.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Primark -->
+        <article class="experience-item">
+          <img src="images/primark.png" alt="Primark logo" class="company-logo">
+          <div class="experience-content">
+            <h3><a href="https://www.primark.com/en-gb" target="_blank" rel="noopener">Retail Assistant - Primark</a></h3>
+            <p class="muted">Feb 2020 - Aug 2021</p>
+            <ul>
+              <li>Delivered excellent customer service while operating cash registers.</li>
+              <li>Handled transactions and managed money.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
+  </footer>
+
+  <!-- Inject navbar + small UX -->
+  <script>
+    // Inject navbar
+    fetch("navbar.html")
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+
+        // Mobile toggle
+        const btn = document.querySelector(".nav-toggle");
+        const menu = document.getElementById("mainmenu");
+        btn?.addEventListener("click", () => {
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+          btn.setAttribute("aria-expanded", String(!expanded));
+          menu.classList.toggle("open");
+        });
+
+        // Active link highlight
+        const path = window.location.pathname.split("/").pop() || "Experience.html";
+        document.querySelectorAll(".menu a").forEach(a => {
+          if (a.getAttribute("href").toLowerCase() === path.toLowerCase()) {
+            a.classList.add("active");
+            a.setAttribute("aria-current", "page");
+          }
+        });
+      });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add("visible"));
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".section, .experience-item").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

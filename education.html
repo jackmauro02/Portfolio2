@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Education — Jack Mauro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="eduStyles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#education">Skip to content</a>
+
+  <!-- Navbar gets injected here -->
+  <header id="navbar"></header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>My Education</h1>
+      <p class="sub">A snapshot of the learning that shaped my work — concise, skimmable, and expandable for detail.</p>
+    </div>
+    <div class="hero-accent" aria-hidden="true"></div>
+  </section>
+
+  <!-- Education Section -->
+  <main id="education">
+    <div class="education-grid">
+
+      <!-- University of Kent -->
+      <article class="education-item">
+        <div class="edu-logo"><img src="images/ukc.png" alt="University of Kent logo"></div>
+        <header class="edu-head">
+          <h2>University of Kent</h2>
+          <p class="edu-time">Sept 2021 – June 2024</p>
+          <p class="edu-cred"><strong>Business Information Technology</strong> — 2:2</p>
+        </header>
+
+        <details class="edu-details" name="edu">
+          <summary>Technology Modules</summary>
+          <ul class="list">
+            <li>Introduction to Object-Oriented Programming (OOP)</li>
+            <li>Foundations of Computing I</li>
+            <li>Human-Computer Interaction</li>
+            <li>Computers and the Cloud</li>
+            <li>Databases and the Web</li>
+            <li>Problem Solving with Algorithms</li>
+            <li>Web Development</li>
+            <li>Software Engineering Process</li>
+            <li>Computer Systems</li>
+            <li>Database Systems</li>
+            <li>Software Development</li>
+            <li>Video Games Development</li>
+            <li>Computational Intelligence in Business Economics &amp; Finance</li>
+            <li>Computational Creativity</li>
+            <li>Group Project — App Development Dissertation</li>
+          </ul>
+        </details>
+
+        <details class="edu-details" name="edu">
+          <summary>Business Modules</summary>
+          <ul class="list">
+            <li>Introduction to Management</li>
+            <li>Financial Accounting: Reporting &amp; Analysis</li>
+            <li>New Enterprise Development</li>
+            <li>Financial Management for Decision Making</li>
+            <li>Project Management</li>
+            <li>Technology-Driven Business Innovation</li>
+            <li>Entrepreneurship</li>
+            <li>Contemporary Management Challenges</li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Easthampstead Park -->
+      <article class="education-item">
+        <div class="edu-logo"><img src="images/EP.png" alt="Easthampstead Park Community School crest"></div>
+        <header class="edu-head">
+          <h2>Easthampstead Park Community School</h2>
+          <p class="edu-time">Sept 2014 – July 2021</p>
+          <p class="edu-cred"><strong>A Levels:</strong> IT (Distinction), Business (Distinction), Media (B)</p>
+        </header>
+
+        <details class="edu-details" open>
+          <summary>GCSEs</summary>
+          <p class="muted">8 GCSEs grades 7–5, including English and Mathematics.</p>
+        </details>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
+  </footer>
+
+  <!-- Load navbar dynamically -->
+  <script>
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+
+        // Re-bind nav toggle script
+        const btn = document.querySelector('.nav-toggle');
+        const menu = document.getElementById('mainmenu');
+        btn?.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          menu.classList.toggle('open');
+        });
+
+        // Highlight active link
+        const path = window.location.pathname.split("/").pop();
+        document.querySelectorAll(".menu a").forEach(link => {
+          if (link.getAttribute("href") === path) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+          }
+        });
+      });
+  </script>
+</body>
+</html>

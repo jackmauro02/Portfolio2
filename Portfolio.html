@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Jack Mauro — Portfolio" />
+  <title>Jack Mauro | Portfolio</title>
+
+  <!-- Font + Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#home">Skip to content</a>
+
+  <!-- Navbar (injected) -->
+  <header id="navbar"></header>
+
+  <!-- Hero -->
+  <section id="home" class="hero-section">
+    <div class="hero-inner">
+      <div class="intro-text">
+        <h1>Jack Mauro</h1>
+        <p>Business Information Technology Graduate | Aspiring IT Professional</p>
+        <a href="contact.html" class="cta-button">Get in Touch</a>
+      </div>
+
+      <div class="intro-image">
+        <img src="images/smart.jpg" alt="Portrait of Jack Mauro" />
+      </div>
+    </div>
+    <div class="hero-accent" aria-hidden="true"></div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section section-light">
+    <div class="wrap">
+      <header class="section-head">
+        <h2>About Me</h2>
+      </header>
+      <p class="lead">
+        As a Business Information Technology graduate from the University of Kent, I am passionate about
+        bridging the gap between business and technology. I have a keen interest in the technology industry,
+        computers, and how they function. My academic journey has equipped me with a robust understanding of
+        both technical and business concepts. I am eager to apply my knowledge to real-world scenarios and
+        contribute to technological advancements and innovative business solutions.
+      </p>
+    </div>
+  </section>
+
+  <!-- Education (summary cards) -->
+  <section id="education" class="section section-white">
+    <div class="wrap">
+      <header class="section-head">
+        <h2>Education</h2>
+      </header>
+
+      <div class="edu-cards">
+        <article class="edu-card">
+          <div class="edu-card-logo"><img src="images/ukc.png" alt="University of Kent logo"></div>
+          <div>
+            <h3>University of Kent</h3>
+            <p class="muted"><strong>Sept 2021 – June 2024</strong></p>
+            <p><strong>Business Information Technology</strong> — 2:2 Achieved</p>
+            <p class="muted small">Key Technology: Database Systems, Algorithms, Software Dev, Web Dev</p>
+            <p class="muted small">Key Business: Financial Accounting, Entrepreneurship, Contemporary Management, Project Management</p>
+          </div>
+        </article>
+
+        <article class="edu-card">
+          <div class="edu-card-logo"><img src="images/EP.png" alt="Easthampstead Park Community School logo"></div>
+          <div>
+            <h3>Easthampstead Park Community School</h3>
+            <p class="muted"><strong>Sept 2014 – July 2021</strong></p>
+            <p><strong>A Levels:</strong> IT (Distinction), Business (Distinction), Media (B)</p>
+            <p class="muted small">GCSEs: 8 (grades 7–5), including English and Mathematics</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta-link" href="education.html">View full education →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="section section-grey">
+    <div class="wrap">
+      <header class="section-head">
+        <h2>Work Experience</h2>
+      </header>
+
+      <div class="exp-grid">
+        <article class="exp-item">
+          <img src="images/surelock.png" alt="Surelock McGill" class="company-logo"/>
+          <div class="exp-body">
+            <h3><a href="https://www.surelockmcgill.com/na/" target="_blank" rel="noopener">Assembly and Collations — Surelock McGill</a></h3>
+            <p class="muted">July 2024 – Current</p>
+            <ul>
+              <li>Manufacturing and engineering security systems.</li>
+              <li>Independently and collaboratively delivering orders with quality control.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="exp-item">
+          <img src="images/wetherspoons.jfif" alt="Wetherspoons" class="company-logo"/>
+          <div class="exp-body">
+            <h3><a href="https://www.jdwetherspoon.com/" target="_blank" rel="noopener">Kitchen Assistant — Wetherspoons</a></h3>
+            <p class="muted">June 2022 – Sept 2022, July 2024 – Dec 2024</p>
+            <ul>
+              <li>Efficient meal preparation in a fast-paced environment.</li>
+              <li>Teamwork, communication, and stock management.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="exp-item">
+          <img src="images/coral reef.png" alt="Coral Reef Waterworld" class="company-logo"/>
+          <div class="exp-body">
+            <h3><a href="https://www.everyoneactive.com/centre/coral-reef-waterworld/" target="_blank" rel="noopener">General Assistant — Coral Reef Waterworld</a></h3>
+            <p class="muted">June 2023 – Aug 2024</p>
+            <ul>
+              <li>Customer support and venue safety/cleanliness.</li>
+              <li>Administered first aid (Level 3 emergency first aid).</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="exp-item">
+          <img src="images/primark.png" alt="Primark" class="company-logo"/>
+          <div class="exp-body">
+            <h3><a href="https://www.primark.com/en-gb" target="_blank" rel="noopener">Retail Assistant — Primark</a></h3>
+            <p class="muted">Feb 2020 – Aug 2021</p>
+            <ul>
+              <li>Customer service and cash handling.</li>
+              <li>Transaction processing and money management.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section section-dark">
+    <div class="wrap">
+      <header class="section-head section-head-invert">
+        <h2>Projects</h2>
+      </header>
+
+      <div class="slider">
+        <button class="arrow arrow-left" aria-label="Previous" onclick="scrollSlider(-1)">&#10094;</button>
+        <div class="track" id="projectTrack">
+          <!-- Project 1 -->
+          <article class="project-card">
+            <h3>Computational Creativity</h3>
+            <p>Interactive image-to-shape converter using HTML, CSS, JavaScript, and p5.js. Generates patterns (squares, circles, triangles) with colour/shape/randomness controls.</p>
+            <p><strong>Technologies:</strong> HTML, CSS, JavaScript, p5.js</p>
+            <p><strong>Features:</strong> Shape selection, colour matching, randomness toggle.</p>
+            <img src="images/cc demo.png" alt="Computational creativity demo" class="project-media">
+            <div class="btn-row">
+              <a class="cta-button" href="https://github.com/jackmauro02/Year-3/tree/main/Comp%20creativity%20final" target="_blank" rel="noopener">View Code</a>
+              <a class="cta-button" href="Comp creativity/Realpage3.html">Demo</a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card">
+            <h3>Mobile App Development</h3>
+            <p>React + Firebase app for sports clubs: bookings, PT schedules, fitness plans, and meal tracking.</p>
+            <p><strong>Technologies:</strong> React, Firebase</p>
+            <p><strong>Features:</strong> Cross-platform, real-time DB, secure login.</p>
+            <img src="images/clubtime.png" alt="Sports booking app" class="project-media">
+            <div class="btn-row">
+              <a class="cta-button" href="https://github.com/jackmauro02/Year-3/tree/main/SportsBookingApp" target="_blank" rel="noopener">View Code</a>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card">
+            <h3>Unity 3D Video Game</h3>
+            <p>Wave-based survival shooter inspired by CoD Zombies. Enemy spawns, player health, weapon systems.</p>
+            <p><strong>Technologies:</strong> Unity, C#</p>
+            <p><strong>Features:</strong> (Team project) gameplay systems, level design.</p>
+            <video src="images/Trailer1.mp4" class="project-media" controls autoplay loop muted></video>
+            <div class="btn-row">
+              <a class="cta-button" href="images/Trailer1.mp4">Download</a>
+              <a class="cta-button" target="_blank" rel="noopener" href="https://github.com/jackmauro02/Year-3/tree/main/Jack%20%2B%20Oz%20game">View Code</a>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card">
+            <h3>Software Development</h3>
+            <p>Doctor’s appointment booking system with DB integration: delete/change bookings, prescriptions, and core flows.</p>
+            <p><strong>Technologies:</strong> Java, SQL</p>
+            <video src="images/Booking.mp4" class="project-media" controls autoplay loop muted></video>
+            <div class="btn-row">
+              <a class="cta-button" href="images/Booking.mp4">Download</a>
+              <a class="cta-button" target="_blank" rel="noopener" href="https://github.com/jackmauro02/Group-project/tree/main/software-dev-main">View Code</a>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="project-card">
+            <h3>Unity 2D Video Game</h3>
+            <p>Physics-based 2D project in Unity.</p>
+            <p><strong>Technologies:</strong> Unity, C#</p>
+            <img src="images/game_project.png" alt="Unity 2D game" class="project-media">
+            <div class="btn-row">
+              <a class="cta-button" target="_blank" rel="noopener" href="https://github.com/your-username/unity-game">View Code</a>
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="project-card">
+            <h3>Personal Portfolio Website</h3>
+            <p>Responsive portfolio built with HTML, CSS, and JavaScript.</p>
+            <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
+            <img src="images/portfolio_project.png" alt="Portfolio site" class="project-media">
+            <div class="btn-row">
+              <a class="cta-button" target="_blank" rel="noopener" href="https://github.com/your-username/portfolio-website">View Code</a>
+            </div>
+          </article>
+        </div>
+        <button class="arrow arrow-right" aria-label="Next" onclick="scrollSlider(1)">&#10095;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section section-dark-soft">
+    <div class="wrap">
+      <header class="section-head section-head-invert">
+        <h2>Skills</h2>
+      </header>
+      <div class="skills-grid">
+        <div class="skill-card"><h3>Programming Languages</h3><p>Java, JavaScript, HTML, CSS.</p></div>
+        <div class="skill-card"><h3>Web Development</h3><p>Experience with Webflow for responsive sites.</p></div>
+        <div class="skill-card"><h3>Data Management</h3><p>Firebase and SQL for storage/manipulation.</p></div>
+        <div class="skill-card"><h3>Microsoft Office</h3><p>Advanced Excel, Word, PowerPoint.</p></div>
+        <div class="skill-card"><h3>Problem Solving</h3><p>Algorithms and logical reasoning.</p></div>
+        <div class="skill-card"><h3>Creative Design</h3><p>Advanced Photoshop for web/media.</p></div>
+        <div class="skill-card"><h3>Teamwork & Leadership</h3><p>Work experience & university projects.</p></div>
+        <div class="skill-card"><h3>Database Management</h3><p>SQL querying and fundamentals.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section section-light">
+    <div class="wrap">
+      <header class="section-head">
+        <h2>Contact Me</h2>
+      </header>
+      <form class="contact-form" action="submit_form.php" method="POST">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="cta-button">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts: navbar include, slider, reveal -->
+  <script>
+    // Inject navbar
+    fetch("navbar.html")
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+
+        // Mobile toggle
+        const btn = document.querySelector(".nav-toggle");
+        const menu = document.getElementById("mainmenu");
+        btn?.addEventListener("click", () => {
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+          btn.setAttribute("aria-expanded", String(!expanded));
+          menu.classList.toggle("open");
+        });
+
+        // Active link
+        const path = window.location.pathname.split("/").pop() || "Portfolio.html";
+        document.querySelectorAll(".menu a").forEach(a => {
+          if (a.getAttribute("href") === path || (path === "" && a.getAttribute("href") === "Portfolio.html")) {
+            a.classList.add("active");
+            a.setAttribute("aria-current", "page");
+          }
+        });
+      });
+
+    // Slider
+    function scrollSlider(dir) {
+      const track = document.getElementById("projectTrack");
+      const card = track.querySelector(".project-card");
+      const step = card ? card.getBoundingClientRect().width + 20 : 400;
+      track.scrollBy({ left: dir * step, behavior: "smooth" });
+    }
+    window.scrollSlider = scrollSlider;
+
+    // Simple reveal on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add("visible"));
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".section, .project-card, .exp-item, .skill-card").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

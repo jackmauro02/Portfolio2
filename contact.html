@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Jack Mauro</title>
+  <meta name="description" content="Contact Jack Mauro" />
+
+  <!-- Fonts + Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="conStyles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#contact">Skip to content</a>
+
+  <!-- Navbar injected -->
+  <header id="navbar"></header>
+
+  <main>
+    <!-- Contact -->
+    <section id="contact" class="section section-light">
+      <div class="wrap">
+        <header class="section-head">
+          <h1>Contact Me</h1>
+        </header>
+
+        <div class="contact-grid">
+          <!-- Contact card -->
+          <article class="contact-card">
+            <img src="images/smart.jpg" alt="Portrait of Jack Mauro" />
+            <h2>Jack Mauro</h2>
+            <p><strong>Location:</strong> Bracknell, Berkshire, UK</p>
+            <p><strong>Email:</strong> <a href="mailto:jackmauro02@gmail.com">jackmauro02@gmail.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+447809592763">+44 7809 592763</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jackmauro02" target="_blank" rel="noopener">linkedin.com/in/jackmauro02</a></p>
+          </article>
+
+          <!-- Contact form -->
+          <article class="contact-form">
+            <h3>Send Me a Message</h3>
+            <form action="submit_form.php" method="POST" novalidate>
+              <label for="name">Your Name</label>
+              <input id="name" name="name" type="text" required />
+
+              <label for="email">Your Email</label>
+              <input id="email" name="email" type="email" required />
+
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+
+              <button type="submit" class="cta-button">Send Message</button>
+            </form>
+          </article>
+        </div>
+      </div>
+      <div class="section-accent" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
+  </footer>
+
+  <!-- Inject navbar + active link + mobile toggle (safe, won't hide content if it fails) -->
+  <script>
+    (function () {
+      fetch("navbar.html")
+        .then(r => r.ok ? r.text() : Promise.reject())
+        .then(html => {
+          const host = document.getElementById("navbar");
+          if (host) host.innerHTML = html;
+
+          // Mobile toggle
+          const btn = document.querySelector(".nav-toggle");
+          const menu = document.getElementById("mainmenu");
+          btn && btn.addEventListener("click", () => {
+            const expanded = btn.getAttribute("aria-expanded") === "true";
+            btn.setAttribute("aria-expanded", String(!expanded));
+            menu && menu.classList.toggle("open");
+          });
+
+          // Highlight active link
+          const path = (location.pathname.split("/").pop() || "contact.html").toLowerCase();
+          document.querySelectorAll(".menu a").forEach(a => {
+            if (a.getAttribute("href").toLowerCase() === path) {
+              a.classList.add("active");
+              a.setAttribute("aria-current", "page");
+            }
+          });
+        })
+        .catch(() => { /* If navbar fails to load, page still works. */ });
+    })();
+  </script>
+</body>
+</html>
