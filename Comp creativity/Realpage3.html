@@ -2,137 +2,226 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sketch</title>
-  <link rel="stylesheet" type="text/css" href="compStyle.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Image Shape Art — Jack Mauro</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="compStyle.css">
+
+  <!-- p5 -->
   <script src="libraries/p5.min.js"></script>
   <script src="libraries/p5.sound.min.js"></script>
 </head>
 <body>
-  
-<h1>Image shape art conversion</h1>
-<button id="homeButton" href="Portfolio.html" class="button" onclick="history.back()">Back to Portfolio </button>
-<button id="infoButton">Information</button>
+  <a class="skip-link" href="#tool">Skip to content</a>
 
-<div class="input-container">
-  <label for="shapeSelect">Input image:</label>
-  <input type="file" id="imageInput" accept="image/*">
-</div>
-<div class="input-container">
-  <label for="shapeSelect">Select Shape:</label>
-  <select id="shapeSelect">
-    <option value="triangle">Triangle</option>
-    <option value="square">Square</option>
-    <option value="circle">Circle</option>
-    <option value="all">All</option>
-  </select>
-</div>
-<div class="input-container">
-  <label for="sizeRange">Size of shapes:</label>
-  <input type="number" id="sizeRange" min="1" max="100" value="20">
-</div>
-<div class="input-container">
-  <label for="randomizeSize">Random sizes:</label>
-  <input type="checkbox" id="randomizeSize">
-  <label for="rotation">Rotation:</label>
-  <input type="checkbox" id="rotation">
-  <label for="outlines">Outlines:</label>
-  <input type="checkbox" id="outlines">
-  <label for="fill">Fill: </label>
-  <input type="checkbox" id="fill">
-</div>
-<div class="input-container">
-  <label for="colourVariation"> colour variation:</label>
-  <input type="number" id="colourVariation" min="1" max="100" value="0">
-</div>
+  <!-- Navbar gets injected here -->
+  <header id="navbar"></header>
 
-<div class="input-container">
-  <label for="backgroundColor">Background Colour:</label>
-  <input type="color" id="backgroundColor">
-  <label for="backgroundImage">background Image:</label>
-  <input type="checkbox" id="backgroundImage">
-</div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Image Shape Art</h1>
+      <p class="sub">Upload an image and rebuild it using geometric shapes. Tweak size, rotation, outlines, fills, colour variation, and background.</p>
+    </div>
+    <div class="hero-accent" aria-hidden="true"></div>
+  </section>
 
-<button id="startButton">Start</button>
+  <!-- Tool -->
+  <main id="tool" class="tool-wrap">
+    <div class="tool-grid">
+      <!-- Controls -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Controls</h2>
+          <div class="panel-actions">
+            <button id="homeButton" class="btn btn-ghost" type="button" onclick="history.back()">Back to Portfolio</button>
+            <button id="infoButton" class="btn btn-ghost" type="button">Information</button>
+          </div>
+        </div>
 
-<div id="canvasContainer"></div>
+        <div class="field">
+          <label for="imageInput">Input image</label>
+          <input type="file" id="imageInput" accept="image/*">
+        </div>
 
-<div id="overlay" class="overlay">
-  <div class="overlay-content">
-    <span class="close" id="closeOverlay">&times;</span>
-    <div id="projectInfo"></div>
+        <div class="field">
+          <label for="shapeSelect">Select shape</label>
+          <select id="shapeSelect">
+            <option value="square">Square</option>
+            <option value="triangle">Triangle</option>
+            <option value="circle">Circle</option>
+            <option value="all">All</option>
+          </select>
+        </div>
+
+        <div class="field two-col">
+          <div>
+            <label for="sizeRange">Size of shapes</label>
+            <input type="number" id="sizeRange" min="1" max="100" value="20">
+          </div>
+          <div>
+            <label for="colourVariation">Colour variation</label>
+            <input type="number" id="colourVariation" min="0" max="100" value="0">
+          </div>
+        </div>
+
+        <fieldset class="field switches">
+          <legend>Options</legend>
+          <label class="chk"><input type="checkbox" id="randomizeSize"> Random sizes</label>
+          <label class="chk"><input type="checkbox" id="rotation"> Rotation</label>
+          <label class="chk"><input type="checkbox" id="outlines"> Outlines</label>
+          <label class="chk"><input type="checkbox" id="fill"> Fill empty spaces</label>
+        </fieldset>
+
+        <div class="field two-col">
+          <div>
+            <label for="backgroundColor">Background colour</label>
+            <input type="color" id="backgroundColor" value="#000000">
+          </div>
+          <div class="align-end">
+            <label class="chk" for="backgroundImage">
+              <input type="checkbox" id="backgroundImage"> Use original image as background
+            </label>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="startButton" class="btn">Start</button>
+          <button id="download" class="btn btn-outline">Download</button>
+        </div>
+      </section>
+
+      <!-- Canvas area -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Canvas</h2>
+        </div>
+        <div id="canvasContainer" class="canvas-shell" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
+  </footer>
+
+  <!-- Info Modal -->
+  <div class="modal" id="overlay" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-describedby="projectInfo">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="document">
+      <button class="modal__close" aria-label="Close" id="closeOverlay" data-close-modal>&times;</button>
+      <header class="modal__header">
+        <h3 id="modalTitle">How to use</h3>
+      </header>
+      <div class="modal__body" id="projectInfo">
+        <ol>
+          <li>Upload an image using the 'Input image' button.</li>
+          <li>Choose a shape (or <em>All</em> to mix).</li>
+          <li>Set <em>Size</em>, optional <em>Colour variation</em>, and toggles (Random sizes, Rotation, Outlines, Fill).</li>
+          <li>Pick a background colour or use the original image as the background.</li>
+          <li>Press <strong>Start</strong> to generate. Use <strong>Download</strong> to save.</li>
+        </ol>
+      </div>
+    </div>
   </div>
-</div>
 
-<script src="testAllFinal.js"></script>
-<script>
-  // Define the function to display project information
-  function displayProjectInfo() {
-    var overlay = document.getElementById('overlay');
-    overlay.style.display = 'block'; // Show the overlay
+  <!-- Your sketch logic (unchanged) -->
+  <script src="testAllFinal.js"></script>
 
-    var projectInfoDiv = document.getElementById('projectInfo');
-    // Add your project information here
-    var information = "<h2>Project Information</h2>";
-    information += "<p>This project is a tool for converting images into art using various shapes.</p>";
-    information += "<p>Here's how to use it:</p>";
-    information += "<ol>";
-    information += "<li>Upload an image using the 'Input image' button.</li>";
-    information += "<li>Select a shape from the dropdown menu.</li>";
-    information += "<li>Adjust the size and other options as desired.</li>";
-    information += "<li>Random sizes uses a random size up to the selected size.</li>";
-    information += "<li>Rotation randomly rotates the shapes, outlines of shapes can be turned on and off.</li>";
-    information += "<li>Fill will fill any blank space with shapes and colour variation will let the colour value change by a set amount.</li>";
-    information += "<li>The background colour can be set to chosen colour or the original image.</li>";
-    information += "<li>Click the 'Start' button to convert the image into art.</li>";
-    information += "<li>You can also download the resulting artwork using the 'Download' button.</li>";
-    information += "</ol>";
+  <!-- Page wiring: navbar fallbacks + logo fix + canvas parenting + info modal -->
+  <script>
+    // ===== Helper: try multiple relative paths until one fetches navbar.html =====
+    async function loadNavbar() {
+      const candidates = [
+        "navbar.html",
+        "Comp creativity/navbar.html",
+        "../../navbar.html",
+        "../../../navbar.html",
+      ];
+      for (const path of candidates) {
+        try {
+          const res = await fetch(path);
+          if (res.ok) {
+            const html = await res.text();
+            document.getElementById("navbar").innerHTML = html;
 
-    // Display the information
-    projectInfoDiv.innerHTML = information;
-  }
+            // Prefix used for this successful fetch (e.g. "../")
+            const prefix = path.replace("navbar.html", "");
 
-  // Add event listener to the button
-  document.getElementById('infoButton').addEventListener('click', displayProjectInfo);
+            // Wire mobile toggle + active link
+            const btn = document.querySelector(".nav-toggle");
+            const menu = document.getElementById("mainmenu");
+            btn?.addEventListener("click", () => {
+              const expanded = btn.getAttribute("aria-expanded") === "true";
+              btn.setAttribute("aria-expanded", String(!expanded));
+              menu.classList.toggle("open");
+            });
+            const current = (window.location.pathname.split("/").pop() || "").toLowerCase();
+            document.querySelectorAll(".menu a").forEach(a => {
+              const href = (a.getAttribute("href") || "").toLowerCase();
+              if (href === current) { a.classList.add("active"); a.setAttribute("aria-current", "page"); }
+            });
 
-  // Add event listener to the close button
-  document.getElementById('closeOverlay').addEventListener('click', function() {
-    var overlay = document.getElementById('overlay');
-    overlay.style.display = 'none'; // Hide the overlay
-  });
-</script>
+            // Fix brand logo path if it's relative like "images/logo.png"
+            const logo = document.querySelector(".brand-logo") ||
+                         document.querySelector('img[alt*="logo" i]');
+            if (logo) {
+              const src = logo.getAttribute("src") || "";
+              const isAbsolute = /^(data:|https?:|\/)/i.test(src);
+              if (!isAbsolute) logo.src = prefix + src.replace(/^\.\/+/, "");
+            }
 
-<button id="download">Download</button>
+            return; // success
+          }
+        } catch (e) { /* try next */ }
+      }
+      console.warn("navbar.html not found in expected locations.");
+    }
+    loadNavbar();
+
+    // ===== Info modal open/close =====
+    (function () {
+      const overlay = document.getElementById("overlay");
+      const openInfo = document.getElementById("infoButton");
+      const closeBtns = overlay.querySelectorAll("[data-close-modal]");
+      const escClose = (e) => { if (e.key === "Escape") close(); };
+      function open() {
+        overlay.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        document.addEventListener("keydown", escClose);
+      }
+      function close() {
+        overlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        document.removeEventListener("keydown", escClose);
+      }
+      openInfo.addEventListener("click", open);
+      closeBtns.forEach(b => b.addEventListener("click", close));
+      overlay.querySelector(".modal__backdrop").addEventListener("click", close);
+    })();
+
+    // ===== Move any p5 canvas into #canvasContainer =====
+    (function () {
+      const shell = document.getElementById("canvasContainer");
+      function moveExisting() {
+        const c = document.querySelector("canvas.p5Canvas, canvas");
+        if (c && !shell.contains(c)) {
+          shell.classList.add("has-canvas");
+          shell.appendChild(c);
+        }
+      }
+      // Move if already present
+      moveExisting();
+      // Watch for newly created canvases
+      const mo = new MutationObserver(() => moveExisting());
+      mo.observe(document.documentElement, { childList: true, subtree: true });
+    })();
+  </script>
 </body>
 </html>
-
-<style>
-  /* Overlay styles */
-  .overlay {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
-  }
-
-  .overlay-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(163, 19, 19);
-    padding: 20px;
-  }
-
-  .close {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    font-size: 28px;
-    cursor: pointer;
-  }
-</style>
