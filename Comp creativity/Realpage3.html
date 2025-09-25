@@ -40,7 +40,6 @@
         <div class="panel-head">
           <h2 class="panel-title">Controls</h2>
           <div class="panel-actions">
-            <button id="homeButton" class="btn btn-ghost" type="button" onclick="history.back()">Back to Portfolio</button>
             <button id="infoButton" class="btn btn-ghost" type="button">Information</button>
           </div>
         </div>
@@ -66,9 +65,12 @@
             <input type="number" id="sizeRange" min="1" max="100" value="20">
           </div>
           <div>
-            <label for="colourVariation">Colour variation</label>
-            <input type="number" id="colourVariation" min="0" max="100" value="0">
-          </div>
+  <label for="colourVariation">
+    Colour variation <output id="colourVal" for="colourVariation">0</output>
+  </label>
+  <input type="range" id="colourVariation" min="0" max="100" value="0" step="1">
+</div>
+
         </div>
 
         <fieldset class="field switches">
@@ -141,8 +143,8 @@
       const candidates = [
         "navbar.html",
         "Comp creativity/navbar.html",
+        "../navbar.html",
         "../../navbar.html",
-        "../../../navbar.html",
       ];
       for (const path of candidates) {
         try {
@@ -223,5 +225,12 @@
       mo.observe(document.documentElement, { childList: true, subtree: true });
     })();
   </script>
+
+  <script>
+  const colour = document.getElementById('colourVariation');
+  const colourVal = document.getElementById('colourVal');
+  colour.addEventListener('input', () => { colourVal.textContent = colour.value; });
+</script>
+
 </body>
 </html>
