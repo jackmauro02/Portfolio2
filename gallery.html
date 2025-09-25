@@ -10,16 +10,8 @@
   <script src="gallery.js" defer></script>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="index.html#home">Home</a></li>                                 
-      <li><a href="index.html#about">About Me</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="projects2.html">Projects</a></li>
-      <li><a href="Experience.html">Experience</a></li>
-      <li><a href="contact.html">Contact Me</a></li>
-    </ul>
-  </nav>
+  <!-- Navbar injected -->
+  <header id="navbar"></header>
 
   <section id="gallery" class="centered-section">
     <h2>Photoshop Gallery</h2>
@@ -36,16 +28,43 @@
         <img src="photoshop/p3.png" alt="Photoshop Design 3">
       </div>
       <div class="gallery-item">
-        <img src="photoshop/p1.jpg" alt="Photoshop Design 1">
+        <img src="photoshop/p4.jpg" alt="Photoshop Design 1">
       </div>
       <div class="gallery-item">
-        <img src="photoshop/p2.jpg" alt="Photoshop Design 2">
+        <img src="photoshop/p5.png" alt="Photoshop Design 2">
       </div>
       <div class="gallery-item">
-        <img src="photoshop/p1.jpg" alt="Photoshop Design 1">
+        <img src="photoshop/p6.png" alt="Photoshop Design 1">
       </div>
       <div class="gallery-item">
-        <img src="photoshop/p2.jpg" alt="Photoshop Design 2">
+        <img src="photoshop/p7.png" alt="Photoshop Design 2">
+      </div>
+      <div class="gallery-item">
+        <img src="photoshop/p8.png" alt="Photoshop Design 2">
+      </div>
+      <div class="gallery-item">
+        <img src="photoshop/p9.png" alt="Photoshop Design 2">
+      </div>
+      <div class="gallery-item">
+        <img src="photoshop/p10.png" alt="Photoshop Design 2">
+      </div>
+      <div class="gallery-item">
+        <img src="photoshop/p11.png" alt="Photoshop Design 2">
+      </div>
+      <div class="gallery-item">
+        <img src="photoshop/p12.png" alt="Photoshop Design 2">
+      </div>
+      <div class="gallery-item">
+        <img src="photoshop/p13.jpg" alt="Photoshop Design 2">
+      </div>
+      <div class="gallery-item">
+        <img src="photoshop/p14.jpg" alt="Photoshop Design 2">
+      </div>
+      <div class="gallery-item">
+        <img src="photoshop/p15.jpg" alt="Photoshop Design 2">
+      </div>
+      <div class="gallery-item">
+        <img src="photoshop/p16.png" alt="Photoshop Design 2">
       </div>
       <!-- Add more images as needed -->
     </div>
@@ -62,3 +81,36 @@
   </footer>
 </body>
 </html>
+<script>
+    // Inject navbar
+    fetch("navbar.html")
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+
+        // Mobile toggle
+        const btn = document.querySelector(".nav-toggle");
+        const menu = document.getElementById("mainmenu");
+        btn?.addEventListener("click", () => {
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+          btn.setAttribute("aria-expanded", String(!expanded));
+          menu.classList.toggle("open");
+        });
+
+        // Active link highlight
+        const path = window.location.pathname.split("/").pop() || "projects2.html";
+        document.querySelectorAll(".menu a").forEach(a => {
+          if (a.getAttribute("href").toLowerCase() === path.toLowerCase()) {
+            a.classList.add("active");
+            a.setAttribute("aria-current", "page");
+          }
+        });
+      });
+
+    // Simple reveal on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add("visible"));
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".section, .project-card").forEach(el => observer.observe(el));
+  </script>

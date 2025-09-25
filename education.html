@@ -26,6 +26,12 @@
 
   <!-- Education Section -->
   <main id="education">
+    <!-- Controls -->
+    <div class="edu-controls">
+      <button type="button" id="expandAll" class="btn-ghost">Expand all</button>
+      <button type="button" id="collapseAll" class="btn-ghost">Collapse all</button>
+    </div>
+
     <div class="education-grid">
 
       <!-- University of Kent -->
@@ -37,38 +43,40 @@
           <p class="edu-cred"><strong>Business Information Technology</strong> — 2:2</p>
         </header>
 
-        <details class="edu-details" name="edu">
+        <!-- Technology Modules -->
+        <details class="edu-details">
           <summary>Technology Modules</summary>
           <ul class="list">
-            <li>Introduction to Object-Oriented Programming (OOP)</li>
-            <li>Foundations of Computing I</li>
-            <li>Human-Computer Interaction</li>
-            <li>Computers and the Cloud</li>
-            <li>Databases and the Web</li>
-            <li>Problem Solving with Algorithms</li>
-            <li>Web Development</li>
-            <li>Software Engineering Process</li>
-            <li>Computer Systems</li>
-            <li>Database Systems</li>
-            <li>Software Development</li>
-            <li>Video Games Development</li>
-            <li>Computational Intelligence in Business Economics &amp; Finance</li>
-            <li>Computational Creativity</li>
-            <li>Group Project — App Development Dissertation</li>
+            <li data-module="oop">Introduction to Object-Oriented Programming (OOP)</li>
+            <li data-module="found-comp">Foundations of Computing I</li>
+            <li data-module="hci">Human-Computer Interaction</li>
+            <li data-module="cloud">Computers and the Cloud</li>
+            <li data-module="db-web">Databases and the Web</li>
+            <li data-module="algos">Problem Solving with Algorithms</li>
+            <li data-module="webdev">Web Development</li>
+            <li data-module="se-process">Software Engineering Process</li>
+            <li data-module="cs">Computer Systems</li>
+            <li data-module="db-systems">Database Systems</li>
+            <li data-module="soft-dev">Software Development</li>
+            <li data-module="games">Video Games Development</li>
+            <li data-module="cibef">Computational Intelligence in Business Economics &amp; Finance</li>
+            <li data-module="comp-creativity">Computational Creativity</li>
+            <li data-module="group-project">Group Project — App Development Dissertation</li>
           </ul>
         </details>
 
-        <details class="edu-details" name="edu">
+        <!-- Business Modules -->
+        <details class="edu-details">
           <summary>Business Modules</summary>
           <ul class="list">
-            <li>Introduction to Management</li>
-            <li>Financial Accounting: Reporting &amp; Analysis</li>
-            <li>New Enterprise Development</li>
-            <li>Financial Management for Decision Making</li>
-            <li>Project Management</li>
-            <li>Technology-Driven Business Innovation</li>
-            <li>Entrepreneurship</li>
-            <li>Contemporary Management Challenges</li>
+            <li data-module="intro-mgmt">Introduction to Management</li>
+            <li data-module="fin-acc">Financial Accounting: Reporting &amp; Analysis</li>
+            <li data-module="new-enterprise">New Enterprise Development</li>
+            <li data-module="fin-mgmt">Financial Management for Decision Making</li>
+            <li data-module="proj-mgmt">Project Management</li>
+            <li data-module="tech-innovation">Technology-Driven Business Innovation</li>
+            <li data-module="entre">Entrepreneurship</li>
+            <li data-module="cont-mgmt">Contemporary Management Challenges</li>
           </ul>
         </details>
       </article>
@@ -95,31 +103,26 @@
     <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
   </footer>
 
-  <!-- Load navbar dynamically -->
-  <script>
-    fetch("navbar.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("navbar").innerHTML = data;
+  <!-- Module modal -->
+  <div class="modal" id="moduleModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="document">
+      <button class="modal__close" aria-label="Close details" data-close-modal>&times;</button>
+      <header class="modal__header">
+        <img id="modalImg" class="modal__img" alt="" />
+        <div>
+          <h4 id="modalTitle"></h4>
+          <div id="modalMeta" class="pill-row"></div>
+        </div>
+      </header>
+      <div class="modal__body">
+        <p id="modalDesc"></p>
+        <div id="modalSkills" class="pill-row"></div>
+        <ul id="modalHighlights" class="modal__list"></ul>
+      </div>
+    </div>
+  </div>
 
-        // Re-bind nav toggle script
-        const btn = document.querySelector('.nav-toggle');
-        const menu = document.getElementById('mainmenu');
-        btn?.addEventListener('click', () => {
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', String(!expanded));
-          menu.classList.toggle('open');
-        });
-
-        // Highlight active link
-        const path = window.location.pathname.split("/").pop();
-        document.querySelectorAll(".menu a").forEach(link => {
-          if (link.getAttribute("href") === path) {
-            link.classList.add("active");
-            link.setAttribute("aria-current", "page");
-          }
-        });
-      });
-  </script>
+  <script src="edu.js"></script>
 </body>
 </html>

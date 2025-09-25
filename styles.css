@@ -175,6 +175,23 @@ body {
   background: #cc0000;
   transform: translateY(-1px);
 }
+.cta-button2 {
+  background: #353535;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 16px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  display: inline-block;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.cta-button2:hover {
+  background: #cc0000;
+  transform: translateY(-1px);
+}
+
 .intro-image img {
   display: block;
   width: 240px;
@@ -329,6 +346,8 @@ body {
   max-width: 520px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s, box-shadow 0.2s;
+  justify-content: space-between; /* Optional: helps push buttons down */
+  
 }
 .project-card:hover {
   transform: translateY(-3px);
