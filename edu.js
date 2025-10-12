@@ -77,7 +77,7 @@ const MODULE_INFO = {
     title: "Computers and the Cloud",
     cat: "Technology",
     year: 1,
-    img: "images/modules/cloud.jpg",
+    img: "images/modules/cloud.png",
     desc:
       "From hardware/OS and virtualisation to distributed systems and cloud service models (IaaS/PaaS/SaaS). Covered scalability, reliability, basic networking and containerised deployment concepts.",
     skills: ["Cloud Fundamentals", "Virtualisation", "Networking Basics", "Linux CLI", "Containers"],
@@ -87,7 +87,7 @@ const MODULE_INFO = {
     title: "Databases and the Web",
     cat: "Technology",
     year: 1,
-    img: "images/modules/db-web.jpg",
+    img: "images/modules/database2.png",
     desc:
       "Relational modelling and SQL alongside web data flows. Topics: ER modelling, normalisation, transactions, and building data-driven pages/APIs over HTTP.",
     skills: ["SQL", "ER Modelling", "Normalisation", "Transactions", "HTTP/REST", "CRUD"],
@@ -97,7 +97,7 @@ const MODULE_INFO = {
     title: "Problem Solving with Algorithms",
     cat: "Technology",
     year: 1,
-    img: "images/modules/algorithms.jpg",
+    img: "images/modules/algo.jpg",
     desc:
       "Turning problems into precise procedures and analysing performance. Patterns included divide-and-conquer, greedy and dynamic programming; used Big-O to compare approaches.",
     skills: ["Algorithms", "Data Structures", "Recursion", "Big-O Analysis"],
@@ -107,7 +107,7 @@ const MODULE_INFO = {
     title: "Web Development",
     cat: "Technology",
     year: 2,
-    img: "images/modules/webdev.jpg",
+    img: "images/modules/web dev.png",
     desc:
       "Modern, accessible web foundations: semantic HTML, responsive CSS (Flex/Grid), vanilla JS for interactivity, and performance/accessibility baselines. Client–server thinking and simple RESTful patterns.",
     skills: ["HTML5", "CSS3 (Flex/Grid)", "JavaScript (DOM/Fetch)", "Accessibility", "Performance"],
@@ -117,7 +117,7 @@ const MODULE_INFO = {
     title: "Software Engineering Process",
     cat: "Technology",
     year: 2,
-    img: "images/modules/se-process.jpg",
+    img: "images/modules/SEP.jpg",
     desc:
       "How teams deliver software: requirements/user stories, estimation and planning, Scrum/Kanban, version-control workflows, code reviews, CI and quality/risk management. Focus on producing professional artefacts.",
     skills: ["Agile (Scrum/Kanban)", "User Stories", "Git/GitHub Flow", "Code Review", "CI"],
@@ -127,7 +127,7 @@ const MODULE_INFO = {
     title: "Computer Systems",
     cat: "Technology",
     year: 2,
-    img: "images/modules/computer-systems.jpg",
+    img: "images/modules/nand2.jpg",
     desc:
       "How computers run programs: CPU, memory hierarchy, processes/threads, file systems and interrupts; OS responsibilities and network layering; reasoning about performance and concurrency.",
     skills: ["Operating Systems", "Processes/Threads", "Memory/Storage", "Networking", "CLI"],
@@ -137,7 +137,7 @@ const MODULE_INFO = {
     title: "Database Systems",
     cat: "Technology",
     year: 2,
-    img: "images/modules/database-systems.jpg",
+    img: "images/modules/database.png",
     desc:
       "Advanced data management: relational algebra, indexing, query optimisation, ACID transactions, isolation levels, concurrency control and security; compared relational with alternative models where apt.",
     skills: ["SQL", "Indexing", "Query Optimisation", "ACID", "Concurrency", "Security"],
@@ -147,7 +147,7 @@ const MODULE_INFO = {
     title: "Software Development",
     cat: "Technology",
     year: 2,
-    img: "images/modules/software-dev.jpg",
+    img: "images/modules/software dev.png",
     desc:
       "Clean code, testing pyramid, refactoring and modular design; robust error handling, logging and simple automation. Emphasis on reliability and maintainability.",
     skills: ["Clean Code", "Unit Testing", "Refactoring", "Modularity", "Error Handling"],
@@ -157,7 +157,7 @@ const MODULE_INFO = {
     title: "Video Games Development",
     cat: "Technology",
     year: 2,
-    video: "images/Trailer1.mp4",
+    img: "images/modules/game.png",
     desc:
       "Unity fundamentals (2D/3D): game loops, physics, input, scene management and UI. Incorporated play-testing and iteration towards a stable prototype.",
     skills: ["Unity", "C#", "Physics", "Input/Scenes", "Game UI"],
@@ -167,7 +167,7 @@ const MODULE_INFO = {
     title: "Computational Intelligence in Business Economics & Finance",
     cat: "Technology",
     year: 3,
-    img: "images/modules/cibef.jpg",
+    img: "images/modules/comp bus.png",
     desc:
       "Nature-inspired/data-driven techniques for real decisions: simple neural nets, evolutionary optimisation, fuzzy systems and data mining; evaluation/ethics in business/finance settings.",
     skills: ["ML Basics", "Data Preparation", "Model Evaluation", "Heuristics"],
@@ -187,7 +187,7 @@ const MODULE_INFO = {
     title: "Group Project — App Development Dissertation",
     cat: "Technology",
     year: 3,
-    img: "images/modules/group-project.jpg",
+    img: "images/clubtime.png",
     desc:
       "Multi-month team build: scoping and requirements, UX prototypes, implementation, test strategy, documentation and final demo. Strong focus on teamwork and engineering discipline.",
     skills: ["Full-stack Delivery", "Teamwork", "Documentation", "Presentations", "Roadmapping"],
@@ -199,7 +199,7 @@ const MODULE_INFO = {
     title: "Introduction to Management",
     cat: "Business",
     year: 1,
-    img: "images/modules/management.jpg",
+    img: "images/modules/manage.jpg",
     desc:
       "Management fundamentals: planning, organising, leading and controlling; organisational behaviour, motivation and ethics. Case-based work linked theory to real managerial choices.",
     skills: ["Management", "Org Behaviour", "Communication"],
@@ -209,7 +209,7 @@ const MODULE_INFO = {
     title: "Financial Accounting: Reporting & Analysis",
     cat: "Business",
     year: 1,
-    img: "images/modules/finance.jpg",
+    img: "images/modules/finance.png",
     desc:
       "How financial statements are prepared and interpreted (income, balance sheet, cash flows) and how to analyse profitability, liquidity and efficiency using ratios.",
     skills: ["Accounting", "Financial Statements", "Ratio Analysis", "Excel"],
@@ -219,7 +219,7 @@ const MODULE_INFO = {
     title: "New Enterprise Development",
     cat: "Business",
     year: 2,
-    img: "images/modules/enterprise.jpg",
+    img: "images/modules/new bus.jpg",
     desc:
       "From idea to venture: opportunity recognition, customer discovery, lean validation, MVPs and go-to-market strategy. Developed and critiqued a credible business plan.",
     skills: ["Entrepreneurship", "Customer Discovery", "Lean Canvas", "Pitching"],
@@ -229,7 +229,7 @@ const MODULE_INFO = {
     title: "Financial Management for Decision Making",
     cat: "Business",
     year: 2,
-    img: "images/modules/fin-mgmt.jpg",
+    img: "images/modules/fin man.png",
     desc:
       "Managerial accounting and finance for internal decisions: costing, budgeting, variance analysis, performance measures and investment appraisal (NPV/IRR) with sensitivity to risk.",
     skills: ["Budgeting", "NPV/IRR", "Variance Analysis", "Decision Support"],
@@ -239,7 +239,7 @@ const MODULE_INFO = {
     title: "Project Management",
     cat: "Business",
     year: 2,
-    img: "images/modules/project-mgmt.jpg",
+    img: "images/modules/project management.png",
     desc:
       "Planning and delivery: scope/WBS, scheduling (Gantt, critical path), risk and stakeholder management, governance and reporting for predictable outcomes.",
     skills: ["WBS", "Critical Path", "Risk Management", "Stakeholders", "Reporting"],
@@ -249,7 +249,7 @@ const MODULE_INFO = {
     title: "Technology-Driven Business Innovation",
     cat: "Business",
     year: 3,
-    img: "images/modules/innovation.jpg",
+    img: "images/modules/tech drive.png",
     desc:
       "How IT enables new products, services and business models. Evaluated technologies, mapped value creation and aligned innovation strategy with market/organisational needs.",
     skills: ["Innovation", "Digital Strategy", "Business Models", "Value Mapping"],
@@ -259,7 +259,7 @@ const MODULE_INFO = {
     title: "Entrepreneurship",
     cat: "Business",
     year: 3,
-    img: "images/modules/entrepreneurship.jpg",
+    img: "images/modules/entre.png",
     desc:
       "Entrepreneurial mindset, opportunity assessment, resource acquisition and early growth strategies. Assessment often includes a defendable venture concept.",
     skills: ["Opportunity Sizing", "MVPs", "Traction Metrics", "Funding Paths"],
@@ -269,7 +269,7 @@ const MODULE_INFO = {
     title: "Contemporary Management Challenges",
     cat: "Business",
     year: 3,
-    img: "images/modules/contemporary-mgmt.jpg",
+    img: "images/modules/challenges.png",
     desc:
       "Leading amid disruption: digital change, sustainability, diversity & inclusion, ethics and evolving workforce expectations. Encourages critical reflection and practical responses.",
     skills: ["Change Management", "Sustainability", "Ethics", "Diversity & Inclusion"],

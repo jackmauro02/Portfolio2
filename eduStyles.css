@@ -236,13 +236,16 @@ body {
 .modal__dialog {
   position: relative;
   background: #fff;
-  width: min(720px, 92vw);
+  width: min(780px, 94vw);
   border-radius: 16px;
   border: 1px solid #e5e5e5;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  padding: 18px 18px 22px;
-  max-height: 88vh;
-  overflow: auto;
+  padding: 20px;
+  max-height: 90vh;           /* Allows tall images to scroll safely */
+  overflow-y: auto;           /* Scrolls only when truly needed */
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #bbb #f5f5f5;
 }
 .modal__close {
   position: absolute;
@@ -263,7 +266,8 @@ body {
   align-items: center;
   padding-right: 44px;
 }
-/* existing tiny logo style */
+
+/* Small header icon version */
 .modal__img {
   width: 72px;
   height: 72px;
@@ -272,19 +276,29 @@ body {
   border: 1px solid #eee;
 }
 
-/* when the same element becomes the big preview below the skill pills */
+/* Full work preview image (shows full image, never cropped) */
 .modal__img.modal__workimg {
-  width: 100%;
-  height: auto;
-  max-height: 340px;       /* tweak to taste */
-  object-fit: cover;       /* use 'contain' if you never want cropping */
-  border-radius: 12px;
-  border: 1px solid #eee;
-  margin: 12px 0 10px;
   display: block !important;
+  width: 450px;
+  height: auto;
+  max-height: none;           /* No forced height cap */
+  object-fit: contain;        /* Never crops, fits within bounds */
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin: 16px 0 12px;
+  background: #f9f9f9;
+  padding: 4px;
+  box-sizing: border-box;
 }
 
+/* Center wide or tall images */
+.modal__img.modal__workimg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+/* Text & details */
 .modal__header h4 {
   font-size: 1.25rem;
   margin-bottom: 6px;
@@ -314,6 +328,7 @@ body {
 .modal__list li {
   margin: 4px 0;
 }
+
 
 /* ====== Footer ====== */
 .site-footer {
