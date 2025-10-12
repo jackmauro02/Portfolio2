@@ -263,6 +263,7 @@ body {
   align-items: center;
   padding-right: 44px;
 }
+/* existing tiny logo style */
 .modal__img {
   width: 72px;
   height: 72px;
@@ -270,6 +271,20 @@ body {
   border-radius: 12px;
   border: 1px solid #eee;
 }
+
+/* when the same element becomes the big preview below the skill pills */
+.modal__img.modal__workimg {
+  width: 100%;
+  height: auto;
+  max-height: 340px;       /* tweak to taste */
+  object-fit: cover;       /* use 'contain' if you never want cropping */
+  border-radius: 12px;
+  border: 1px solid #eee;
+  margin: 12px 0 10px;
+  display: block !important;
+}
+
+
 .modal__header h4 {
   font-size: 1.25rem;
   margin-bottom: 6px;
