@@ -326,6 +326,82 @@ const MODULE_INFO = {
       "Explored contemporary challenges in management and strategies to address them."
     ],
   },
+     
+
+
+    // --- Sixth Form ---
+  "IT": {
+    title: "Information Technology (BTEC Level 3) – Distinction",
+    cat: "Sixth Form",
+    year: 0,
+    img: "images/modules/it-btec.jpg",
+    desc:
+      "Practical and theory-based qualification covering IT systems, databases, web design, and social media in business. Explored how digital technologies support modern organisations and gained strong technical and problem-solving skills through coursework and applied projects.",
+    skills: [
+      "Database Design",
+      "Web Development (no code)",
+      "Networking Fundamentals",
+      "IT Systems Management",
+      "Digital Marketing",
+      "Data Handling",
+      "Microsoft Office Suite"
+    ],
+    highlights: [
+      "Developed and tested a relational database to manage information effectively.",
+      "Designed a small business website prototype, focusing on usability and responsive layout.",
+      "Planned and evaluated a social media strategy to improve brand engagement.",
+      "Applied theoretical IT knowledge to real-world business scenarios and client briefs."
+    ],
+  },
+
+  "BS": {
+    title: "Business (BTEC Level 3) – Distinction",
+    cat: "Sixth Form",
+    year: 0,
+    img: "images/modules/business-btec.jpg",
+    desc:
+      "Comprehensive study of business operations, marketing, finance, and enterprise. Focused on how organisations are structured, how they attract customers, and how decisions are made based on financial and market data.",
+    skills: [
+      "Marketing Strategy",
+      "Business Finance",
+      "Event Management",
+      "Market Research",
+      "Team Leadership",
+      "Data Analysis",
+      "Presentation Skills"
+    ],
+    highlights: [
+      "Planned a marketing campaign from research to execution, including budgeting and audience targeting.",
+      "Produced a detailed business report analysing a chosen organisation’s strategy and performance.",
+      "Organised and delivered a small-scale event, managing resources, promotion, and evaluation.",
+      "Developed an understanding of business ethics, communication, and customer relationships."
+    ],
+  },
+
+  "M": {
+    title: "Media Studies (A Level) – Grade B",
+    cat: "Sixth Form",
+    year: 0,
+    img: "images/modules/media-alevel.jpg",
+    desc:
+      "Analytical and creative course exploring how media products represent people, ideas, and issues across different platforms. Combined theoretical study with hands-on production work to develop creative and critical thinking skills.",
+    skills: [
+      "Media Analysis",
+      "Video Editing",
+      "Photoshop & Design",
+      "Creative Writing",
+      "Audience Research",
+      "Storyboarding",
+      "Brand Identity"
+    ],
+    highlights: [
+      "Created a promotional video and magazine layout for a youth-oriented brand using Adobe tools.",
+      "Analysed how representation and narrative affect audience perception across media forms.",
+      "Explored how production, distribution, and regulation influence global media industries.",
+      "Demonstrated both analytical precision and creative flair through written and practical work."
+    ],
+  },
+
 };
 
 // ===== Modal behaviour (unchanged) =====
