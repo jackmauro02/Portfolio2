@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jackime — Anime Roster</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="nav-placeholder"></div>
+
+  
+
+
+<body>
+  
+  <header class="header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 .9l3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 16.9l-6.18 3.25L7 13.03 2 8.16l6.91-1L12 .9z" fill="#ff3333"/>
+        </svg>
+        <div>
+          <h1>Jackime</h1>
+          <div class="tag">Personal anime tracker</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <input id="q" class="search" placeholder="Search title or description…" />
+        <div class="sorters">
+          <select id="sortBy" class="select" aria-label="Sort by">
+            <option value="name">Sort: Name</option>
+            <option value="episodes">Sort: Episodes</option>
+            <option value="apiRating">Sort: API Rating</option>
+            <option value="myRating">Sort: My Rating</option>
+          </select>
+          <button id="sortDir" class="btn dir" aria-pressed="false" title="Change sort direction">Low → High</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="tip" class="tip">
+      Place an <code>anime.csv</code> next to this page — it auto-loads on open.
+    </div>
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <div id="empty" class="empty">No items yet.</div>
+  </main>
+
+  <dialog id="detail">
+    <button class="btn close" onclick="detail.close()">Close ✕</button>
+    <div class="modal">
+      <div class="imgbox"><img id="dimg" alt="cover"></div>
+      <div class="body">
+        <h2 id="dtitle"></h2>
+        <div class="chips">
+          <span class="chip" id="deps">Eps: –</span>
+          <span class="chip" id="dscore">API Rating: –</span>
+          <a class="chip linkchip" id="dlink" href="#" target="_blank" rel="noopener noreferrer">Open on MAL ↗</a>
+          <!-- finished/progress -->
+          <span class="chip" id="dfinished" style="display:none"></span>
+        </div>
+
+        <p id="ddesc"></p>
+
+        <div class="myrow">
+          <div class="muted">My rating</div>
+          <div id="dmyrating" class="myrating">—</div>
+        </div>
+
+        <div class="myrow">
+          <div class="muted">Jack’s views</div>
+          <p id="jviews" class="jviews">—</p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="footer">© Jackime — static site. Data comes from MyAnimeList API. Up to date as of 24/10/2025</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
+<script>
+    // ===== Helper: try multiple relative paths until one fetches navbar.html =====
+    async function loadNavbar() {
+      const candidates = [
+        "navbar.html",
+        "Anime/navbar.html",
+        "../navbar.html",
+        "../../navbar.html",
+      ];
+      for (const path of candidates) {
+        try {
+          const res = await fetch(path);
+          if (res.ok) {
+            const html = await res.text();
+            document.getElementById("navbar").innerHTML = html;
+
+            // Prefix used for this successful fetch (e.g. "../")
+            const prefix = path.replace("navbar.html", "");
+
+            // Wire mobile toggle + active link
+            const btn = document.querySelector(".nav-toggle");
+            const menu = document.getElementById("mainmenu");
+            btn?.addEventListener("click", () => {
+              const expanded = btn.getAttribute("aria-expanded") === "true";
+              btn.setAttribute("aria-expanded", String(!expanded));
+              menu.classList.toggle("open");
+            });
+            const current = (window.location.pathname.split("/").pop() || "").toLowerCase();
+            document.querySelectorAll(".menu a").forEach(a => {
+              const href = (a.getAttribute("href") || "").toLowerCase();
+              if (href === current) { a.classList.add("active"); a.setAttribute("aria-current", "page"); }
+            });
+
+            // Fix brand logo path if it's relative like "images/logo.png"
+            const logo = document.querySelector(".brand-logo") ||
+                         document.querySelector('img[alt*="logo" i]');
+            if (logo) {
+              const src = logo.getAttribute("src") || "";
+              const isAbsolute = /^(data:|https?:|\/)/i.test(src);
+              if (!isAbsolute) logo.src = prefix + src.replace(/^\.\/+/, "");
+            }
+
+            return; // success
+          }
+        } catch (e) { /* try next */ }
+      }
+      console.warn("navbar.html not found in expected locations.");
+    }
+    loadNavbar();
+</script>
+<script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("nav-placeholder").innerHTML = html);
+  </script>
