@@ -1,211 +1,1437 @@
-'use strict';
+(() => {
+  'use strict';
 
-const grid = document.getElementById('grid');
-const empty = document.getElementById('empty');
-const q = document.getElementById('q');
-const sortBy = document.getElementById('sortBy');
-const sortDirBtn = document.getElementById('sortDir');
-const tip = document.getElementById('tip');
-
-let rows = [];
-let sortAsc = true;
-
-// ------------- CSV helpers -------------
-function headerIndex(headers, name){
-  return headers.findIndex(h => h && h.toString().trim().toLowerCase() === name);
-}
-function findAny(headers, names){
-  for(const n of names){
-    const i = headerIndex(headers, n.toLowerCase());
-    if(i >= 0) return i;
-  }
-  return -1;
-}
-
-function normalizeRow(arr, map){
-  const get = key => {
-    const i = map[key];
-    return i >= 0 ? (arr[i] ?? '').toString().trim() : '';
-  };
-  return {
-    name: get('name'),
-    episodes: Number(get('episodes')) || 0,
-    apiRating: Number(get('rating')) || 0,
-    desc: get('description'),
-    image: get('image'),
-    link: get('link'),
-    finished: get('finished'),
-    myRating: get('myrating'), // keep as text to allow blanks/decimals
-    notes: get('notes')
-  };
-}
-
-function buildFromParsed(data){
-  if(!data || !data.length){ alert('Empty CSV'); return; }
-  const headers = data[0].map(v => (v||'').toString().trim().toLowerCase());
-
-  const map = {
-    name: findAny(headers, ['name']),
-    episodes: findAny(headers, ['episodes','tot episodes','total episodes']),
-    rating: findAny(headers, ['rating','api rating']),
-    description: findAny(headers, ['description','synopsis']),
-    image: findAny(headers, ['image','imageurl','image url']),
-    link: findAny(headers, ['link','siteurl','url']),
-    finished: findAny(headers, ['finished?','finished','status']),
-    myrating: findAny(headers, ['my rating','myrating','score']),
-    notes: findAny(headers, ['notes','jack’s views','jacks views','my notes'])
+  const elements = {
+    grid: document.getElementById('grid'),
+    empty: document.getElementById('empty'),
+    query: document.getElementById('q'),
+    sortBy: document.getElementById('sortBy'),
+    sortDir: document.getElementById('sortDir'),
+    statusFilter: document.getElementById('statusFilter'),
+    genreFilter: document.getElementById('genreFilter'),
+    picker: document.getElementById('csvPicker'),
+    loaderPanel: document.getElementById('loaderPanel'),
+    loadStatus: document.getElementById('loadStatus'),
+    loadMessage: document.getElementById('loadMessage'),
+    totalCount: document.getElementById('totalCount'),
+    visibleCount: document.getElementById('visibleCount'),
+    watchedCount: document.getElementById('watchedCount'),
+    detail: document.getElementById('detail')
   };
 
-  const missing = ['name','episodes','rating','description','image','link']
-    .filter(k => map[k] < 0);
-  if(missing.length){
-    alert('Missing required header(s): '+ missing.join(', '));
-    return;
+  const PLACEHOLDER_IMAGE =
+    'data:image/svg+xml;charset=UTF-8,' +
+    encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+        <rect width="600" height="800" fill="#111116"/>
+        <circle cx="300" cy="340" r="112" fill="#202028"/>
+        <path d="M300 205l35 72 80 12-58 56 14 79-71-37-71 37 14-79-58-56 80-12z" fill="#ff3333"/>
+        <text x="300" y="520" fill="#9c9cab" font-family="Arial,sans-serif" font-size="34" text-anchor="middle">Jackime</text>
+      </svg>
+    `);
+
+  let rows = [];
+  let sortAscending = true;
+
+  const HEADER_ALIASES = {
+    inputName: [
+      'name',
+      'search name',
+      'input name'
+    ],
+
+    title: [
+      'title',
+      'display title',
+      'english title'
+    ],
+
+    episodes: [
+      'total episodes',
+      'episodes',
+      'tot episodes',
+      'episode count'
+    ],
+
+    apiRating: [
+      'rating (0-10)',
+      'rating',
+      'api rating',
+      'average score'
+    ],
+
+    genres: [
+      'genres',
+      'genre'
+    ],
+
+    tags: [
+      'tags',
+      'tag'
+    ],
+
+    status: [
+      'status',
+      'release status'
+    ],
+
+    source: [
+      'source',
+      'original source'
+    ],
+
+    startDate: [
+      'start date',
+      'started',
+      'release date'
+    ],
+
+    endDate: [
+      'end date',
+      'ended',
+      'finish date'
+    ],
+
+    duration: [
+      'duration (mins)',
+      'duration',
+      'runtime',
+      'episode duration'
+    ],
+
+    studio: [
+      'studio',
+      'studios'
+    ],
+
+    popularity: [
+      'popularity',
+      'popular'
+    ],
+
+    description: [
+      'description',
+      'synopsis',
+      'overview'
+    ],
+
+    image: [
+      'imageurl',
+      'image url',
+      'image',
+      'cover image',
+      'poster'
+    ],
+
+    link: [
+      'link',
+      'siteurl',
+      'site url',
+      'url'
+    ],
+
+    note: [
+      'note',
+      'notes',
+      'jack’s views',
+      "jack's views",
+      'jacks views',
+      'my notes'
+    ],
+
+    myRating: [
+      'my rating',
+      'myrating',
+      'personal rating',
+      'my score'
+    ],
+
+    finished: [
+      'finished?',
+      'finished',
+      'watched',
+      'progress'
+    ]
+  };
+
+  function normaliseHeader(value) {
+    return String(value ?? '')
+      .normalize('NFKD')
+      .toLowerCase()
+      .replace(/[’']/g, '')
+      .replace(/[^a-z0-9]+/g, '');
   }
 
-  rows = data.slice(1).map(r => normalizeRow(r, map)).filter(r=>r.name);
-  tip.style.display = 'none';
-  render();
-}
+  function buildHeaderMap(headers) {
+    const normalisedHeaders = headers.map(normaliseHeader);
+    const map = {};
 
-// ------------- Sorting UI -------------
-function setSortDirLabel(){
-  if (sortBy.value === 'name') {
-    sortDirBtn.textContent = sortAsc ? 'A → Z' : 'Z → A';
-  } else {
-    sortDirBtn.textContent = sortAsc ? 'Low → High' : 'High → Low';
+    Object.entries(HEADER_ALIASES).forEach(([key, aliases]) => {
+      map[key] = aliases
+        .map(normaliseHeader)
+        .map(alias => normalisedHeaders.indexOf(alias))
+        .find(index => index >= 0);
+
+      if (map[key] === undefined) {
+        map[key] = -1;
+      }
+    });
+
+    return map;
   }
-}
 
-function render(list = rows){
-  const key = sortBy.value;
-  const getVal = (r) => {
-    if (key === 'name') return r.name.toLowerCase();
-    if (key === 'episodes') return r.episodes;
-    if (key === 'apiRating') return r.apiRating;
-    if (key === 'myRating') {
-      const n = parseFloat((r.myRating || '').replace(',', '.'));
-      return isNaN(n) ? -Infinity : n;
+  function readCell(sourceRow, map, key) {
+    const index = map[key];
+
+    if (index < 0) {
+      return '';
     }
-    return 0;
-  };
 
-  const sorted = [...list].sort((a,b)=>{
-    const va = getVal(a), vb = getVal(b);
-    if(va < vb) return sortAsc ? -1 : 1;
-    if(va > vb) return sortAsc ? 1 : -1;
-    return 0;
-  });
+    return String(sourceRow[index] ?? '').trim();
+  }
 
-  grid.innerHTML = '';
-  if(!sorted.length){ empty.style.display='block'; return; }
-  empty.style.display='none';
+  function parseNumber(value) {
+    const cleaned = String(value ?? '')
+      .replace(/,/g, '')
+      .trim();
 
-  sorted.forEach(r=>{
-    const card = document.createElement('div');
+    if (!cleaned) {
+      return null;
+    }
+
+    const number = Number(cleaned);
+
+    return Number.isFinite(number)
+      ? number
+      : null;
+  }
+
+  function splitList(value) {
+    return String(value ?? '')
+      .split(',')
+      .map(item => item.trim())
+      .filter(Boolean);
+  }
+
+  function cleanInputName(value) {
+    return String(value ?? '')
+      .replace(/\s*\[(?:anilist|tmdb):\d+\]\s*$/i, '')
+      .trim();
+  }
+
+  function normaliseRow(sourceRow, map, sourceIndex) {
+    const inputName = readCell(sourceRow, map, 'inputName');
+    const title = readCell(sourceRow, map, 'title');
+
+    const displayName =
+      title ||
+      cleanInputName(inputName);
+
+    return {
+      id: sourceIndex,
+
+      inputName,
+      title,
+      displayName,
+
+      episodes: parseNumber(
+        readCell(sourceRow, map, 'episodes')
+      ),
+
+      apiRating: parseNumber(
+        readCell(sourceRow, map, 'apiRating')
+      ),
+
+      genres: splitList(
+        readCell(sourceRow, map, 'genres')
+      ),
+
+      tags: splitList(
+        readCell(sourceRow, map, 'tags')
+      ),
+
+      status: readCell(
+        sourceRow,
+        map,
+        'status'
+      ),
+
+      source: readCell(
+        sourceRow,
+        map,
+        'source'
+      ),
+
+      startDate: readCell(
+        sourceRow,
+        map,
+        'startDate'
+      ),
+
+      endDate: readCell(
+        sourceRow,
+        map,
+        'endDate'
+      ),
+
+      duration: parseNumber(
+        readCell(sourceRow, map, 'duration')
+      ),
+
+      studio: readCell(
+        sourceRow,
+        map,
+        'studio'
+      ),
+
+      popularity: parseNumber(
+        readCell(sourceRow, map, 'popularity')
+      ),
+
+      description: readCell(
+        sourceRow,
+        map,
+        'description'
+      ),
+
+      image: readCell(
+        sourceRow,
+        map,
+        'image'
+      ),
+
+      link: readCell(
+        sourceRow,
+        map,
+        'link'
+      ),
+
+      note: readCell(
+        sourceRow,
+        map,
+        'note'
+      ),
+
+      myRating: readCell(
+        sourceRow,
+        map,
+        'myRating'
+      ),
+
+      finished: readCell(
+        sourceRow,
+        map,
+        'finished'
+      )
+    };
+  }
+
+  function parseCsvText(text, fileLabel = 'anime.csv') {
+    if (typeof Papa === 'undefined') {
+      showLoadError(
+        'Papa Parse failed to load.',
+        'Check your internet connection because the parser is loaded from a CDN.'
+      );
+
+      return;
+    }
+
+    const result = Papa.parse(text, {
+      skipEmptyLines: 'greedy'
+    });
+
+    if (result.errors?.length) {
+      console.warn(
+        'CSV parser warnings:',
+        result.errors
+      );
+    }
+
+    if (!result.data?.length) {
+      showLoadError(
+        'The CSV is empty.',
+        'Add at least a Name or Title column.'
+      );
+
+      return;
+    }
+
+    const headers = result.data[0].map(value =>
+      String(value ?? '').trim()
+    );
+
+    const map = buildHeaderMap(headers);
+
+    if (map.inputName < 0 && map.title < 0) {
+      showLoadError(
+        'No Name or Title header was found.',
+        `Headers found: ${headers.filter(Boolean).join(', ')}`
+      );
+
+      return;
+    }
+
+    rows = result.data
+      .slice(1)
+      .map((sourceRow, index) =>
+        normaliseRow(
+          sourceRow,
+          map,
+          index + 2
+        )
+      )
+      .filter(row => row.displayName);
+
+    updateFilterOptions();
+    updateSummary();
+    render();
+
+    elements.loaderPanel.classList.remove('error');
+    elements.loaderPanel.classList.add('success');
+
+    elements.loadStatus.textContent =
+      `Loaded ${rows.length} anime`;
+
+    elements.loadMessage.textContent =
+      `${fileLabel} loaded successfully. Blank fields are allowed while you test.`;
+  }
+
+  function showLoadError(title, message) {
+    elements.loaderPanel.classList.remove('success');
+    elements.loaderPanel.classList.add('error');
+
+    elements.loadStatus.textContent = title;
+    elements.loadMessage.textContent = message;
+  }
+
+  function updateFilterOptions() {
+    const statuses = [
+      ...new Set(
+        rows
+          .map(row => row.status)
+          .filter(Boolean)
+      )
+    ].sort((a, b) =>
+      a.localeCompare(b)
+    );
+
+    const genres = [
+      ...new Set(
+        rows.flatMap(row => row.genres)
+      )
+    ].sort((a, b) =>
+      a.localeCompare(b)
+    );
+
+    replaceOptions(
+      elements.statusFilter,
+      'All statuses',
+      statuses
+    );
+
+    replaceOptions(
+      elements.genreFilter,
+      'All genres',
+      genres
+    );
+  }
+
+  function replaceOptions(
+    select,
+    firstLabel,
+    values
+  ) {
+    const previousValue = select.value;
+
+    select.replaceChildren();
+
+    const firstOption =
+      document.createElement('option');
+
+    firstOption.value = '';
+    firstOption.textContent = firstLabel;
+
+    select.append(firstOption);
+
+    values.forEach(value => {
+      const option =
+        document.createElement('option');
+
+      option.value = value;
+      option.textContent = value;
+
+      select.append(option);
+    });
+
+    if (values.includes(previousValue)) {
+      select.value = previousValue;
+    }
+  }
+
+  function isWatched(value) {
+    return /^(yes|watched|complete|completed|finished)$/i.test(
+      String(value ?? '').trim()
+    );
+  }
+
+  function updateSummary(visibleRows = rows) {
+    elements.totalCount.textContent =
+      rows.length.toLocaleString();
+
+    elements.visibleCount.textContent =
+      visibleRows.length.toLocaleString();
+
+    elements.watchedCount.textContent =
+      rows
+        .filter(row =>
+          isWatched(row.finished)
+        )
+        .length
+        .toLocaleString();
+  }
+
+  function getFilteredRows() {
+    const term =
+      elements.query.value
+        .toLowerCase()
+        .trim();
+
+    const selectedStatus =
+      elements.statusFilter.value;
+
+    const selectedGenre =
+      elements.genreFilter.value;
+
+    return rows.filter(row => {
+      const searchableText = [
+        row.inputName,
+        row.title,
+        row.displayName,
+        row.description,
+        row.genres.join(' '),
+        row.tags.join(' '),
+        row.studio,
+        row.source,
+        row.note
+      ]
+        .join(' ')
+        .toLowerCase();
+
+      const matchesSearch =
+        !term ||
+        searchableText.includes(term);
+
+      const matchesStatus =
+        !selectedStatus ||
+        row.status === selectedStatus;
+
+      const matchesGenre =
+        !selectedGenre ||
+        row.genres.includes(selectedGenre);
+
+      return (
+        matchesSearch &&
+        matchesStatus &&
+        matchesGenre
+      );
+    });
+  }
+
+  function getSortValue(row, key) {
+    switch (key) {
+      case 'name':
+        return row.displayName.toLowerCase();
+
+      case 'episodes':
+        return row.episodes ?? -Infinity;
+
+      case 'apiRating':
+        return row.apiRating ?? -Infinity;
+
+      case 'myRating': {
+        const rating =
+          parseNumber(row.myRating);
+
+        return rating ?? -Infinity;
+      }
+
+      case 'popularity':
+        return row.popularity ?? -Infinity;
+
+      case 'startDate':
+        return row.startDate || '';
+
+      default:
+        return row.displayName.toLowerCase();
+    }
+  }
+
+  function sortRows(sourceRows) {
+    const key = elements.sortBy.value;
+
+    return [...sourceRows].sort(
+      (left, right) => {
+        const a = getSortValue(left, key);
+        const b = getSortValue(right, key);
+
+        if (
+          typeof a === 'string' ||
+          typeof b === 'string'
+        ) {
+          const result =
+            String(a).localeCompare(
+              String(b),
+              undefined,
+              {
+                numeric: true,
+                sensitivity: 'base'
+              }
+            );
+
+          return sortAscending
+            ? result
+            : -result;
+        }
+
+        if (a === b) {
+          return 0;
+        }
+
+        return sortAscending
+          ? (a < b ? -1 : 1)
+          : (a > b ? -1 : 1);
+      }
+    );
+  }
+
+  function setSortDirectionLabel() {
+    const alphabetical =
+      elements.sortBy.value === 'name';
+
+    elements.sortDir.textContent =
+      alphabetical
+        ? (
+          sortAscending
+            ? 'A → Z'
+            : 'Z → A'
+        )
+        : (
+          sortAscending
+            ? 'Low → High'
+            : 'High → Low'
+        );
+
+    elements.sortDir.setAttribute(
+      'aria-pressed',
+      String(!sortAscending)
+    );
+  }
+
+  function render() {
+    const filteredRows =
+      getFilteredRows();
+
+    const sortedRows =
+      sortRows(filteredRows);
+
+    elements.grid.replaceChildren();
+
+    elements.empty.style.display =
+      sortedRows.length
+        ? 'none'
+        : 'block';
+
+    const fragment =
+      document.createDocumentFragment();
+
+    sortedRows.forEach(row => {
+      fragment.append(
+        createCard(row)
+      );
+    });
+
+    elements.grid.append(fragment);
+
+    updateSummary(sortedRows);
+  }
+
+  function createCard(row) {
+    const card =
+      document.createElement('article');
+
     card.className = 'card';
+    card.tabIndex = 0;
 
-    const t = document.createElement('div');
-    t.className = 'thumb';
-    const img = document.createElement('img');
-    img.loading='lazy'; img.alt = r.name; img.src = r.image || '';
-    t.appendChild(img);
+    card.setAttribute(
+      'role',
+      'button'
+    );
 
-    // Episodes pill (left)
-    const pill = document.createElement('span');
-    pill.className='pill';
-    pill.textContent = (r.episodes||'-') + ' eps';
-    t.appendChild(pill);
+    card.setAttribute(
+      'aria-label',
+      `Open details for ${row.displayName}`
+    );
 
-    // Finished/progress pill (right)
-    const fv = (r.finished || '').trim();
-    if (fv) {
-      const p2 = document.createElement('span');
-      p2.className = 'pill right';
-      p2.textContent = (/^yes$/i.test(fv)) ? 'watched' : fv;
-      t.appendChild(p2);
+    const thumb =
+      document.createElement('div');
+
+    thumb.className = 'thumb';
+
+    const image =
+      document.createElement('img');
+
+    applyImage(
+      image,
+      row.image,
+      `${row.displayName} cover`
+    );
+
+    thumb.append(image);
+
+    const episodePill =
+      document.createElement('span');
+
+    episodePill.className = 'pill';
+
+    episodePill.textContent =
+      row.episodes !== null
+        ? `${row.episodes} eps`
+        : 'Episodes TBA';
+
+    thumb.append(episodePill);
+
+    const statusText =
+      row.finished ||
+      row.status;
+
+    if (statusText) {
+      const statusPill =
+        document.createElement('span');
+
+      statusPill.className =
+        'pill right';
+
+      statusPill.textContent =
+        isWatched(row.finished)
+          ? 'Watched'
+          : statusText;
+
+      thumb.append(statusPill);
     }
 
-    const c = document.createElement('div');
-    c.className='content';
-    const title = document.createElement('div');
-    title.className='title'; title.textContent = r.name;
-    const meta = document.createElement('div');
-    meta.className='meta'; meta.textContent = 'API rating: ' + (r.apiRating || '—');
-    const desc = document.createElement('div');
-    desc.className='desc'; desc.textContent = r.desc || '';
+    const content =
+      document.createElement('div');
 
-    const actions = document.createElement('div');
-    actions.className='actions';
-    const link = document.createElement('a');
-    link.className='link'; link.href = r.link || '#'; link.target='_blank'; link.textContent='MAL';
+    content.className =
+      'card-content';
 
-    const myrate = document.createElement('div');
-    myrate.className='myrate';
-    myrate.textContent = 'My rating: ' + ((r.myRating || '').trim() || '—');
+    const title =
+      document.createElement('h2');
 
-    actions.appendChild(link);
-    actions.appendChild(myrate);
+    title.className =
+      'card-title';
 
-    c.appendChild(title); c.appendChild(meta); c.appendChild(desc); c.appendChild(actions);
-    card.appendChild(t); card.appendChild(c);
-    card.addEventListener('click', ()=>openDetail(r));
-    grid.appendChild(card);
-  });
-}
+    title.textContent =
+      row.displayName;
 
-function filterRows(term){
-  term = (term||'').toString().toLowerCase().trim();
-  if(!term) return rows;
-  return rows.filter(r => (r.name + ' ' + r.desc + ' ' + (r.notes||'')).toLowerCase().includes(term));
-}
+    content.append(title);
 
-function openDetail(r){
-  const dlg = document.getElementById('detail');
-  document.getElementById('dimg').src = r.image || '';
-  document.getElementById('dtitle').textContent = r.name;
-  document.getElementById('deps').textContent = 'Eps: ' + (r.episodes || '—');
-  document.getElementById('dscore').textContent = 'API Rating: ' + (r.apiRating || '—');
-  document.getElementById('dlink').href = r.link || '#';
-  document.getElementById('ddesc').textContent = r.desc || '';
+    const cleanedInput =
+      cleanInputName(row.inputName);
 
-  // Finished/progress chip
-  const fchip = document.getElementById('dfinished');
-  const fv = (r.finished || '').trim();
-  let ftext = '';
-  if (fv) ftext = /^yes$/i.test(fv) ? 'watched: yes' : 'watched: ' + fv;
-  if (ftext) { fchip.textContent = ftext; fchip.style.display = 'inline-flex'; }
-  else { fchip.style.display = 'none'; }
+    if (
+      cleanedInput &&
+      cleanedInput.toLowerCase() !==
+        row.displayName.toLowerCase()
+    ) {
+      const subtitle =
+        document.createElement('div');
 
-  // My rating + Jack's views
-  document.getElementById('dmyrating').textContent = ((r.myRating || '').trim() || '—');
-  document.getElementById('jviews').textContent = (r.notes && r.notes.trim() ? r.notes : '—');
+      subtitle.className =
+        'card-subtitle';
 
-  dlg.showModal();
-}
+      subtitle.textContent =
+        cleanedInput;
 
-// Search & sorting
-q.addEventListener('input', ()=>render(filterRows(q.value)));
-sortBy.addEventListener('change', ()=>{ setSortDirLabel(); render(filterRows(q.value)); });
-sortDirBtn.addEventListener('click', ()=>{
-  sortAsc = !sortAsc;
-  sortDirBtn.setAttribute('aria-pressed', String(!sortAsc));
-  setSortDirLabel();
-  render(filterRows(q.value));
-});
-
-// Auto-load anime.csv if present
-(async ()=>{
-  try{
-    const res = await fetch('anime.csv',{cache:'no-store'});
-    if(res.ok){
-      const text = await res.text();
-      const parsed = Papa.parse(text,{skipEmptyLines:true});
-      buildFromParsed(parsed.data);
+      content.append(subtitle);
     }
-  }catch(e){
-    console.log('No anime.csv found (that’s fine)', e);
-  } finally {
-    setSortDirLabel();
+
+    const meta =
+      document.createElement('div');
+
+    meta.className =
+      'card-meta';
+
+    meta.append(
+      makeMeta(
+        'API',
+        formatRating(row.apiRating)
+      ),
+
+      makeMeta(
+        'Mine',
+        row.myRating || '—'
+      )
+    );
+
+    content.append(meta);
+
+    if (row.genres.length) {
+      const genres =
+        document.createElement('div');
+
+      genres.className =
+        'genre-list';
+
+      row.genres
+        .slice(0, 3)
+        .forEach(genre => {
+          const badge =
+            document.createElement('span');
+
+          badge.className =
+            'genre-badge';
+
+          badge.textContent =
+            genre;
+
+          genres.append(badge);
+        });
+
+      content.append(genres);
+    }
+
+    const description =
+      document.createElement('div');
+
+    description.className =
+      'card-description';
+
+    description.textContent =
+      row.description ||
+      'No description has been added yet.';
+
+    content.append(description);
+
+    const actions =
+      document.createElement('div');
+
+    actions.className =
+      'card-actions';
+
+    if (row.link) {
+      const sourceLink =
+        document.createElement('a');
+
+      sourceLink.className =
+        'source-link';
+
+      sourceLink.href =
+        row.link;
+
+      sourceLink.target =
+        '_blank';
+
+      sourceLink.rel =
+        'noopener noreferrer';
+
+      sourceLink.textContent =
+        sourceNameFromLink(row.link);
+
+      sourceLink.addEventListener(
+        'click',
+        event => {
+          event.stopPropagation();
+        }
+      );
+
+      actions.append(sourceLink);
+    } else {
+      const noLink =
+        document.createElement('span');
+
+      noLink.className =
+        'source-link';
+
+      noLink.textContent =
+        'No source link';
+
+      actions.append(noLink);
+    }
+
+    const personalRating =
+      document.createElement('span');
+
+    personalRating.className =
+      'personal-rating';
+
+    personalRating.textContent =
+      row.myRating
+        ? `${row.myRating}/10`
+        : 'Not rated';
+
+    actions.append(personalRating);
+
+    content.append(actions);
+
+    card.append(
+      thumb,
+      content
+    );
+
+    card.addEventListener(
+      'click',
+      () => openDetail(row)
+    );
+
+    card.addEventListener(
+      'keydown',
+      event => {
+        if (
+          event.key === 'Enter' ||
+          event.key === ' '
+        ) {
+          event.preventDefault();
+          openDetail(row);
+        }
+      }
+    );
+
+    return card;
   }
+
+  function makeMeta(label, value) {
+    const span =
+      document.createElement('span');
+
+    const strong =
+      document.createElement('strong');
+
+    strong.textContent =
+      `${label}: `;
+
+    span.append(
+      strong,
+      document.createTextNode(value)
+    );
+
+    return span;
+  }
+
+  function formatRating(value) {
+    return value === null
+      ? '—'
+      : `${value}/10`;
+  }
+
+  function formatNumber(value) {
+    return value === null
+      ? '—'
+      : value.toLocaleString();
+  }
+
+  function formatDates(
+    startDate,
+    endDate
+  ) {
+    if (!startDate && !endDate) {
+      return '—';
+    }
+
+    if (startDate && endDate) {
+      return `${startDate} → ${endDate}`;
+    }
+
+    if (startDate) {
+      return `${startDate} → ongoing/TBA`;
+    }
+
+    return `Ended ${endDate}`;
+  }
+
+  function sourceNameFromLink(link) {
+    try {
+      const host =
+        new URL(link)
+          .hostname
+          .toLowerCase();
+
+      if (host.includes('anilist.co')) {
+        return 'AniList ↗';
+      }
+
+      if (host.includes('myanimelist.net')) {
+        return 'MAL ↗';
+      }
+
+      if (host.includes('themoviedb.org')) {
+        return 'TMDB ↗';
+      }
+
+      if (host.includes('netflix.com')) {
+        return 'Netflix ↗';
+      }
+
+      return 'Source ↗';
+    } catch {
+      return 'Source ↗';
+    }
+  }
+
+  function applyImage(
+    image,
+    source,
+    alt
+  ) {
+    image.alt = alt;
+    image.loading = 'lazy';
+
+    image.src =
+      source ||
+      PLACEHOLDER_IMAGE;
+
+    if (!source) {
+      image.classList.add(
+        'is-fallback'
+      );
+    }
+
+    image.addEventListener(
+      'error',
+      () => {
+        image.src =
+          PLACEHOLDER_IMAGE;
+
+        image.classList.add(
+          'is-fallback'
+        );
+      },
+      {
+        once: true
+      }
+    );
+  }
+
+  function openDetail(row) {
+    document.getElementById(
+      'dtitle'
+    ).textContent =
+      row.displayName;
+
+    const originalName =
+      cleanInputName(row.inputName);
+
+    const originalLabel =
+      originalName &&
+      originalName.toLowerCase() !==
+        row.displayName.toLowerCase()
+        ? `Roster name: ${originalName}`
+        : '';
+
+    document.getElementById(
+      'doriginal'
+    ).textContent =
+      originalLabel;
+
+    const detailImage =
+      document.getElementById('dimg');
+
+    detailImage.classList.remove(
+      'is-fallback'
+    );
+
+    applyImage(
+      detailImage,
+      row.image,
+      `${row.displayName} cover`
+    );
+
+    document.getElementById(
+      'deps'
+    ).textContent =
+      `Episodes: ${row.episodes ?? '—'}`;
+
+    document.getElementById(
+      'dscore'
+    ).textContent =
+      `API rating: ${row.apiRating ?? '—'}`;
+
+    document.getElementById(
+      'dmyscore'
+    ).textContent =
+      `My rating: ${row.myRating || '—'}`;
+
+    document.getElementById(
+      'dstatus'
+    ).textContent =
+      `Status: ${row.status || '—'}`;
+
+    const finishedChip =
+      document.getElementById(
+        'dfinished'
+      );
+
+    if (row.finished) {
+      finishedChip.hidden = false;
+
+      finishedChip.textContent =
+        isWatched(row.finished)
+          ? 'Watched: yes'
+          : `Progress: ${row.finished}`;
+    } else {
+      finishedChip.hidden = true;
+      finishedChip.textContent = '';
+    }
+
+    document.getElementById(
+      'ddesc'
+    ).textContent =
+      row.description ||
+      'No description has been added yet.';
+
+    document.getElementById(
+      'dgenres'
+    ).textContent =
+      row.genres.join(', ') ||
+      '—';
+
+    document.getElementById(
+      'dtags'
+    ).textContent =
+      row.tags.join(', ') ||
+      '—';
+
+    document.getElementById(
+      'dsource'
+    ).textContent =
+      row.source ||
+      '—';
+
+    document.getElementById(
+      'ddates'
+    ).textContent =
+      formatDates(
+        row.startDate,
+        row.endDate
+      );
+
+    document.getElementById(
+      'dduration'
+    ).textContent =
+      row.duration !== null
+        ? `${row.duration} minutes`
+        : '—';
+
+    document.getElementById(
+      'dstudio'
+    ).textContent =
+      row.studio ||
+      '—';
+
+    document.getElementById(
+      'dpopularity'
+    ).textContent =
+      formatNumber(
+        row.popularity
+      );
+
+    document.getElementById(
+      'dnotes'
+    ).textContent =
+      row.note ||
+      '—';
+
+    const detailLink =
+      document.getElementById(
+        'dlink'
+      );
+
+    if (row.link) {
+      detailLink.hidden = false;
+      detailLink.href = row.link;
+
+      detailLink.textContent =
+        `Open ${sourceNameFromLink(row.link)}`;
+    } else {
+      detailLink.hidden = true;
+      detailLink.removeAttribute(
+        'href'
+      );
+    }
+
+    elements.detail.showModal();
+  }
+
+  async function loadNavbar() {
+    const placeholder =
+      document.getElementById(
+        'nav-placeholder'
+      );
+
+    const candidates = [
+      'navbar.html',
+      './navbar.html',
+      'Anime/navbar.html',
+      '../navbar.html',
+      '../../navbar.html'
+    ];
+
+    for (const path of candidates) {
+      try {
+        const response =
+          await fetch(
+            path,
+            {
+              cache: 'no-store'
+            }
+          );
+
+        if (!response.ok) {
+          continue;
+        }
+
+        placeholder.innerHTML =
+          await response.text();
+
+        const prefix =
+          path.replace(
+            /navbar\.html$/i,
+            ''
+          );
+
+        placeholder
+          .querySelectorAll('[src]')
+          .forEach(element => {
+            const source =
+              element.getAttribute(
+                'src'
+              ) || '';
+
+            const absolute =
+              /^(data:|https?:|\/)/i.test(
+                source
+              );
+
+            if (!absolute) {
+              element.setAttribute(
+                'src',
+                prefix +
+                source.replace(
+                  /^\.\/+/,
+                  ''
+                )
+              );
+            }
+          });
+
+        const toggle =
+          placeholder.querySelector(
+            '.nav-toggle'
+          );
+
+        const menu =
+          placeholder.querySelector(
+            '#mainmenu'
+          );
+
+        toggle?.addEventListener(
+          'click',
+          () => {
+            const expanded =
+              toggle.getAttribute(
+                'aria-expanded'
+              ) === 'true';
+
+            toggle.setAttribute(
+              'aria-expanded',
+              String(!expanded)
+            );
+
+            menu?.classList.toggle(
+              'open'
+            );
+          }
+        );
+
+        const currentPage =
+          window.location.pathname
+            .split('/')
+            .pop()
+            ?.toLowerCase() || '';
+
+        placeholder
+          .querySelectorAll('.menu a')
+          .forEach(anchor => {
+            const target =
+              anchor
+                .getAttribute('href')
+                ?.split('/')
+                .pop()
+                ?.toLowerCase() || '';
+
+            if (
+              target &&
+              target === currentPage
+            ) {
+              anchor.classList.add(
+                'active'
+              );
+
+              anchor.setAttribute(
+                'aria-current',
+                'page'
+              );
+            }
+          });
+
+        return;
+      } catch (error) {
+        console.debug(
+          `Navbar attempt failed: ${path}`,
+          error
+        );
+      }
+    }
+
+    console.warn(
+      'navbar.html was not found in the expected locations.'
+    );
+  }
+
+  async function autoLoadCsv() {
+    try {
+      const response =
+        await fetch(
+          'anime.csv',
+          {
+            cache: 'no-store'
+          }
+        );
+
+      if (!response.ok) {
+        throw new Error(
+          `HTTP ${response.status}`
+        );
+      }
+
+      const text =
+        await response.text();
+
+      parseCsvText(
+        text,
+        'anime.csv'
+      );
+    } catch (error) {
+      showLoadError(
+        'anime.csv could not be auto-loaded.',
+        'Use Live Server/Netlify, or press “Choose CSV manually” when testing from your computer.'
+      );
+
+      console.info(
+        'Automatic CSV load failed:',
+        error
+      );
+    }
+  }
+
+  function handleFilterChange() {
+    render();
+  }
+
+  elements.query.addEventListener(
+    'input',
+    handleFilterChange
+  );
+
+  elements.statusFilter.addEventListener(
+    'change',
+    handleFilterChange
+  );
+
+  elements.genreFilter.addEventListener(
+    'change',
+    handleFilterChange
+  );
+
+  elements.sortBy.addEventListener(
+    'change',
+    () => {
+      setSortDirectionLabel();
+      render();
+    }
+  );
+
+  elements.sortDir.addEventListener(
+    'click',
+    () => {
+      sortAscending =
+        !sortAscending;
+
+      setSortDirectionLabel();
+      render();
+    }
+  );
+
+  elements.picker.addEventListener(
+    'change',
+    async event => {
+      const [file] =
+        event.target.files || [];
+
+      if (!file) {
+        return;
+      }
+
+      try {
+        parseCsvText(
+          await file.text(),
+          file.name
+        );
+      } catch (error) {
+        showLoadError(
+          'The selected CSV could not be read.',
+          error instanceof Error
+            ? error.message
+            : String(error)
+        );
+      }
+    }
+  );
+
+  document
+    .getElementById('closeDetail')
+    .addEventListener(
+      'click',
+      () => {
+        elements.detail.close();
+      }
+    );
+
+  elements.detail.addEventListener(
+    'click',
+    event => {
+      const rect =
+        elements.detail
+          .getBoundingClientRect();
+
+      const clickedBackdrop =
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom;
+
+      if (clickedBackdrop) {
+        elements.detail.close();
+      }
+    }
+  );
+
+  document.getElementById(
+    'year'
+  ).textContent =
+    new Date().getFullYear();
+
+  setSortDirectionLabel();
+  loadNavbar();
+  autoLoadCsv();
 })();
