@@ -1,27 +1,3 @@
-// ===== Navbar injection (unchanged behaviour) =====
-fetch("navbar.html")
-  .then((r) => r.text())
-  .then((html) => {
-    document.getElementById("navbar").innerHTML = html;
-
-    const btn = document.querySelector(".nav-toggle");
-    const menu = document.getElementById("mainmenu");
-    btn?.addEventListener("click", () => {
-      const expanded = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", String(!expanded));
-      menu.classList.toggle("open");
-    });
-
-    const path = (window.location.pathname.split("/").pop() || "").toLowerCase();
-    document.querySelectorAll(".menu a").forEach((link) => {
-      const href = (link.getAttribute("href") || "").toLowerCase();
-      if (href === path) {
-        link.classList.add("active");
-        link.setAttribute("aria-current", "page");
-      }
-    });
-  });
-
 // ===== Expand / Collapse all details =====
 const expandBtn = document.getElementById("expandAll");
 const collapseBtn = document.getElementById("collapseAll");
@@ -41,7 +17,7 @@ const MODULE_INFO = {
     title: "Introduction to Object-Oriented Programming (OOP)",
     cat: "Technology",
     year: 1,
-    img: "images/modules/shape.jpg",
+    img: "images/Modules/shape.jpg",
     desc:
       "Core OOP mindset and Java fundamentals using BlueJ: modelling problems as classes/objects; encapsulation, inheritance and polymorphism; interfaces and composition; test-driven habits and debugging. Emphasis on readable, version-controlled code and small refactorings.",
     skills: ["Java", "OOP", "Encapsulation", "Inheritance", "Polymorphism", "Interfaces", "BlueJ"],
@@ -54,7 +30,7 @@ const MODULE_INFO = {
     title: "Foundations of Computing I",
     cat: "Technology",
     year: 1,
-    img: "images/modules/foundations.jpg",
+    img: "images/Modules/foundations.jpg",
     desc:
       "Mathematical and theoretical tools for CS: sets, logic, proofs, functions and relations; number systems and data representation; introductory automata and computation ideas to support later algorithmic thinking.",
     skills: ["Discrete Maths", "Logic", "Proof Techniques", "Set Theory", "Boolean Algebra", "Complexity intuition"],
@@ -66,7 +42,7 @@ const MODULE_INFO = {
     title: "Human-Computer Interaction",
     cat: "Technology",
     year: 1,
-    img: "images/modules/hci.jpg",
+    img: "images/Modules/hci.jpg",
     desc:
       "Designing for people: usability principles, accessibility, interaction styles and prototyping. Practised user-centred methods (heuristics, think-aloud, surveys) and turned findings into wireframes and UI improvements.",
     skills: ["UX Research", "Wireframing", "Prototyping", "Accessibility", "Usability Testing", "Heuristic Evaluation"],
@@ -80,7 +56,7 @@ const MODULE_INFO = {
     title: "Computers and the Cloud",
     cat: "Technology",
     year: 1,
-    img: "images/modules/cloud.png",
+    img: "images/Modules/cloud.png",
     desc:
       "From hardware/OS and virtualisation to distributed systems and cloud service models (IaaS/PaaS/SaaS). Covered scalability, reliability, basic networking and containerised deployment concepts.",
     skills: ["Cloud Fundamentals", "Virtualisation", "Networking Basics", "Linux CLI", "Containers", "Encapsulation"],
@@ -93,7 +69,7 @@ const MODULE_INFO = {
     title: "Databases and the Web",
     cat: "Technology",
     year: 1,
-    img: "images/modules/database2.png",
+    img: "images/Modules/database2.png",
     desc:
       "Relational modelling and SQL alongside web data flows. Topics: ER modelling, normalisation, transactions, and building data-driven pages/APIs over HTTP.",
     skills: ["SQL", "PHP","ER Modelling", "Normalisation", "Transactions", "HTTP/REST", "CRUD"],
@@ -105,7 +81,7 @@ const MODULE_INFO = {
     title: "Problem Solving with Algorithms",
     cat: "Technology",
     year: 1,
-    img: "images/modules/algo.jpg",
+    img: "images/Modules/algo.jpg",
     desc:
       "Turning problems into precise procedures and analysing performance. Patterns included divide-and-conquer, greedy and dynamic programming; used Big-O to compare approaches.",
     skills: ["Algorithms", "Data Structures", "Recursion", "Big-O Analysis", "Sorting", "Searching", "loops"],
@@ -117,7 +93,7 @@ const MODULE_INFO = {
     title: "Web Development",
     cat: "Technology",
     year: 2,
-    img: "images/modules/web dev.png",
+    img: "images/Modules/web dev.png",
     desc:
       "Modern, accessible web foundations: semantic HTML, responsive CSS (Flex/Grid), vanilla JS for interactivity, and performance/accessibility baselines. Client–server thinking and simple RESTful patterns.",
     skills: ["HTML5", "CSS3 (Flex/Grid)", "JavaScript (DOM/Fetch)", "Accessibility", "Performance"],
@@ -129,7 +105,7 @@ const MODULE_INFO = {
     title: "Software Engineering Process",
     cat: "Technology",
     year: 2,
-    img: "images/modules/SEP.jpg",
+    img: "images/Modules/SEP.jpg",
     desc:
       "How teams deliver software: requirements/user stories, estimation and planning, Scrum/Kanban, version-control workflows, code reviews, CI and quality/risk management. Focus on producing professional artefacts.",
     skills: ["Agile (Scrum/Kanban)", "User Stories", "Git/GitHub Flow", "Code Review", "CI"],
@@ -141,7 +117,7 @@ const MODULE_INFO = {
     title: "Computer Systems",
     cat: "Technology",
     year: 2,
-    img: "images/modules/nand2.jpg",
+    img: "images/Modules/nand2.jpg",
     desc:
       "How computers run programs: CPU, memory hierarchy, processes/threads, file systems and interrupts; OS responsibilities and network layering; reasoning about performance and concurrency.",
     skills: ["HDL", "Nand2tetris", "Operating Systems", "Processes/Threads", "Memory/Storage", "Networking", "CLI"],
@@ -154,7 +130,7 @@ const MODULE_INFO = {
     title: "Database Systems",
     cat: "Technology",
     year: 2,
-    img: "images/modules/database.png",
+    img: "images/Modules/database.png",
     desc:
       "Advanced data management: relational algebra, indexing, query optimisation, ACID transactions, isolation levels, concurrency control and security; compared relational with alternative models where apt.",
     skills: ["SQL", "Indexing", "Query Optimisation", "ACID", "Concurrency", "Security"],
@@ -166,7 +142,7 @@ const MODULE_INFO = {
     title: "Software Development",
     cat: "Technology",
     year: 2,
-    img: "images/modules/software dev.png",
+    img: "images/Modules/software dev.png",
     desc:
       "Clean code, testing pyramid, refactoring and modular design; robust error handling, logging and simple automation. Emphasis on reliability and maintainability.",
     skills: ["Clean Code", "Unit Testing", "Refactoring", "Modularity", "Error Handling"],
@@ -179,7 +155,7 @@ const MODULE_INFO = {
     title: "Video Games Development",
     cat: "Technology",
     year: 2,
-    img: "images/modules/game.png",
+    img: "images/Modules/game.png",
     desc:
       "Unity fundamentals (2D/3D): game loops, physics, input, scene management and UI. Incorporated play-testing and iteration towards a stable prototype. Built a variety of games from procedural generating infinite runner, fruit ninja and my own custom 3D game based on a round based zombie shooter",
     skills: ["Unity", "C#", "Physics", "Input/Scenes", "Game UI"],
@@ -193,7 +169,7 @@ const MODULE_INFO = {
     title: "Computational Intelligence in Business Economics & Finance",
     cat: "Technology",
     year: 3,
-    img: "images/modules/comp bus.png",
+    img: "images/Modules/comp bus.png",
     desc:
       "Nature-inspired/data-driven techniques for real decisions: simple neural nets, evolutionary optimisation, fuzzy systems and data mining; evaluation/ethics in business/finance settings.",
     skills: ["ML Basics", "Data Preparation", "Model Evaluation", "Heuristics"],
@@ -232,7 +208,7 @@ const MODULE_INFO = {
     title: "Introduction to Management",
     cat: "Business",
     year: 1,
-    img: "images/modules/manage.jpg",
+    img: "images/Modules/manage.jpg",
     desc:
       "Management fundamentals: planning, organising, leading and controlling; organisational behaviour, motivation and ethics. Case-based work linked theory to real managerial choices. Looked out management styles over history and how they have evolved.",
     skills: ["Management", "Organisational Behaviour", "Communication", "Bureaucracy", "Ethics", "Motivation"],
@@ -244,7 +220,7 @@ const MODULE_INFO = {
     title: "Financial Accounting: Reporting & Analysis",
     cat: "Business",
     year: 1,
-    img: "images/modules/finance.png",
+    img: "images/Modules/finance.png",
     desc:
       "How financial statements are prepared and interpreted (income, balance sheet, cash flows) and how to analyse profitability, liquidity and efficiency using ratios. Practiced advising a sole-proprietor on basic financial decisions.",
     skills: ["Accounting", "Financial Statements", "Ratio Analysis", "Excel", "Creative Accounting"],
@@ -256,7 +232,7 @@ const MODULE_INFO = {
     title: "New Enterprise Development",
     cat: "Business",
     year: 2,
-    img: "images/modules/new bus.jpg",
+    img: "images/Modules/new bus.jpg",
     desc:
       "From idea to venture: opportunity recognition, customer discovery, lean validation, MVPs and go-to-market strategy. Developed and critiqued a credible business plan.",
     skills: ["Entrepreneurship", "Customer Discovery", "Lean Canvas", "Pitching", "Business Models"],
@@ -268,7 +244,7 @@ const MODULE_INFO = {
     title: "Financial Management for Decision Making",
     cat: "Business",
     year: 2,
-    img: "images/modules/fin man.png",
+    img: "images/Modules/fin man.png",
     desc:
       "Managerial accounting and finance for internal decisions: costing, budgeting, variance analysis, performance measures and investment appraisal (NPV/IRR) with sensitivity to risk.",
     skills: ["Budgeting", "NPV/IRR", "Variance Analysis", "Decision Support", "Balance sheets"],
@@ -280,7 +256,7 @@ const MODULE_INFO = {
     title: "Project Management",
     cat: "Business",
     year: 2,
-    img: "images/modules/project management.png",
+    img: "images/Modules/project management.png",
     desc:
       "Planning and delivery: scope/WBS, scheduling (Gantt, critical path), risk and stakeholder management, governance and reporting for predictable outcomes.",
     skills: ["WBS", "Critical Path", "Risk Management", "Stakeholders", "Reporting", "Gantt Charts", "Planning"],
@@ -292,7 +268,7 @@ const MODULE_INFO = {
     title: "Technology-Driven Business Innovation",
     cat: "Business",
     year: 3,
-    img: "images/modules/tech drive.png",
+    img: "images/Modules/tech drive.png",
     desc:
       "How IT enables new products, services and business models. Evaluated technologies, mapped value creation and aligned innovation strategy with market/organisational needs.",
     skills: ["Innovation", "Digital Strategy", "Business Models", "Value Mapping", "Innovation Frameworks"],
@@ -305,7 +281,7 @@ const MODULE_INFO = {
     title: "Entrepreneurship",
     cat: "Business",
     year: 3,
-    img: "images/modules/entre.png",
+    img: "images/Modules/entre.png",
     desc:
       "Entrepreneurial mindset, opportunity assessment, resource acquisition and early growth strategies. Assessment often includes a defendable venture concept.",
     skills: ["Opportunity Sizing", "MVPs", "Traction Metrics", "Funding Paths", "Planning"],
@@ -318,7 +294,7 @@ const MODULE_INFO = {
     title: "Contemporary Management Challenges",
     cat: "Business",
     year: 3,
-    img: "images/modules/challenges.png",
+    img: "images/Modules/challenges.png",
     desc:
       "Leading amid disruption: digital change, sustainability, diversity & inclusion, ethics and evolving workforce expectations. Encourages critical reflection and practical responses.",
     skills: ["Change Management", "Sustainability", "Ethics", "Diversity & Inclusion"],
@@ -334,7 +310,7 @@ const MODULE_INFO = {
     title: "Information Technology (BTEC Level 3) – Distinction",
     cat: "Sixth Form",
     year: 0,
-    img: "images/modules/it-btec.jpg",
+    img: "images/EP.png",
     desc:
       "Practical and theory-based qualification covering IT systems, databases, web design, and social media in business. Explored how digital technologies support modern organisations and gained strong technical and problem-solving skills through coursework and applied projects.",
     skills: [
@@ -358,7 +334,7 @@ const MODULE_INFO = {
     title: "Business (BTEC Level 3) – Distinction",
     cat: "Sixth Form",
     year: 0,
-    img: "images/modules/business-btec.jpg",
+    img: "images/EP.png",
     desc:
       "Comprehensive study of business operations, marketing, finance, and enterprise. Focused on how organisations are structured, how they attract customers, and how decisions are made based on financial and market data.",
     skills: [
@@ -382,7 +358,7 @@ const MODULE_INFO = {
     title: "Media Studies (A Level) – Grade B",
     cat: "Sixth Form",
     year: 0,
-    img: "images/modules/media-alevel.jpg",
+    img: "images/EP.png",
     desc:
       "Analytical and creative course exploring how media products represent people, ideas, and issues across different platforms. Combined theoretical study with hands-on production work to develop creative and critical thinking skills.",
     skills: [

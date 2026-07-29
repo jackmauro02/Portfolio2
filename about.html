@@ -1,212 +1,251 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About — Jack Mauro</title>
-  <meta name="description" content="About Jack Mauro" />
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn more about Jack Mauro, a Business Information Technology graduate from Bracknell with a practical, people-focused approach to technology.">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="About Jack Mauro — Business IT Graduate">
+    <meta property="og:description" content="A practical, people-focused graduate working where business and technology meet.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>About Jack Mauro — Business IT Graduate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <!-- Fonts + Styles -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="aboutStyles.css" />
-</head>
-<body>
-  <a class="skip-link" href="#about">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav-inner container" aria-label="Primary navigation">
+        <a class="brand" href="index.html" aria-label="Jack Mauro, home">
+          <img class="brand-logo" src="images/drawb.png" alt="">
+          <span class="brand-copy">Jack Mauro <small>Business + Technology</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Open navigation">
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </button>
+        <ul class="nav-links" id="primary-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Projects2.html">Projects</a></li>
+          <li><a href="Experience.html">Experience</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a class="nav-contact" href="contact.html">Let’s talk</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <!-- Navbar injected -->
-  <header id="navbar"></header>
-
-  <main id="about">
-    <!-- Hero -->
-    <section class="section section-light">
-      <div class="wrap">
-        <header class="section-head">
-          <h1>About Me</h1>
-          <p class="lead">
-            I’m Jack Mauro — a Business Information Technology graduate who enjoys building useful software,
-            solving problems, and learning how things work. I like the space where business goals meet
-            practical technology.
-          </p>
-        </header>
-        <div class="profile-grid">
-          <!-- Profile card -->
-          <article class="profile-card">
-            <img src="images/smart.jpg" alt="Portrait of Jack Mauro">
-            <h2>Jack Mauro</h2>
-            <p class="tagline">B.I.T Graduate • Aspiring IT Professional</p>
-            <ul class="facts">
-              <li><strong>Based:</strong> Bracknell, Berkshire, UK</li>
-              <li><strong>Degree:</strong> Business Information Technology (2:2), University of Kent</li>
-              <li><strong>Transport:</strong> Own car & full UK driving licence</li>
-              <li><strong>Email:</strong> <a href="mailto:jackmauro02@gmail.com">jackmauro02@gmail.com</a></li>
-              <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jackmauro02" target="_blank" rel="noopener">linkedin.com/in/jackmauro02</a></li>
+    <main id="main-content">
+      <section class="page-hero">
+        <div class="page-hero-inner container">
+          <div>
+            <p class="eyebrow">About me</p>
+            <h1>The person behind the portfolio.</h1>
+          </div>
+          <div class="page-hero-copy">
+            <p>
+              I’m a practical, curious graduate who enjoys understanding how things work, improving how
+              they work, and building technology that makes a genuine difference.
+            </p>
+            <ul class="pill-list" aria-label="Key qualities">
+              <li class="pill">Curious</li>
+              <li class="pill">Dependable</li>
+              <li class="pill">People-focused</li>
             </ul>
-            <div class="btn-row">
-              <a class="cta-button" href="projects2.html">See my projects</a>
-              <a class="cta-secondary" href="education.html">Education</a>
-            </div>
-            <div class="btn-row">
-              <a class="cta-button2" href="images/CV.pdf">View my CV</a>
-            </div>
-          </article>
+          </div>
+        </div>
+      </section>
 
-          <!-- Quick highlights -->
-          <article class="highlights-card">
-            <h3>What I’m about</h3>
-            <ul class="checklist">
-              <li>Enjoy turning ideas into working apps, websites, and prototypes.</li>
-              <li>Comfortable across both technical and business topics.</li>
-              <li>Keen interest in hardware, building my own computers</li>
-              <li>Hands-on with <strong>Java</strong>, <strong>JavaScript</strong>, <strong>HTML/CSS</strong>, <strong>Firebase</strong>, <strong>SQL</strong>, and <strong>Unity/C#</strong>.</li>
-              <li>Experience from roles in manufacturing, hospitality, leisure, and retail — strong teamwork & communication.</li>
-            </ul>
-
-            <div class="pill-row">
-              <span class="pill">Java</span>
-              <span class="pill">JavaScript</span>
-              <span class="pill">HTML</span>
-              <span class="pill">CSS</span>
-              <span class="pill">Firebase</span>
-              <span class="pill">SQL</span>
-              <span class="pill">Unity</span>
-              <span class="pill">C#</span>
-              <span class="pill">Webflow</span>
-            </div>
-
-            <div class="two-col">
-              <div>
-                <h4>Currently exploring</h4>
-                <ul class="bullets">
-                  <li>React best practices & component design</li>
-                  <li>Cloud-backed apps (Firebase/Serverless)</li>
-                  <li>Creative coding & small game prototypes</li>
-                </ul>
-              </div>
-              <div>
-                <h4>Values & strengths</h4>
-                <ul class="bullets">
-                  <li>Clear communication & reliability</li>
-                  <li>Problem-solving & learning quickly</li>
-                  <li>Customer focus from real-world roles</li>
-                </ul>
+      <section class="section section--white">
+        <div class="split container">
+          <aside class="profile-panel split-sticky">
+            <img src="images/jack-mauro.jpg" alt="Portrait of Jack Mauro">
+            <div class="profile-panel-body">
+              <p class="eyebrow">Quick profile</p>
+              <h2>Jack Mauro</h2>
+              <p class="muted">Business Information Technology graduate</p>
+              <ul class="fact-list">
+                <li><strong>Based</strong><span>Bracknell, Berkshire</span></li>
+                <li><strong>Degree</strong><span>University of Kent, 2:2</span></li>
+                <li><strong>Focus</strong><span>IT, software & digital roles</span></li>
+                <li><strong>Travel</strong><span>Full UK licence & own car</span></li>
+              </ul>
+              <div class="button-row" style="margin-top: 18px;">
+                <a class="button button--primary" href="images/CV.pdf" target="_blank">View CV</a>
+                <a class="button button--secondary" href="contact.html">Contact me</a>
               </div>
             </div>
-          </article>
+          </aside>
+
+          <div>
+            <article class="story-block">
+              <p class="eyebrow">My story</p>
+              <h2>I like making technology feel useful, not complicated.</h2>
+              <p class="lead">
+                Studying Business Information Technology gave me the chance to learn both how digital
+                products are built and why organisations invest in them. That combination suits the way I
+                think: I enjoy the technical detail, but I always want to understand the purpose behind it.
+              </p>
+              <p>
+                At university I worked across web development, Java, databases, cloud concepts, algorithms,
+                project management, and user experience. Projects let me put those areas together—from a
+                Firebase-backed sports club app to a creative coding tool and a full-stack appointment system.
+              </p>
+            </article>
+
+            <article class="story-block">
+              <h3>What real-world work added</h3>
+              <p>
+                My roles in manufacturing, hospitality, leisure, and retail taught me things code alone
+                cannot: how to stay dependable under pressure, communicate with different people, maintain
+                quality, and contribute to a team when the pace is high.
+              </p>
+              <p>
+                Those experiences have made me more commercially aware and more comfortable taking
+                responsibility. I bring that same mindset to technical work—be clear, be thorough, and keep
+                moving the task forward.
+              </p>
+            </article>
+
+            <article class="story-block">
+              <h3>Where I’m heading</h3>
+              <p>
+                I’m looking for a graduate or junior opportunity in IT, software, digital operations, or a
+                related area where I can keep learning while contributing from day one. I’m particularly
+                drawn to roles that mix problem-solving, people, and practical delivery.
+              </p>
+              <ul class="pill-list" aria-label="Technical experience">
+                <li class="pill">Java</li>
+                <li class="pill">JavaScript</li>
+                <li class="pill">HTML & CSS</li>
+                <li class="pill">React</li>
+                <li class="pill">Firebase</li>
+                <li class="pill">SQL</li>
+                <li class="pill">C# & Unity</li>
+                <li class="pill">Photoshop</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">How I work</p>
+              <h2>A steady approach to new challenges.</h2>
+            </div>
+            <p>
+              I don’t expect to know everything on day one. I do expect myself to ask good questions,
+              learn quickly, and follow through.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <article class="card icon-card">
+              <span class="card-number">01</span>
+              <h3>Understand the goal</h3>
+              <p>I start by clarifying the user, the problem, and what a useful outcome should look like.</p>
+            </article>
+            <article class="card icon-card">
+              <span class="card-number">02</span>
+              <h3>Make it tangible</h3>
+              <p>I break work into clear steps, build a working version, and improve it with evidence and feedback.</p>
+            </article>
+            <article class="card icon-card">
+              <span class="card-number">03</span>
+              <h3>Own the finish</h3>
+              <p>I care about quality, communication, and the small details that make the result feel complete.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--white">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Beyond the screen</p>
+              <h2>The interests that keep me curious.</h2>
+            </div>
+            <p>A balanced life helps me bring more energy and better thinking back to the work.</p>
+          </div>
+
+          <div class="card-grid">
+            <article class="card">
+              <span class="kicker">Making</span>
+              <h3>Side projects & hardware</h3>
+              <p>I enjoy experimenting with creative code, small Unity prototypes, and building or upgrading computers.</p>
+            </article>
+            <article class="card">
+              <span class="kicker">Learning</span>
+              <h3>Tech & new tools</h3>
+              <p>I like exploring frameworks, useful productivity tools, and the trends shaping computing and digital work.</p>
+            </article>
+            <article class="card">
+              <span class="kicker">Resetting</span>
+              <h3>Sport & time outdoors</h3>
+              <p>Basketball, football, and getting outdoors help me switch off, stay active, and return with a clear head.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--white" style="padding-top: 0;">
+        <div class="container">
+          <div class="cta-band">
+            <div class="cta-band-inner">
+              <h2>Want to see what I can build?</h2>
+              <div class="cta-band-copy">
+                <p>Explore the projects that bring my technical, creative, and business skills together.</p>
+                <div class="button-row">
+                  <a class="button button--primary" href="Projects2.html">View projects <span class="arrow-mark" aria-hidden="true">→</span></a>
+                  <a class="button button--dark" href="Experience.html">See experience</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top container">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-logo" src="images/drawb.png" alt="">
+            <span class="brand-copy">Jack Mauro <small>Business + Technology</small></span>
+          </a>
+          <p>Business Information Technology graduate building practical digital products and looking for the next opportunity to grow.</p>
+        </div>
+        <div class="footer-column">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="Projects2.html">Projects</a></li>
+            <li><a href="Experience.html">Experience</a></li>
+            <li><a href="education.html">Education</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h2>Connect</h2>
+          <ul>
+            <li><a href="mailto:jackmauro02@gmail.com">Email</a></li>
+            <li><a href="https://www.linkedin.com/in/jackmauro02" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+            <li><a href="images/CV.pdf" target="_blank">CV ↗</a></li>
+          </ul>
         </div>
       </div>
-      <div class="section-accent" aria-hidden="true"></div>
-    </section>
-
-    <!-- Personal side -->
-    <section class="section section-white">
-      <div class="wrap">
-        <header class="section-head">
-          <h2>Outside of work</h2>
-          <p class="muted">A few things I enjoy in my free time.</p>
-        </header>
-
-        <div class="personal-grid">
-          <article class="card">
-            <h3>Side projects</h3>
-            <p>I like tinkering — from creative coding experiments (p5.js) to building small Unity prototypes or
-              improving my portfolio site. Learning by making is how i learn best and keeps me motivated.</p>
-          </article>
-
-          <article class="card">
-            <h3>Tech & gadgets</h3>
-            <p>I’m curious about how things work - whether that’s exploring new frameworks, trying tools that boost
-              productivity, or keeping up with computing trends.</p>
-          </article>
-
-          <article class="card">
-            <h3>Getting around</h3>
-            <p>I have a full UK driving licence and a car. I enjoy the flexibility to travel, visit friends and family,
-              and take local road trips.</p>
-          </article>
-
-          <article class="card">
-            <h3>Staying active</h3>
-            <p>I like keeping active and balancing screen time with time outdoors. It helps me reset and stay focused
-              for projects. Especially teams sports like basketball and football.</p>
-          </article>
-        </div>
+      <div class="footer-bottom container">
+        <span>© <span data-current-year>2026</span> Jack Mauro. All rights reserved.</span>
+        <span>Designed and built with care in Bracknell, UK.</span>
       </div>
-    </section>
-
-    <!-- Experience snapshot -->
-    <section class="section section-grey">
-      <div class="wrap">
-        <header class="section-head">
-          <h2>Experience at a glance</h2>
-        </header>
-        <div class="exp-grid">
-          <article class="exp-item">
-            <img src="images/surelock.png" alt="Surelock McGill logo">
-            <div>
-              <h4>Assembly & Collations — Surelock McGill</h4>
-              <p class="muted">Jul 2024 – Current</p>
-            </div>
-          </article>
-          <article class="exp-item">
-            <img src="images/wetherspoons.jfif" alt="Wetherspoons logo">
-            <div>
-              <h4>Kitchen Assistant — Wetherspoons</h4>
-              <p class="muted">Jun 2022 – Sep 2022, Jul 2024 – Dec 2024</p>
-            </div>
-          </article>
-          <article class="exp-item">
-            <img src="images/coral reef.png" alt="Coral Reef logo">
-            <div>
-              <h4>General Assistant — Coral Reef Waterworld</h4>
-              <p class="muted">Jun 2023 – Aug 2024</p>
-            </div>
-          </article>
-          <article class="exp-item">
-            <img src="images/primark.png" alt="Primark logo">
-            <div>
-              <h4>Retail Assistant — Primark</h4>
-              <p class="muted">Feb 2020 – Aug 2021</p>
-            </div>
-          </article>
-        </div>
-        <div class="cta-row">
-          <a class="cta-link" href="Experience.html">See full experience →</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
-  </footer>
-
-  <!-- Inject navbar + active link + mobile toggle -->
-  <script>
-    fetch("navbar.html")
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById("navbar").innerHTML = html;
-
-        // Mobile toggle
-        const btn = document.querySelector(".nav-toggle");
-        const menu = document.getElementById("mainmenu");
-        btn?.addEventListener("click", () => {
-          const expanded = btn.getAttribute("aria-expanded") === "true";
-          btn.setAttribute("aria-expanded", String(!expanded));
-          menu?.classList.toggle("open");
-        });
-
-        // Active link highlight
-        const path = (location.pathname.split("/").pop() || "about.html").toLowerCase();
-        document.querySelectorAll(".menu a").forEach(a => {
-          if (a.getAttribute("href").toLowerCase() === path) {
-            a.classList.add("active");
-            a.setAttribute("aria-current", "page");
-          }
-        });
-      });
-  </script>
-</body>
+    </footer>
+  </body>
 </html>

@@ -1,135 +1,258 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Education — Jack Mauro</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="eduStyles.css" />
-</head>
-<body>
-  <a class="skip-link" href="#education">Skip to content</a>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jack Mauro's Business Information Technology degree, qualifications, and modules across software, data, UX, cloud, and business.">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Education — Jack Mauro">
+    <meta property="og:description" content="A Business Information Technology education spanning software, data, UX, cloud, and business.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Education — Jack Mauro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
+    <script src="site.js" defer></script>
+    <script src="edu.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <!-- Navbar gets injected here -->
-  <header id="navbar"></header>
+    <header class="site-header">
+      <nav class="nav-inner container" aria-label="Primary navigation">
+        <a class="brand" href="index.html" aria-label="Jack Mauro, home">
+          <img class="brand-logo" src="images/drawb.png" alt="">
+          <span class="brand-copy">Jack Mauro <small>Business + Technology</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Open navigation">
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </button>
+        <ul class="nav-links" id="primary-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Projects2.html">Projects</a></li>
+          <li><a href="Experience.html">Experience</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a class="nav-contact" href="contact.html">Let’s talk</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>My Education</h1>
-      <p class="sub">A snapshot of the learning that shaped my work — concise, skimmable, and expandable for detail.</p>
-    </div>
-    <div class="hero-accent" aria-hidden="true"></div>
-  </section>
-
-  <!-- Education Section -->
-  <main id="education">
-    <!-- Controls -->
-    <div class="edu-controls">
-      <button type="button" id="expandAll" class="btn-ghost">Expand all</button>
-      <button type="button" id="collapseAll" class="btn-ghost">Collapse all</button>
-    </div>
-
-    <div class="education-grid">
-
-      <!-- University of Kent -->
-      <article class="education-item">
-        <div class="edu-logo"><img src="images/ukc.png" alt="University of Kent logo"></div>
-        <header class="edu-head">
-          <h2>University of Kent</h2>
-          <p class="edu-time">Sept 2021 – June 2024</p>
-          <p class="edu-cred"><strong>Business Information Technology</strong> — 2:2</p>
-        </header>
-
-        <!-- Technology Modules -->
-        <details class="edu-details">
-          <summary>Technology Modules</summary>
-          <ul class="list">
-            <li data-module="oop">Introduction to Object-Oriented Programming (OOP)</li>
-            <li data-module="found-comp">Foundations of Computing I</li>
-            <li data-module="hci">Human-Computer Interaction</li>
-            <li data-module="cloud">Computers and the Cloud</li>
-            <li data-module="db-web">Databases and the Web</li>
-            <li data-module="algos">Problem Solving with Algorithms</li>
-            <li data-module="webdev">Web Development</li>
-            <li data-module="se-process">Software Engineering Process</li>
-            <li data-module="cs">Computer Systems</li>
-            <li data-module="db-systems">Database Systems</li>
-            <li data-module="soft-dev">Software Development</li>
-            <li data-module="games">Video Games Development</li>
-            <li data-module="cibef">Computational Intelligence in Business Economics &amp; Finance</li>
-            <li data-module="comp-creativity">Computational Creativity</li>
-            <li data-module="group-project">Dissertation App Development - Group Project</li>
-          </ul>
-        </details>
-
-        <!-- Business Modules -->
-        <details class="edu-details">
-          <summary>Business Modules</summary>
-          <ul class="list">
-            <li data-module="intro-mgmt">Introduction to Management</li>
-            <li data-module="fin-acc">Financial Accounting: Reporting &amp; Analysis</li>
-            <li data-module="new-enterprise">New Enterprise Development</li>
-            <li data-module="fin-mgmt">Financial Management for Decision Making</li>
-            <li data-module="proj-mgmt">Project Management</li>
-            <li data-module="tech-innovation">Technology-Driven Business Innovation</li>
-            <li data-module="entre">Entrepreneurship</li>
-            <li data-module="cont-mgmt">Contemporary Management Challenges</li>
-          </ul>
-        </details>
-      </article>
-
-      <!-- Easthampstead Park -->
-      <article class="education-item">
-        <div class="edu-logo"><img src="images/EP.png" alt="Easthampstead Park Community School crest"></div>
-        <header class="edu-head">
-          <h2>Easthampstead Park Community School</h2>
-          <p class="edu-time">Sept 2014 – July 2021</p>
-        </header>
-
-        <details class="edu-details" open>
-          <summary>A Levels</summary>
-          <ul class="list">
-            <li data-module="IT">IT (Distinction)</li>
-            <li data-module="BS">Business (Distinction)</li>
-            <li data-module="M">Media (B)</li>
-          </ul>
-        </details>
-        <details class="edu-details" open>
-          <summary>GCSEs</summary>
-          <p class="muted">8 GCSEs grades 7–5, including English and Mathematics.</p>
-        </details>
-      </article>
-
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
-  </footer>
-
-  <!-- Module modal -->
-  <div class="modal" id="moduleModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDesc">
-    <div class="modal__backdrop" data-close-modal></div>
-    <div class="modal__dialog" role="document">
-      <button class="modal__close" aria-label="Close details" data-close-modal>&times;</button>
-      <header class="modal__header">
-        <img id="modalImg" class="modal__img" alt="" />
-        <div>
-          <h4 id="modalTitle"></h4>
-          <div id="modalMeta" class="pill-row"></div>
+    <main id="main-content">
+      <section class="page-hero">
+        <div class="page-hero-inner container">
+          <div>
+            <p class="eyebrow">Education</p>
+            <h1>Where business met technology.</h1>
+          </div>
+          <div class="page-hero-copy">
+            <p>
+              My education built a broad foundation across software, data, UX, cloud, and business—then
+              challenged me to bring those areas together through practical projects.
+            </p>
+            <ul class="pill-list" aria-label="Education areas">
+              <li class="pill">Technology</li>
+              <li class="pill">Business</li>
+              <li class="pill">Project delivery</li>
+            </ul>
+          </div>
         </div>
-      </header>
-      <div class="modal__body">
-        <p id="modalDesc"></p>
-        <div id="modalSkills" class="pill-row"></div>
-        <ul id="modalHighlights" class="modal__list"></ul>
+      </section>
+
+      <section class="section section--white">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Qualifications</p>
+              <h2>A broad, practical learning journey.</h2>
+            </div>
+            <p>
+              Select any module below for a closer look at the topics, skills, and work involved.
+            </p>
+          </div>
+
+          <div class="edu-controls" aria-label="Module controls">
+            <button class="btn-ghost" type="button" id="expandAll">Expand all</button>
+            <button class="btn-ghost" type="button" id="collapseAll">Collapse all</button>
+          </div>
+
+          <div class="education-list">
+            <article class="education-card">
+              <header class="education-head">
+                <div class="education-logo">
+                  <img src="images/ukc.png" alt="University of Kent logo">
+                </div>
+                <div>
+                  <p class="education-date">Sep 2021 – Jun 2024</p>
+                  <h2>University of Kent</h2>
+                  <p class="education-credential"><strong>BSc Business Information Technology</strong> · 2:2</p>
+                </div>
+              </header>
+
+              <details class="edu-details" open>
+                <summary>Technology modules</summary>
+                <ul class="module-list">
+                  <li><button class="module-button" type="button" data-module="oop">Object-Oriented Programming</button></li>
+                  <li><button class="module-button" type="button" data-module="found-comp">Foundations of Computing</button></li>
+                  <li><button class="module-button" type="button" data-module="hci">Human-Computer Interaction</button></li>
+                  <li><button class="module-button" type="button" data-module="cloud">Computers and the Cloud</button></li>
+                  <li><button class="module-button" type="button" data-module="db-web">Databases and the Web</button></li>
+                  <li><button class="module-button" type="button" data-module="algos">Problem Solving with Algorithms</button></li>
+                  <li><button class="module-button" type="button" data-module="webdev">Web Development</button></li>
+                  <li><button class="module-button" type="button" data-module="se-process">Software Engineering Process</button></li>
+                  <li><button class="module-button" type="button" data-module="cs">Computer Systems</button></li>
+                  <li><button class="module-button" type="button" data-module="db-systems">Database Systems</button></li>
+                  <li><button class="module-button" type="button" data-module="soft-dev">Software Development</button></li>
+                  <li><button class="module-button" type="button" data-module="games">Video Games Development</button></li>
+                  <li><button class="module-button" type="button" data-module="cibef">Computational Intelligence</button></li>
+                  <li><button class="module-button" type="button" data-module="comp-creativity">Computational Creativity</button></li>
+                  <li><button class="module-button" type="button" data-module="group-project">Dissertation App Development</button></li>
+                </ul>
+              </details>
+
+              <details class="edu-details">
+                <summary>Business modules</summary>
+                <ul class="module-list">
+                  <li><button class="module-button" type="button" data-module="intro-mgmt">Introduction to Management</button></li>
+                  <li><button class="module-button" type="button" data-module="fin-acc">Financial Accounting</button></li>
+                  <li><button class="module-button" type="button" data-module="new-enterprise">New Enterprise Development</button></li>
+                  <li><button class="module-button" type="button" data-module="fin-mgmt">Financial Management</button></li>
+                  <li><button class="module-button" type="button" data-module="proj-mgmt">Project Management</button></li>
+                  <li><button class="module-button" type="button" data-module="tech-innovation">Technology-Driven Innovation</button></li>
+                  <li><button class="module-button" type="button" data-module="entre">Entrepreneurship</button></li>
+                  <li><button class="module-button" type="button" data-module="cont-mgmt">Contemporary Management</button></li>
+                </ul>
+              </details>
+            </article>
+
+            <article class="education-card">
+              <header class="education-head">
+                <div class="education-logo">
+                  <img src="images/EP.png" alt="Easthampstead Park Community School crest">
+                </div>
+                <div>
+                  <p class="education-date">Sep 2014 – Jul 2021</p>
+                  <h2>Easthampstead Park Community School</h2>
+                  <p class="education-credential">A Levels and GCSEs</p>
+                </div>
+              </header>
+
+              <details class="edu-details" open>
+                <summary>A Levels</summary>
+                <ul class="module-list">
+                  <li><button class="module-button" type="button" data-module="IT">IT · Distinction</button></li>
+                  <li><button class="module-button" type="button" data-module="BS">Business · Distinction</button></li>
+                  <li><button class="module-button" type="button" data-module="M">Media · B</button></li>
+                </ul>
+              </details>
+
+              <details class="edu-details">
+                <summary>GCSEs</summary>
+                <p class="lead">Eight GCSEs at grades 7–5, including English and Mathematics.</p>
+              </details>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">The bigger picture</p>
+              <h2>What the degree taught me to connect.</h2>
+            </div>
+            <p>Technology creates more value when it is designed with the organisation and its users in mind.</p>
+          </div>
+          <div class="card-grid">
+            <article class="card icon-card">
+              <span class="card-number">01</span>
+              <h3>Systems & software</h3>
+              <p>How applications, databases, interfaces, infrastructure, and code work together.</p>
+            </article>
+            <article class="card icon-card">
+              <span class="card-number">02</span>
+              <h3>Users & organisations</h3>
+              <p>How business goals, customer needs, accessibility, and good management shape the solution.</p>
+            </article>
+            <article class="card icon-card">
+              <span class="card-number">03</span>
+              <h3>Ideas & delivery</h3>
+              <p>How to turn a brief into a structured project, collaborate, test assumptions, and ship working outcomes.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--white">
+        <div class="container">
+          <div class="cta-band">
+            <div class="cta-band-inner">
+              <h2>See the learning put into practice.</h2>
+              <div class="cta-band-copy">
+                <p>My projects show how those modules became apps, systems, games, and creative digital work.</p>
+                <div class="button-row">
+                  <a class="button button--primary" href="Projects2.html">Explore projects <span class="arrow-mark" aria-hidden="true">→</span></a>
+                  <a class="button button--dark" href="images/CV.pdf" target="_blank">View full CV</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal" id="moduleModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__dialog" role="document">
+        <button class="modal__close" type="button" aria-label="Close module details" data-close-modal>×</button>
+        <header class="modal__header">
+          <img id="modalImg" class="modal__img" alt="">
+          <h2 id="modalTitle"></h2>
+          <div id="modalMeta" class="pill-list"></div>
+        </header>
+        <div class="modal__body">
+          <p id="modalDesc"></p>
+          <div id="modalSkills" class="pill-list"></div>
+          <ul id="modalHighlights" class="modal__list"></ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="edu.js"></script>
-</body>
+    <footer class="site-footer">
+      <div class="footer-top container">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-logo" src="images/drawb.png" alt="">
+            <span class="brand-copy">Jack Mauro <small>Business + Technology</small></span>
+          </a>
+          <p>Business Information Technology graduate building practical digital products and looking for the next opportunity to grow.</p>
+        </div>
+        <div class="footer-column">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="Projects2.html">Projects</a></li>
+            <li><a href="Experience.html">Experience</a></li>
+            <li><a href="education.html">Education</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h2>Connect</h2>
+          <ul>
+            <li><a href="mailto:jackmauro02@gmail.com">Email</a></li>
+            <li><a href="https://www.linkedin.com/in/jackmauro02" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+            <li><a href="images/CV.pdf" target="_blank">CV ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom container">
+        <span>© <span data-current-year>2026</span> Jack Mauro. All rights reserved.</span>
+        <span>Designed and built with care in Bracknell, UK.</span>
+      </div>
+    </footer>
+  </body>
 </html>

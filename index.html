@@ -1,340 +1,296 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Jack Mauro — Portfolio" />
-  <title>Jack Mauro | Portfolio</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jack Mauro is a Business Information Technology graduate building practical web, software, data, and creative technology projects.">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Jack Mauro — Business IT Graduate & Digital Builder">
+    <meta property="og:description" content="A portfolio of practical software, web, data, and creative technology work.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Jack Mauro — Business IT Graduate & Digital Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <!-- Font + Styles -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <a class="skip-link" href="#home">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav-inner container" aria-label="Primary navigation">
+        <a class="brand" href="index.html" aria-label="Jack Mauro, home">
+          <img class="brand-logo" src="images/drawb.png" alt="">
+          <span class="brand-copy">Jack Mauro <small>Business + Technology</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Open navigation">
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </button>
+        <ul class="nav-links" id="primary-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Projects2.html">Projects</a></li>
+          <li><a href="Experience.html">Experience</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a class="nav-contact" href="contact.html">Let’s talk</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <!-- Navbar (injected) -->
-  <header id="navbar"></header>
-
-  <!-- Hero -->
-  <section id="home" class="hero-section">
-    <div class="hero-inner">
-      <div class="intro-text">
-        <h1>Jack Mauro</h1>
-        <p>Business Information Technology Graduate | Aspiring IT Professional</p>
-        <a href="contact.html" class="cta-button">Get in Touch</a>
-        <a class="cta-button2" href="images/CV.pdf">View my CV</a>
-      </div>
-
-      <div class="intro-image">
-        <img src="images/smart.jpg" alt="Portrait of Jack Mauro" />
-      </div>
-    </div>
-    <div class="hero-accent" aria-hidden="true"></div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section section-light">
-    <div class="wrap">
-      <header class="section-head">
-        <h2>About Me</h2>
-      </header>
-      <p class="lead">
-        As a Business Information Technology graduate from the University of Kent, I am passionate about
-        bridging the gap between business and technology. I have a keen interest in the technology industry,
-        computers, and how they function. My academic journey has equipped me with a robust understanding of
-        both technical and business concepts. I am eager to apply my knowledge to real-world scenarios and
-        contribute to technological advancements and innovative business solutions.
-      </p>
-    </div>
-  </section>
-
-  <!-- Education (summary cards) -->
-  <section id="education" class="section section-white">
-    <div class="wrap">
-      <header class="section-head">
-        <h2>Education</h2>
-      </header>
-
-      <div class="edu-cards">
-        <article class="edu-card">
-          <div class="edu-card-logo"><img src="images/ukc.png" alt="University of Kent logo"></div>
-          <div>
-            <h3>University of Kent</h3>
-            <p class="muted"><strong>Sept 2021 – June 2024</strong></p>
-            <p><strong>Business Information Technology</strong> — 2:2 Achieved</p>
-            <p class="muted small">Key Technology: Database Systems, Algorithms, Software Dev, Web Dev</p>
-            <p class="muted small">Key Business: Financial Accounting, Entrepreneurship, Contemporary Management, Project Management</p>
+    <main id="main-content">
+      <section class="hero">
+        <div class="hero-inner container">
+          <div class="hero-copy">
+            <p class="eyebrow">BIT graduate · Bracknell, UK</p>
+            <h1>Practical tech, built around <span class="accent-word">real needs.</span></h1>
+            <p class="lead">
+              I’m Jack Mauro, a Business Information Technology graduate with hands-on experience across
+              web apps, databases, creative coding, and team delivery. I’m looking for an early-career role
+              where I can turn ideas into useful digital solutions.
+            </p>
+            <div class="button-row">
+              <a class="button button--primary" href="Projects2.html">Explore my work <span class="arrow-mark" aria-hidden="true">→</span></a>
+              <a class="button button--dark" href="images/CV.pdf" target="_blank">View my CV</a>
+            </div>
+            <p class="availability"><span class="availability-dot" aria-hidden="true"></span>Open to graduate and junior opportunities</p>
           </div>
-        </article>
 
-        <article class="edu-card">
-          <div class="edu-card-logo"><img src="images/EP.png" alt="Easthampstead Park Community School logo"></div>
-          <div>
-            <h3>Easthampstead Park Community School</h3>
-            <p class="muted"><strong>Sept 2014 – July 2021</strong></p>
-            <p><strong>A Levels:</strong> IT (Distinction), Business (Distinction), Media (B)</p>
-            <p class="muted small">GCSEs: 8 (grades 7–5), including English and Mathematics</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="cta-row">
-        <a class="cta-link" href="education.html">View full education →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience" class="section section-grey">
-    <div class="wrap">
-      <header class="section-head">
-        <h2>Work Experience</h2>
-      </header>
-
-      <div class="exp-grid">
-        <article class="exp-item">
-          <img src="images/surelock.png" alt="Surelock McGill" class="company-logo"/>
-          <div class="exp-body">
-            <h3><a href="https://www.surelockmcgill.com/na/" target="_blank" rel="noopener">Assembly and Collations — Surelock McGill</a></h3>
-            <p class="muted">July 2024 – Current</p>
-            <ul>
-              <li>Manufacturing and engineering security systems.</li>
-              <li>Independently and collaboratively delivering orders with quality control.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="exp-item">
-          <img src="images/wetherspoons.jfif" alt="Wetherspoons" class="company-logo"/>
-          <div class="exp-body">
-            <h3><a href="https://www.jdwetherspoon.com/" target="_blank" rel="noopener">Kitchen Assistant — Wetherspoons</a></h3>
-            <p class="muted">June 2022 – Sept 2022, July 2024 – Dec 2024</p>
-            <ul>
-              <li>Efficient meal preparation in a fast-paced environment.</li>
-              <li>Teamwork, communication, and stock management.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="exp-item">
-          <img src="images/coral reef.png" alt="Coral Reef Waterworld" class="company-logo"/>
-          <div class="exp-body">
-            <h3><a href="https://www.everyoneactive.com/centre/coral-reef-waterworld/" target="_blank" rel="noopener">General Assistant — Coral Reef Waterworld</a></h3>
-            <p class="muted">June 2023 – Aug 2024</p>
-            <ul>
-              <li>Customer support and venue safety/cleanliness.</li>
-              <li>Administered first aid (Level 3 emergency first aid).</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="exp-item">
-          <img src="images/primark.png" alt="Primark" class="company-logo"/>
-          <div class="exp-body">
-            <h3><a href="https://www.primark.com/en-gb" target="_blank" rel="noopener">Retail Assistant — Primark</a></h3>
-            <p class="muted">Feb 2020 – Aug 2021</p>
-            <ul>
-              <li>Customer service and cash handling.</li>
-              <li>Transaction processing and money management.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="section section-dark">
-    <div class="wrap">
-      <header class="section-head section-head-invert">
-        <h2>Projects</h2>
-      </header>
-
-      <div class="slider">
-        <button class="arrow arrow-left" aria-label="Previous" onclick="scrollSlider(-1)">&#10094;</button>
-        <div class="track" id="projectTrack">
-          <!-- Project 1 -->
-          <article class="project-card">
-          <h3>Computational creativity</h3>
-          <p>Developed an interactive image-to-shape converter using HTML, CSS, JavaScript, and P5.js. The tool transforms images into customizable patterns of squares, circles, or triangles, with user controls for color, shape, randomness, and variation—encouraging creative visual experimentation.</p>
-          <p><strong>Technologies:</strong> Html, Css, Javascript, P5.Js</p>
-          <p><strong>Features:</strong> Custom shape selection, color matching, randomness toggle, and adjustable visual generation.</p>
-          <img src="images/cc demo.png" alt="Computational creativity demo" class="project-media">
-          <div class="btn-row">
-            <a href="Comp creativity/Realpage3.html" class="cta-button">Demo</a>
-            <a href="https://github.com/jackmauro02/Year-3/tree/main/Comp%20creativity%20final" target="_blank" rel="noopener" class="cta-button">View Code</a>
-          </div>
-        </article>
-
-        <!-- 2 -->
-        <article class="project-card">
-          <h3>Mobile App Development</h3>
-          <p>Developed a mobile app for my dissertation using React and Firebase, aimed at streamlining business processes for sports clubs. Features include class bookings, personal training schedules, fitness plans, and meal tracking.</p>
-          <p><strong>Technologies:</strong> React, Firebase</p>
-          <p><strong>Features:</strong> Cross-platform support, real-time database integration, secure login.</p>
-          <img src="images/clubtime.png" alt="Sports booking app" class="project-media">
-          <div class="btn-row">
-            <a href="https://github.com/jackmauro02/Year-3/tree/main/SportsBookingApp" target="_blank" rel="noopener" class="cta-button">View Code</a>
-          </div>
-        </article>
-
-        <!-- 3 -->
-        <article class="project-card">
-          <h3>Software development</h3>
-          <p>Developed a full-stack doctor’s appointment booking system with database integration. My main contributions included implementing the delete booking, change booking, and prescriptions features, ensuring smooth user interaction with real-time database updates. Also collaborated on other core functionalities across the application as part of a team assignment.</p>
-          <p><strong>Technologies:</strong> Java, SQL</p>
-          <p><strong>Features:</strong> Multiplayer, levels, custom UI design.</p>
-          <video src="images/Booking.mp4" class="project-media" controls autoplay loop muted></video>
-          <div class="btn-row">
-            <a href="images/Booking.mp4" class="cta-button">Download</a>
-            <a href="https://github.com/jackmauro02/Group-project/tree/main/software-dev-main" target="_blank" rel="noopener" class="cta-button">View Code</a>
-          </div>
-        </article>
-
-        <!-- 4 -->
-        <article class="project-card">
-          <h3>Unity 3D Video Game Development</h3>
-          <p>Collaborated in a team of two to develop a 3D wave-based survival shooter in Unity, inspired by Call of Duty Zombies. Implemented core gameplay systems including enemy spawning, player health, and weapon mechanics. Strengthened skills in C#, game physics, and level design through hands-on development and teamwork.</p>
-          <p><strong>Technologies:</strong> Unity, C#</p>
-          <p><strong>Features:</strong> Multiplayer, levels, custom UI design.</p>
-          <video src="images/Trailer1.mp4" class="project-media" controls autoplay loop muted></video>
-          <div class="btn-row">
-            <a href="images/Trailer1.mp4" class="cta-button">Download</a>
-            <a href="https://github.com/jackmauro02/Year-3/tree/main/Jack%20%2B%20Oz%20game" target="_blank" rel="noopener" class="cta-button">View Code</a>
-          </div>
-        </article>
-
-        <!-- 5 -->
-        <article class="project-card">
-          <h3>Jackime - Anime Tracker</h3>
-          <p>A lightweight, client-side anime tracker that merges a local seed list with live data from AniList via GraphQL. It normalizes entries, enriches them with cover art, episode counts, and year, and persists my personal ratings. The UI matches my portfolio theme and uses a responsive card grid with modals for details.</p>
-          <p><strong>Technologies:</strong> HTML, CSS, JavaScript, AniList GraphQL API, localStorage</p>
-          <p><strong>Features:</strong> Search & filter (status/year), sort (title/year/progress/rating), detail modal with chips/links, client-side caching of fetched data, portfolio navbar integration.</p>
-          <img src="images/animeproj.png" alt="Jackime anime tracker UI" class="project-media">
-          <div class="btn-row">
-            <a href="jackime/index.html" class="cta-button">Demo</a>
-            <a href="https://github.com/jackmauro02/jackime" target="_blank" rel="noopener" class="cta-button">View Code</a>
-          </div>
-        </article>
-
-        <!-- 6 -->
-        <article class="project-card">
-          <h3>Website builder - wix</h3>
-          <p>This is a website I made for my media project where we had to create a show idea and a website for it to be advertised. I took all photos and edited them all together to get my desired result as well as all information being my own. </p>
-          <p><strong>Technologies:</strong> Wix, photoshop</p>
-          <p><strong>Features:</strong> Responsive design, smooth scrolling, fade-in animations.</p>
-          <img src="images/incursion.png" alt="Portfolio website" class="project-media">
-          <div class="btn-row">
-            <a href="https://14jmauro.wixsite.com/theincursion" target="_blank" rel="noopener" class="cta-button">View</a>
-          </div>
-        </article>
-
-        <!-- 7–10  -->
-        <article class="project-card">
-          <h3>Photoshop gallery</h3>
-          <p>This is a collection of my Photoshop creations, showcasing my skills in digital design and photo manipulation.</p>
-          <p><strong>Technologies:</strong> Photoshop</p>
-          <p><strong>Features:</strong> Image editing, compositing, digital painting.</p>
-          <img src="photoshop/p4.jpg" alt="Photoshop gallery" class="project-media">
-          <div class="btn-row">
-            <a href="gallery.html" target="_blank" rel="noopener" class="cta-button">Demo</a>
-          </div>
-        </article>
+          <figure class="hero-portrait">
+            <img src="images/jack-mauro.jpg" alt="Jack Mauro wearing a white shirt">
+            <figcaption class="portrait-note">
+              <strong>Business-minded builder</strong>
+              Technical curiosity backed by real customer and team experience.
+            </figcaption>
+          </figure>
         </div>
-        <button class="arrow arrow-right" aria-label="Next" onclick="scrollSlider(1)">&#10095;</button>
+
+        <div class="hero-stats">
+          <div class="stats-grid container" aria-label="Portfolio highlights">
+            <div class="stat">
+              <span class="stat-value">7 featured</span>
+              <span class="stat-label">software, web, and creative projects</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">Business + tech</span>
+              <span class="stat-label">a degree built across both disciplines</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">4 sectors</span>
+              <span class="stat-label">manufacturing, hospitality, leisure, and retail</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--white">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">What I bring</p>
+              <h2>A versatile foundation with one clear focus.</h2>
+            </div>
+            <p>
+              I enjoy the point where a business problem becomes a technical challenge. My work combines
+              clear thinking, practical delivery, and the curiosity to keep learning.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <article class="card icon-card">
+              <span class="card-number">01</span>
+              <h3>Build useful products</h3>
+              <p>I turn requirements into working websites, applications, prototypes, and database-backed features.</p>
+            </article>
+            <article class="card icon-card">
+              <span class="card-number">02</span>
+              <h3>Connect both sides</h3>
+              <p>My degree helps me understand the technical detail without losing sight of users, operations, or value.</p>
+            </article>
+            <article class="card icon-card">
+              <span class="card-number">03</span>
+              <h3>Work well with people</h3>
+              <p>Customer-facing and production roles have strengthened my communication, reliability, and teamwork.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--dark">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Selected work</p>
+              <h2>Projects that show how I think and build.</h2>
+            </div>
+            <p>
+              From business-focused apps to creative experiments, each project pushed me to learn a new
+              tool, solve a real problem, or collaborate more effectively.
+            </p>
+          </div>
+
+          <div class="work-grid">
+            <article class="work-card">
+              <div class="work-card-media">
+                <img src="images/preview-clubtime.jpg" alt="ClubTime sports club mobile app interface" loading="lazy">
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-topline"><span>Dissertation project</span><span>01</span></div>
+                <h3>ClubTime — sports club management app</h3>
+                <p>
+                  A React and Firebase mobile app designed to simplify class bookings, personal training,
+                  fitness plans, and meal tracking for sports clubs and their members.
+                </p>
+                <ul class="pill-list" aria-label="Technologies used">
+                  <li class="pill">React</li>
+                  <li class="pill">Firebase</li>
+                  <li class="pill">Mobile UX</li>
+                </ul>
+                <div class="work-card-actions">
+                  <a href="https://github.com/jackmauro02/Year-3/tree/main/SportsBookingApp" target="_blank" rel="noopener">View code ↗</a>
+                  <a href="Projects2.html">Read project details →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="work-card">
+              <div class="work-card-media">
+                <img src="images/preview-creativity.jpg" alt="Image-to-shape creative coding interface" loading="lazy">
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-topline"><span>Creative coding</span><span>02</span></div>
+                <h3>Image-to-shape generator</h3>
+                <p>
+                  An interactive p5.js tool that converts images into custom patterns with controls for
+                  shape, colour, randomness, and variation.
+                </p>
+                <ul class="pill-list" aria-label="Technologies used">
+                  <li class="pill">JavaScript</li>
+                  <li class="pill">p5.js</li>
+                  <li class="pill">Canvas</li>
+                </ul>
+                <div class="work-card-actions">
+                  <a href="Comp creativity/Realpage3.html">Try the demo →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="work-card">
+              <div class="work-card-media">
+                <img src="images/preview-jackime.jpg" alt="Jackime anime tracker card interface" loading="lazy">
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-topline"><span>Personal project</span><span>03</span></div>
+                <h3>Jackime — anime tracker</h3>
+                <p>
+                  A responsive browser-based tracker that combines a local list with live AniList data,
+                  filtering, ratings, progress, and client-side caching.
+                </p>
+                <ul class="pill-list" aria-label="Technologies used">
+                  <li class="pill">JavaScript</li>
+                  <li class="pill">GraphQL API</li>
+                  <li class="pill">Local storage</li>
+                </ul>
+                <div class="work-card-actions">
+                  <a href="jackime/index.html">Open the app →</a>
+                  <a href="https://github.com/jackmauro02/jackime" target="_blank" rel="noopener">View code ↗</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="button-row" style="margin-top: 34px;">
+            <a class="button button--primary" href="Projects2.html">See all projects <span class="arrow-mark" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Capabilities</p>
+              <h2>Technical enough to build. Commercial enough to ask why.</h2>
+            </div>
+            <p>
+              My strongest work happens when I can combine practical development with an understanding of
+              the people and processes behind the brief.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <article class="card">
+              <span class="kicker">Development</span>
+              <h3>Web & software</h3>
+              <p>HTML, CSS, JavaScript, React, Java, C#, responsive interfaces, and component-based thinking.</p>
+            </article>
+            <article class="card">
+              <span class="kicker">Data</span>
+              <h3>Databases & cloud</h3>
+              <p>Firebase, SQL, data modelling, real-time updates, client-side storage, and API integration.</p>
+            </article>
+            <article class="card">
+              <span class="kicker">Delivery</span>
+              <h3>Business & collaboration</h3>
+              <p>Requirements, project management, customer focus, quality control, communication, and teamwork.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--white">
+        <div class="container">
+          <div class="cta-band">
+            <div class="cta-band-inner">
+              <h2>Looking for a curious, dependable junior?</h2>
+              <div class="cta-band-copy">
+                <p>I’m ready to bring energy, practical skills, and a strong learning mindset to the right team.</p>
+                <div class="button-row">
+                  <a class="button button--primary" href="contact.html">Start a conversation <span class="arrow-mark" aria-hidden="true">→</span></a>
+                  <a class="button button--dark" href="about.html">More about me</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top container">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-logo" src="images/drawb.png" alt="">
+            <span class="brand-copy">Jack Mauro <small>Business + Technology</small></span>
+          </a>
+          <p>Business Information Technology graduate building practical digital products and looking for the next opportunity to grow.</p>
+        </div>
+        <div class="footer-column">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="Projects2.html">Projects</a></li>
+            <li><a href="Experience.html">Experience</a></li>
+            <li><a href="education.html">Education</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h2>Connect</h2>
+          <ul>
+            <li><a href="mailto:jackmauro02@gmail.com">Email</a></li>
+            <li><a href="https://www.linkedin.com/in/jackmauro02" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+            <li><a href="images/CV.pdf" target="_blank">CV ↗</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills" class="section section-dark-soft">
-    <div class="wrap">
-      <header class="section-head section-head-invert">
-        <h2>Skills</h2>
-      </header>
-      <div class="skills-grid">
-        <div class="skill-card"><h3>Programming Languages</h3><p>Java, JavaScript, HTML, CSS.</p></div>
-        <div class="skill-card"><h3>Web Development</h3><p>Experience with Webflow for responsive sites.</p></div>
-        <div class="skill-card"><h3>Data Management</h3><p>Firebase and SQL for storage/manipulation.</p></div>
-        <div class="skill-card"><h3>Microsoft Office</h3><p>Advanced Excel, Word, PowerPoint.</p></div>
-        <div class="skill-card"><h3>Problem Solving</h3><p>Algorithms and logical reasoning.</p></div>
-        <div class="skill-card"><h3>Creative Design</h3><p>Advanced Photoshop for web/media.</p></div>
-        <div class="skill-card"><h3>Teamwork & Leadership</h3><p>Work experience & university projects.</p></div>
-        <div class="skill-card"><h3>Database Management</h3><p>SQL querying and fundamentals.</p></div>
+      <div class="footer-bottom container">
+        <span>© <span data-current-year>2026</span> Jack Mauro. All rights reserved.</span>
+        <span>Designed and built with care in Bracknell, UK.</span>
       </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section section-light">
-    <div class="wrap">
-      <header class="section-head">
-        <h2>Contact Me</h2>
-      </header>
-      <form class="contact-form" action="submit_form.php" method="POST">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" required />
-
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" required />
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <button type="submit" class="cta-button">Send</button>
-      </form>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
-  </footer>
-
-  <!-- Scripts: navbar include, slider, reveal -->
-  <script>
-    // Inject navbar
-    fetch("navbar.html")
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById("navbar").innerHTML = html;
-
-        // Mobile toggle
-        const btn = document.querySelector(".nav-toggle");
-        const menu = document.getElementById("mainmenu");
-        btn?.addEventListener("click", () => {
-          const expanded = btn.getAttribute("aria-expanded") === "true";
-          btn.setAttribute("aria-expanded", String(!expanded));
-          menu.classList.toggle("open");
-        });
-
-        // Active link
-        const path = window.location.pathname.split("/").pop() || "Portfolio.html";
-        document.querySelectorAll(".menu a").forEach(a => {
-          if (a.getAttribute("href") === path || (path === "" && a.getAttribute("href") === "Portfolio.html")) {
-            a.classList.add("active");
-            a.setAttribute("aria-current", "page");
-          }
-        });
-      });
-
-    // Slider
-    function scrollSlider(dir) {
-      const track = document.getElementById("projectTrack");
-      const card = track.querySelector(".project-card");
-      const step = card ? card.getBoundingClientRect().width + 20 : 400;
-      track.scrollBy({ left: dir * step, behavior: "smooth" });
-    }
-    window.scrollSlider = scrollSlider;
-
-    // Simple reveal on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => e.isIntersecting && e.target.classList.add("visible"));
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll(".section, .project-card, .exp-item, .skill-card").forEach(el => observer.observe(el));
-  </script>
-</body>
+    </footer>
+  </body>
 </html>

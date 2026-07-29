@@ -1,114 +1,244 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Jack Mauro's Photoshop Gallery">
-  <title>Jack Mauro | Photoshop Gallery</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="gallery.css">
-  <script src="gallery.js" defer></script>
-</head>
-<body>
-  <!-- Navbar injected -->
-  <header id="navbar"></header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A gallery of Jack Mauro's Photoshop composites, visual effects, poster designs, and digital artwork.">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Photoshop Gallery — Jack Mauro">
+    <meta property="og:description" content="Digital artwork exploring compositing, visual effects, poster design, and atmosphere.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Photoshop Gallery — Jack Mauro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <section id="gallery" class="centered-section">
-    <h2>Photoshop Gallery</h2>
-    <p>Here is a collection of my Photoshop creations. Click any image to enlarge and view in detail.</p>
+    <header class="site-header">
+      <nav class="nav-inner container" aria-label="Primary navigation">
+        <a class="brand" href="index.html" aria-label="Jack Mauro, home">
+          <img class="brand-logo" src="images/drawb.png" alt="">
+          <span class="brand-copy">Jack Mauro <small>Business + Technology</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Open navigation">
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </button>
+        <ul class="nav-links" id="primary-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Projects2.html">Projects</a></li>
+          <li><a href="Experience.html">Experience</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a class="nav-contact" href="contact.html">Let’s talk</a></li>
+        </ul>
+      </nav>
+    </header>
 
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="photoshop/p1.jpg" alt="Photoshop Design 1">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p2.jpg" alt="Photoshop Design 2">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p3.png" alt="Photoshop Design 3">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p4.jpg" alt="Photoshop Design 1">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p5.png" alt="Photoshop Design 2">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p6.png" alt="Photoshop Design 1">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p7.png" alt="Photoshop Design 2">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p8.png" alt="Photoshop Design 2">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p9.png" alt="Photoshop Design 2">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p10.png" alt="Photoshop Design 2">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p11.png" alt="Photoshop Design 2">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p12.png" alt="Photoshop Design 2">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p13.jpg" alt="Photoshop Design 2">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p14.jpg" alt="Photoshop Design 2">
-      </div>
-      <div class="gallery-item">
-        <img src="photoshop/p15.jpg" alt="Photoshop Design 2">
-      </div>
-      
-      <!-- Add more images as needed -->
-    </div>
-  </section>
+    <main id="main-content">
+      <section class="page-hero">
+        <div class="page-hero-inner container">
+          <div>
+            <p class="eyebrow">Photoshop gallery</p>
+            <h1>Experiments in image and atmosphere.</h1>
+          </div>
+          <div class="page-hero-copy">
+            <p>
+              Personal work exploring compositing, poster design, colour, visual effects, and digital
+              storytelling. Select any piece to view it in detail.
+            </p>
+            <ul class="pill-list" aria-label="Gallery skills">
+              <li class="pill">Compositing</li>
+              <li class="pill">Retouching</li>
+              <li class="pill">Visual effects</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img class="lightbox-content" id="lightbox-img">
-  </div>
+      <section class="section section--white">
+        <div class="container">
+          <div class="gallery-intro">
+            <div>
+              <p class="eyebrow">Selected artwork</p>
+              <h2>Digital studies</h2>
+            </div>
+            <p>
+              These pieces range from early experiments to more detailed composites. Together they show
+              how I developed my eye for layout, blending, colour, and visual narrative.
+            </p>
+          </div>
 
-  <footer>
-    <p>&copy; 2025 Jack Mauro. All Rights Reserved.</p>
-  </footer>
-</body>
+          <div class="gallery-grid">
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p1.jpg" data-gallery-title="Portrait collage">
+                <img src="photoshop/thumbs/p1.jpg" alt="Dense portrait collage created from many cut-out photographs" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Portrait collage</strong><span>Composition</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p2.jpg" data-gallery-title="Perspective study">
+                <img src="photoshop/thumbs/p2.jpg" alt="Perspective composite showing multiple versions of a person beside a lake" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Perspective study</strong><span>Photo manipulation</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p3.png" data-gallery-title="Personal avatar">
+                <img src="photoshop/thumbs/p3.jpg" alt="Minimal illustrated portrait in a red circle" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Personal avatar</strong><span>Illustration</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p4.jpg" data-gallery-title="Character universe">
+                <img src="photoshop/thumbs/p4.jpg" alt="Colourful collage of illustrated anime characters" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Character universe</strong><span>Collage</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p5.png" data-gallery-title="Field portrait">
+                <img src="photoshop/thumbs/p5.jpg" alt="Atmospheric portrait of a person in a field with a pink and green grade" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Field portrait</strong><span>Colour grade</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p6.png" data-gallery-title="Forest discovery">
+                <img src="photoshop/thumbs/p6.jpg" alt="Cinematic forest composite with a figure in a white coat and green light" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Forest discovery</strong><span>Composite</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p7.png" data-gallery-title="The encounter">
+                <img src="photoshop/thumbs/p7.jpg" alt="Dark forest scene with two figures and a glowing portal" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>The encounter</strong><span>Visual effects</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p8.png" data-gallery-title="Double exposure">
+                <img src="photoshop/thumbs/p8.jpg" alt="Green double-exposure portrait with forest textures" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Double exposure</strong><span>Portrait effect</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p9.png" data-gallery-title="Night vision">
+                <img src="photoshop/thumbs/p9.jpg" alt="Green night-vision style close-up portrait" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Night vision</strong><span>Screen effect</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p10.png" data-gallery-title="Green signal">
+                <img src="photoshop/thumbs/p10.jpg" alt="Forest scene with a white-coated figure approaching a green glow" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Green signal</strong><span>Cinematic grade</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p11.png" data-gallery-title="The group">
+                <img src="photoshop/thumbs/p11.jpg" alt="Three-person cinematic portrait in a green forest" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>The group</strong><span>Portrait composite</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p12.png" data-gallery-title="Layered forest">
+                <img src="photoshop/thumbs/p12.jpg" alt="Layered forest composite with a close-up face and distant figure" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Layered forest</strong><span>Story composite</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p13.jpg" data-gallery-title="Character crossover">
+                <img src="photoshop/thumbs/p13.jpg" alt="Humorous fantasy character composite with a glowing gauntlet" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Character crossover</strong><span>Visual effects</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p14.jpg" data-gallery-title="Poster recreation">
+                <img src="photoshop/thumbs/p14.jpg" alt="Superhero ensemble poster recreation with layered portraits" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Poster recreation</strong><span>Poster design</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p15.jpg" data-gallery-title="Pencil study">
+                <img src="photoshop/thumbs/p15.jpg" alt="Close-up portrait transformed into a pencil sketch effect" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Pencil study</strong><span>Texture effect</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <button class="gallery-button" type="button" data-gallery-item data-gallery-src="photoshop/p16.jpg" data-gallery-title="Lightning">
+                <img src="photoshop/thumbs/p16.jpg" alt="Surreal stone arena composite with lightning and a large translucent figure" loading="lazy">
+              </button>
+              <figcaption class="gallery-caption"><strong>Lightning</strong><span>Surreal composite</span></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft">
+        <div class="container">
+          <div class="cta-band">
+            <div class="cta-band-inner">
+              <h2>Creative thinking, applied beyond design.</h2>
+              <div class="cta-band-copy">
+                <p>See how I bring the same experimentation and attention to detail into software and web projects.</p>
+                <div class="button-row">
+                  <a class="button button--primary" href="Projects2.html">Back to projects <span class="arrow-mark" aria-hidden="true">→</span></a>
+                  <a class="button button--dark" href="contact.html">Get in touch</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="lightbox" data-lightbox aria-label="Artwork preview">
+      <div class="lightbox-inner">
+        <div class="lightbox-stage">
+          <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close preview">×</button>
+          <button class="lightbox-nav lightbox-prev" type="button" data-lightbox-previous aria-label="Previous artwork">←</button>
+          <img src="" alt="" data-lightbox-image>
+          <button class="lightbox-nav lightbox-next" type="button" data-lightbox-next aria-label="Next artwork">→</button>
+        </div>
+        <div class="lightbox-footer">
+          <p data-lightbox-caption>Artwork</p>
+          <p class="lightbox-count" data-lightbox-count></p>
+        </div>
+      </div>
+    </dialog>
+
+    <footer class="site-footer">
+      <div class="footer-top container">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-logo" src="images/drawb.png" alt="">
+            <span class="brand-copy">Jack Mauro <small>Business + Technology</small></span>
+          </a>
+          <p>Business Information Technology graduate building practical digital products and looking for the next opportunity to grow.</p>
+        </div>
+        <div class="footer-column">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="Projects2.html">Projects</a></li>
+            <li><a href="Experience.html">Experience</a></li>
+            <li><a href="education.html">Education</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h2>Connect</h2>
+          <ul>
+            <li><a href="mailto:jackmauro02@gmail.com">Email</a></li>
+            <li><a href="https://www.linkedin.com/in/jackmauro02" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+            <li><a href="images/CV.pdf" target="_blank">CV ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom container">
+        <span>© <span data-current-year>2026</span> Jack Mauro. All rights reserved.</span>
+        <span>Designed and built with care in Bracknell, UK.</span>
+      </div>
+    </footer>
+  </body>
 </html>
-<script>
-    // Inject navbar
-    fetch("navbar.html")
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById("navbar").innerHTML = html;
-
-        // Mobile toggle
-        const btn = document.querySelector(".nav-toggle");
-        const menu = document.getElementById("mainmenu");
-        btn?.addEventListener("click", () => {
-          const expanded = btn.getAttribute("aria-expanded") === "true";
-          btn.setAttribute("aria-expanded", String(!expanded));
-          menu.classList.toggle("open");
-        });
-
-        // Active link highlight
-        const path = window.location.pathname.split("/").pop() || "projects2.html";
-        document.querySelectorAll(".menu a").forEach(a => {
-          if (a.getAttribute("href").toLowerCase() === path.toLowerCase()) {
-            a.classList.add("active");
-            a.setAttribute("aria-current", "page");
-          }
-        });
-      });
-
-    // Simple reveal on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => e.isIntersecting && e.target.classList.add("visible"));
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll(".section, .project-card").forEach(el => observer.observe(el));
-  </script>

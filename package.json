@@ -1,0 +1,9 @@
+{
+  "name": "jack-mauro-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Jack Mauro's professional portfolio website.",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  }
+}

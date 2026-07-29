@@ -1,187 +1,307 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Jack Mauro — Projects" />
-  <title>Projects — Jack Mauro</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore Jack Mauro's software, web, mobile, game development, and digital design projects.">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Projects — Jack Mauro">
+    <meta property="og:description" content="Software, web, data, game, and creative technology projects built by Jack Mauro.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Projects — Jack Mauro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <!-- Fonts + Styles -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="projStyles.css" />
-</head>
-<body>
-  <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav-inner container" aria-label="Primary navigation">
+        <a class="brand" href="index.html" aria-label="Jack Mauro, home">
+          <img class="brand-logo" src="images/drawb.png" alt="">
+          <span class="brand-copy">Jack Mauro <small>Business + Technology</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Open navigation">
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </button>
+        <ul class="nav-links" id="primary-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Projects2.html">Projects</a></li>
+          <li><a href="Experience.html">Experience</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a class="nav-contact" href="contact.html">Let’s talk</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <!-- Navbar injected -->
-  <header id="navbar"></header>
-
-  <!-- Overview (light) -->
-  <section class="section section-light" id="content">
-    <div class="wrap">
-      <header class="section-head">
-        <h1>Overview</h1>
-      </header>
-      <p class="lead">
-        This is a list of projects that I have made using a variety of coding languages and softwares,
-        allowing you to get a better understanding of my experience and skills learned at University.
-        Some were developed in my own time for fun and experimentation.
-      </p>
-    </div>
-    <div class="section-accent" aria-hidden="true"></div>
-  </section>
-
-  <!-- Projects (dark band with white cards) -->
-  <section id="projects" class="section section-dark">
-    <div class="wrap">
-      <header class="section-head section-head-invert">
-        <h2>Projects</h2>
-      </header>
-
-      <div class="projects-grid">
-        <!-- 1 -->
-        <article class="project-card">
-          <h3>Computational creativity</h3>
-          <p>Developed an interactive image-to-shape converter using HTML, CSS, JavaScript, and P5.js. The tool transforms images into customizable patterns of squares, circles, or triangles, with user controls for color, shape, randomness, and variation—encouraging creative visual experimentation.</p>
-          <p><strong>Technologies:</strong> Html, Css, Javascript, P5.Js</p>
-          <p><strong>Features:</strong> Custom shape selection, color matching, randomness toggle, and adjustable visual generation.</p>
-          <img src="images/cc demo.png" alt="Computational creativity demo" class="project-media">
-          <div class="btn-row">
-            <a href="Comp creativity/Realpage3.html" class="cta-button">Demo</a>
-            <a href="https://github.com/jackmauro02/Year-3/tree/main/Comp%20creativity%20final" target="_blank" rel="noopener" class="cta-button">View Code</a>
+    <main id="main-content">
+      <section class="page-hero">
+        <div class="page-hero-inner container">
+          <div>
+            <p class="eyebrow">Selected projects</p>
+            <h1>Learning by building.</h1>
           </div>
-        </article>
-
-        <!-- 2 -->
-        <article class="project-card">
-          <h3>Mobile App Development</h3>
-          <p>Developed a mobile app for my dissertation using React and Firebase, aimed at streamlining business processes for sports clubs. Features include class bookings, personal training schedules, fitness plans, and meal tracking.</p>
-          <p><strong>Technologies:</strong> React, Firebase</p>
-          <p><strong>Features:</strong> Cross-platform support, real-time database integration, secure login.</p>
-          <img src="images/clubtime.png" alt="Sports booking app" class="project-media">
-          <div class="btn-row">
-            <a href="https://github.com/jackmauro02/Year-3/tree/main/SportsBookingApp" target="_blank" rel="noopener" class="cta-button">View Code</a>
+          <div class="page-hero-copy">
+            <p>
+              A collection of university and personal work across web development, mobile apps,
+              databases, creative coding, games, and visual design.
+            </p>
+            <ul class="pill-list" aria-label="Project disciplines">
+              <li class="pill">Software</li>
+              <li class="pill">Web</li>
+              <li class="pill">Data</li>
+              <li class="pill">Creative</li>
+            </ul>
           </div>
-        </article>
+        </div>
+      </section>
 
-        <!-- 3 -->
-        <article class="project-card">
-          <h3>Software development</h3>
-          <p>Developed a full-stack doctor’s appointment booking system with database integration. My main contributions included implementing the delete booking, change booking, and prescriptions features, ensuring smooth user interaction with real-time database updates. Also collaborated on other core functionalities across the application as part of a team assignment.</p>
-          <p><strong>Technologies:</strong> Java, SQL</p>
-          <p><strong>Features:</strong> Multiplayer, levels, custom UI design.</p>
-          <video src="images/Booking.mp4" class="project-media" controls autoplay loop muted></video>
-          <div class="btn-row">
-            <a href="images/Booking.mp4" class="cta-button">Download</a>
-            <a href="https://github.com/jackmauro02/Group-project/tree/main/software-dev-main" target="_blank" rel="noopener" class="cta-button">View Code</a>
+      <section class="section section--white">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">The work</p>
+              <h2>Projects with a purpose.</h2>
+            </div>
+            <p>
+              Each project shows a different part of my skill set. Use the filters to focus on the kind of
+              work you’re most interested in.
+            </p>
           </div>
-        </article>
 
-        <!-- 4 -->
-        <article class="project-card">
-          <h3>Unity 3D Video Game Development</h3>
-          <p>Collaborated in a team of two to develop a 3D wave-based survival shooter in Unity, inspired by Call of Duty Zombies. Implemented core gameplay systems including enemy spawning, player health, and weapon mechanics. Strengthened skills in C#, game physics, and level design through hands-on development and teamwork.</p>
-          <p><strong>Technologies:</strong> Unity, C#</p>
-          <p><strong>Features:</strong> Multiplayer, levels, custom UI design.</p>
-          <video src="images/Trailer1.mp4" class="project-media" controls autoplay loop muted></video>
-          <div class="btn-row">
-            <a href="images/Trailer1.mp4" class="cta-button">Download</a>
-            <a href="https://github.com/jackmauro02/Year-3/tree/main/Jack%20%2B%20Oz%20game" target="_blank" rel="noopener" class="cta-button">View Code</a>
+          <div class="filter-bar" aria-label="Filter projects">
+            <button class="filter-button" type="button" data-project-filter="all" aria-pressed="true">All work</button>
+            <button class="filter-button" type="button" data-project-filter="web" aria-pressed="false">Web & apps</button>
+            <button class="filter-button" type="button" data-project-filter="data" aria-pressed="false">Data</button>
+            <button class="filter-button" type="button" data-project-filter="game" aria-pressed="false">Games</button>
+            <button class="filter-button" type="button" data-project-filter="creative" aria-pressed="false">Creative</button>
+            <span class="filter-status" data-filter-status aria-live="polite">7 projects shown</span>
           </div>
-        </article>
 
-        <!-- 5 -->
-        <article class="project-card">
-          <h3>Jackime - Anime Tracker</h3>
-          <p>A lightweight, client-side anime tracker that merges a local seed list with live data from AniList via GraphQL. It normalizes entries, enriches them with cover art, episode counts, and year, and persists my personal ratings. The UI matches my portfolio theme and uses a responsive card grid with modals for details.</p>
-          <p><strong>Technologies:</strong> HTML, CSS, JavaScript, AniList GraphQL API, localStorage</p>
-          <p><strong>Features:</strong> Search & filter (status/year), sort (title/year/progress/rating), detail modal with chips/links, client-side caching of fetched data, portfolio navbar integration.</p>
-          <img src="images/animeproj.png" alt="Jackime anime tracker UI" class="project-media">
-          <div class="btn-row">
-            <a href="jackime/index.html" class="cta-button">Demo</a>
-            <a href="https://github.com/jackmauro02/jackime" target="_blank" rel="noopener" class="cta-button">View Code</a>
-          </div>
-        </article>
+          <div class="work-grid project-page-grid">
+            <article class="work-card" data-project-category="web data">
+              <div class="work-card-media">
+                <img src="images/preview-clubtime.jpg" alt="ClubTime mobile app screens for sports club members" loading="lazy">
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-topline"><span>Dissertation · Mobile app</span><span>01</span></div>
+                <h3>ClubTime — sports club management</h3>
+                <p>
+                  A React and Firebase mobile app designed to bring bookings, personal training schedules,
+                  fitness plans, and meal tracking into one place for sports clubs and their members.
+                </p>
+                <ul class="pill-list" aria-label="Technologies used">
+                  <li class="pill">React</li>
+                  <li class="pill">Firebase</li>
+                  <li class="pill">Authentication</li>
+                  <li class="pill">Real-time data</li>
+                </ul>
+                <div class="work-card-actions">
+                  <a href="https://github.com/jackmauro02/Year-3/tree/main/SportsBookingApp" target="_blank" rel="noopener">View code ↗</a>
+                </div>
+              </div>
+            </article>
 
-        <!-- 6 -->
-        <article class="project-card">
-          <h3>Website builder - wix</h3>
-          <p>This is a website I made for my media project where we had to create a show idea and a website for it to be advertised. I took all photos and edited them all together to get my desired result as well as all information being my own. </p>
-          <p><strong>Technologies:</strong> Wix, photoshop</p>
-          <p><strong>Features:</strong> Responsive design, smooth scrolling, fade-in animations.</p>
-          <img src="images/incursion.png" alt="Portfolio website" class="project-media">
-          <div class="btn-row">
-            <a href="https://14jmauro.wixsite.com/theincursion" target="_blank" rel="noopener" class="cta-button">View</a>
-          </div>
-        </article>
+            <article class="work-card" data-project-category="web creative">
+              <div class="work-card-media">
+                <img src="images/preview-creativity.jpg" alt="Creative image-to-shape generator interface" loading="lazy">
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-topline"><span>Creative coding</span><span>02</span></div>
+                <h3>Image-to-shape generator</h3>
+                <p>
+                  An interactive browser tool that transforms source images into patterns of squares,
+                  circles, or triangles, with controls for colour, randomness, and variation.
+                </p>
+                <ul class="pill-list" aria-label="Technologies used">
+                  <li class="pill">JavaScript</li>
+                  <li class="pill">p5.js</li>
+                  <li class="pill">HTML & CSS</li>
+                  <li class="pill">Canvas</li>
+                </ul>
+                <div class="work-card-actions">
+                  <a href="Comp creativity/Realpage3.html">Try the demo →</a>
+                  <a href="https://github.com/jackmauro02/Year-3/tree/main/Comp%20creativity%20final" target="_blank" rel="noopener">View code ↗</a>
+                </div>
+              </div>
+            </article>
 
-        <!-- 7–10  -->
-        <article class="project-card">
-          <h3>Photoshop gallery</h3>
-          <p>This is a collection of my Photoshop creations, showcasing my skills in digital design and photo manipulation.</p>
-          <p><strong>Technologies:</strong> Photoshop</p>
-          <p><strong>Features:</strong> Image editing, compositing, digital painting.</p>
-          <img src="photoshop/p4.jpg" alt="Photoshop gallery" class="project-media">
-          <div class="btn-row">
-            <a href="gallery.html" target="_blank" rel="noopener" class="cta-button">Demo</a>
-          </div>
-        </article>
-        
-        <article class="project-card">
-          <h3>Unity 2D Video Game Development</h3>
-          <p>Developed 2D using Unity, enhancing my skills in game design and development with physics-based gameplay.</p>
-          <p><strong>Technologies:</strong> Unity, C#</p>
-          <p><strong>Features:</strong> Multiplayer, levels, custom UI design.</p>
-          <img src="images/game_project.png" alt="Unity 2D game" class="project-media">
-          <div class="btn-row">
-            <a href="https://github.com/your-username/unity-game" target="_blank" rel="noopener" class="cta-button">View Code</a>
-          </div>
-        </article>
+            <article class="work-card" data-project-category="web data">
+              <div class="work-card-media">
+                <video src="images/Booking.mp4" controls muted playsinline preload="metadata" aria-label="Doctor appointment system demonstration"></video>
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-topline"><span>Team software project</span><span>03</span></div>
+                <h3>Doctor appointment booking system</h3>
+                <p>
+                  A full-stack Java appointment system with SQL integration. I focused on changing and
+                  deleting bookings, prescription features, and keeping database updates in sync with the interface.
+                </p>
+                <ul class="pill-list" aria-label="Technologies used">
+                  <li class="pill">Java</li>
+                  <li class="pill">SQL</li>
+                  <li class="pill">CRUD</li>
+                  <li class="pill">Team delivery</li>
+                </ul>
+                <div class="work-card-actions">
+                  <a href="images/Booking.mp4" target="_blank">Watch demo ↗</a>
+                  <a href="https://github.com/jackmauro02/Group-project/tree/main/software-dev-main" target="_blank" rel="noopener">View code ↗</a>
+                </div>
+              </div>
+            </article>
 
-        
+            <article class="work-card" data-project-category="game">
+              <div class="work-card-media">
+                <video src="images/Trailer1.mp4" controls muted playsinline preload="metadata" aria-label="Unity survival game trailer"></video>
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-topline"><span>Game development</span><span>04</span></div>
+                <h3>3D wave survival game</h3>
+                <p>
+                  A two-person Unity project inspired by wave-based survival shooters. I helped implement
+                  enemy spawning, player health, weapon mechanics, physics, and level design.
+                </p>
+                <ul class="pill-list" aria-label="Technologies used">
+                  <li class="pill">Unity</li>
+                  <li class="pill">C#</li>
+                  <li class="pill">Game physics</li>
+                  <li class="pill">Level design</li>
+                </ul>
+                <div class="work-card-actions">
+                  <a href="images/Trailer1.mp4" target="_blank">Watch trailer ↗</a>
+                  <a href="https://github.com/jackmauro02/Year-3/tree/main/Jack%20%2B%20Oz%20game" target="_blank" rel="noopener">View code ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="work-card" data-project-category="web data">
+              <div class="work-card-media">
+                <img src="images/preview-jackime.jpg" alt="Jackime anime tracker responsive card grid" loading="lazy">
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-topline"><span>Personal web app</span><span>05</span></div>
+                <h3>Jackime — anime tracker</h3>
+                <p>
+                  A lightweight client-side tracker that enriches a local list with AniList GraphQL data,
+                  then adds search, filters, sorting, ratings, progress, details, and caching.
+                </p>
+                <ul class="pill-list" aria-label="Technologies used">
+                  <li class="pill">JavaScript</li>
+                  <li class="pill">GraphQL API</li>
+                  <li class="pill">Local storage</li>
+                  <li class="pill">Responsive UI</li>
+                </ul>
+                <div class="work-card-actions">
+                  <a href="jackime/index.html">Open the app →</a>
+                  <a href="https://github.com/jackmauro02/jackime" target="_blank" rel="noopener">View code ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="work-card" data-project-category="web creative">
+              <div class="work-card-media">
+                <img src="images/preview-incursion.jpg" alt="The Incursion promotional Wix website" loading="lazy">
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-topline"><span>Web & media</span><span>06</span></div>
+                <h3>The Incursion — promotional website</h3>
+                <p>
+                  A Wix website created to promote an original show concept. I developed the idea, wrote the
+                  content, photographed the assets, and produced the final composites in Photoshop.
+                </p>
+                <ul class="pill-list" aria-label="Technologies used">
+                  <li class="pill">Wix</li>
+                  <li class="pill">Photoshop</li>
+                  <li class="pill">Content design</li>
+                  <li class="pill">Photography</li>
+                </ul>
+                <div class="work-card-actions">
+                  <a href="https://14jmauro.wixsite.com/theincursion" target="_blank" rel="noopener">Visit website ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="work-card" data-project-category="creative">
+              <div class="work-card-media">
+                <img src="photoshop/p4.jpg" alt="Colourful anime character collage created in Photoshop" loading="lazy">
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-topline"><span>Digital design</span><span>07</span></div>
+                <h3>Photoshop artwork collection</h3>
+                <p>
+                  A gallery of photo manipulation, compositing, poster design, visual effects, and
+                  experimental artwork created across personal and media projects.
+                </p>
+                <ul class="pill-list" aria-label="Creative skills">
+                  <li class="pill">Photoshop</li>
+                  <li class="pill">Compositing</li>
+                  <li class="pill">Image editing</li>
+                  <li class="pill">Visual storytelling</li>
+                </ul>
+                <div class="work-card-actions">
+                  <a href="gallery.html">Explore the gallery →</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft">
+        <div class="container">
+          <div class="cta-band">
+            <div class="cta-band-inner">
+              <h2>Interested in the thinking behind the work?</h2>
+              <div class="cta-band-copy">
+                <p>I’m happy to talk through my process, contribution, and what I learned from any project here.</p>
+                <div class="button-row">
+                  <a class="button button--primary" href="contact.html">Ask me about a project <span class="arrow-mark" aria-hidden="true">→</span></a>
+                  <a class="button button--dark" href="education.html">Explore my education</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top container">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand-logo" src="images/drawb.png" alt="">
+            <span class="brand-copy">Jack Mauro <small>Business + Technology</small></span>
+          </a>
+          <p>Business Information Technology graduate building practical digital products and looking for the next opportunity to grow.</p>
+        </div>
+        <div class="footer-column">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="Projects2.html">Projects</a></li>
+            <li><a href="Experience.html">Experience</a></li>
+            <li><a href="education.html">Education</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h2>Connect</h2>
+          <ul>
+            <li><a href="mailto:jackmauro02@gmail.com">Email</a></li>
+            <li><a href="https://www.linkedin.com/in/jackmauro02" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+            <li><a href="images/CV.pdf" target="_blank">CV ↗</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
-  </footer>
-
-  <!-- Scripts: navbar include + reveal -->
-  <script>
-    // Inject navbar
-    fetch("navbar.html")
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById("navbar").innerHTML = html;
-
-        // Mobile toggle
-        const btn = document.querySelector(".nav-toggle");
-        const menu = document.getElementById("mainmenu");
-        btn?.addEventListener("click", () => {
-          const expanded = btn.getAttribute("aria-expanded") === "true";
-          btn.setAttribute("aria-expanded", String(!expanded));
-          menu.classList.toggle("open");
-        });
-
-        // Active link highlight
-        const path = window.location.pathname.split("/").pop() || "projects2.html";
-        document.querySelectorAll(".menu a").forEach(a => {
-          if (a.getAttribute("href").toLowerCase() === path.toLowerCase()) {
-            a.classList.add("active");
-            a.setAttribute("aria-current", "page");
-          }
-        });
-      });
-
-    // Simple reveal on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => e.isIntersecting && e.target.classList.add("visible"));
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll(".section, .project-card").forEach(el => observer.observe(el));
-  </script>
-</body>
+      <div class="footer-bottom container">
+        <span>© <span data-current-year>2026</span> Jack Mauro. All rights reserved.</span>
+        <span>Designed and built with care in Bracknell, UK.</span>
+      </div>
+    </footer>
+  </body>
 </html>
