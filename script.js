@@ -28,3 +28,488 @@ function scrollSlider(direction) {
   slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 }
 
+const navbarMount = document.getElementById("navbar");
+
+const currentPage = (
+  window.location.pathname.split("/").pop() || "Portfolio.html"
+).toLowerCase();
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+function initialiseNavbar() {
+  const nav = document.querySelector(".nav");
+  const toggle = document.querySelector(".nav-toggle");
+  const menu = document.getElementById("mainmenu");
+
+  // Mobile menu
+  toggle?.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+    menu?.classList.toggle("open", !isOpen);
+  });
+
+  // Highlight the current page
+  menu?.querySelectorAll("a").forEach((link) => {
+    const linkPage = (
+      link.getAttribute("href") || ""
+    )
+      .split("#")[0]
+      .toLowerCase();
+
+    const isHomeAlias =
+      ["", "index.html", "portfolio.html"].includes(currentPage) &&
+      ["index.html", "portfolio.html"].includes(linkPage);
+
+    if (linkPage === currentPage || isHomeAlias) {
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
+    }
+
+    // Close the mobile menu after selecting a link
+    link.addEventListener("click", () => {
+      toggle?.setAttribute("aria-expanded", "false");
+      menu?.classList.remove("open");
+    });
+  });
+
+  // Change navbar styling after scrolling
+  const updateNavbar = () => {
+    nav?.classList.toggle("nav-scrolled", window.scrollY > 24);
+  };
+
+  updateNavbar();
+
+  window.addEventListener("scroll", updateNavbar, {
+    passive: true,
+  });
+}
+
+// Load the shared navbar
+if (navbarMount) {
+  fetch("navbar.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          `Navbar request failed: ${response.status}`
+        );
+      }
+
+      return response.text();
+    })
+    .then((html) => {
+      navbarMount.innerHTML = html;
+      initialiseNavbar();
+    })
+    .catch((error) => {
+      console.warn(
+        "Could not load navbar.html. Run the website through Live Server or Netlify.",
+        error
+      );
+    });
+}
+
+/* =========================================================
+   PAGE ENTRANCE
+========================================================= */
+
+window.addEventListener("DOMContentLoaded", () => {
+  requestAnimationFrame(() => {
+    document.body.classList.add("page-ready");
+  });
+});
+
+/* =========================================================
+   REVEAL ANIMATIONS
+========================================================= */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -55px",
+    }
+  );
+
+  revealElements.forEach((element) => {
+    revealObserver.observe(element);
+  });
+} else {
+  // Fallback for older browsers
+  revealElements.forEach((element) => {
+    element.classList.add("visible");
+  });
+}
+
+/* =========================================================
+   SMOOTH INTERNAL LINKS
+========================================================= */
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const targetId = link.getAttribute("href");
+
+    if (!targetId || targetId === "#") {
+      return;
+    }
+
+    const target = document.querySelector(targetId);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+});
+
+/* =========================================================
+   PROJECT SLIDER
+========================================================= */
+
+const projectTrack = document.getElementById("projectTrack");
+
+document
+  .querySelectorAll("[data-slider-direction]")
+  .forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!projectTrack) {
+        return;
+      }
+
+      const firstCard =
+        projectTrack.querySelector(".project-card");
+
+      const gap =
+        Number.parseFloat(
+          getComputedStyle(projectTrack).gap
+        ) || 18;
+
+      const amount = firstCard
+        ? firstCard.getBoundingClientRect().width + gap
+        : 450;
+
+      const direction =
+        Number(button.dataset.sliderDirection) || 1;
+
+      projectTrack.scrollBy({
+        left: direction * amount,
+        behavior: "smooth",
+      });
+    });
+  });
+
+// Allow keyboard arrows to control the project slider
+projectTrack?.addEventListener("keydown", (event) => {
+  if (
+    !projectTrack ||
+    !["ArrowLeft", "ArrowRight"].includes(event.key)
+  ) {
+    return;
+  }
+
+  event.preventDefault();
+
+  const direction =
+    event.key === "ArrowRight" ? 1 : -1;
+
+  const firstCard =
+    projectTrack.querySelector(".project-card");
+
+  const amount = firstCard
+    ? firstCard.getBoundingClientRect().width + 18
+    : 450;
+
+  projectTrack.scrollBy({
+    left: direction * amount,
+    behavior: "smooth",
+  });
+});
+
+// Compatibility with old inline onclick buttons
+function scrollSlider(direction) {
+  if (!projectTrack) {
+    return;
+  }
+
+  const firstCard =
+    projectTrack.querySelector(".project-card");
+
+  const gap =
+    Number.parseFloat(
+      getComputedStyle(projectTrack).gap
+    ) || 18;
+
+  const amount = firstCard
+    ? firstCard.getBoundingClientRect().width + gap
+    : 450;
+
+  projectTrack.scrollBy({
+    left: direction * amount,
+    behavior: "smooth",
+  });
+}
+
+window.scrollSlider = scrollSlider;
+
+/* =========================================================
+   HERO POINTER SPOTLIGHT
+========================================================= */
+
+const hero = document.querySelector(".hero-section");
+
+const reducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+const hasFinePointer = window.matchMedia(
+  "(pointer: fine)"
+).matches;
+
+if (hero && !reducedMotion && hasFinePointer) {
+  hero.addEventListener("pointermove", (event) => {
+    const bounds = hero.getBoundingClientRect();
+
+    const x =
+      ((event.clientX - bounds.left) / bounds.width) *
+      100;
+
+    const y =
+      ((event.clientY - bounds.top) / bounds.height) *
+      100;
+
+    hero.style.setProperty(
+      "--pointer-x",
+      `${x}%`
+    );
+
+    hero.style.setProperty(
+      "--pointer-y",
+      `${y}%`
+    );
+  });
+
+  hero.addEventListener("pointerleave", () => {
+    hero.style.setProperty("--pointer-x", "70%");
+    hero.style.setProperty("--pointer-y", "30%");
+  });
+}
+
+/* =========================================================
+   HERO IMAGE MOVEMENT
+========================================================= */
+
+const heroVisual = document.querySelector(".hero-visual");
+
+if (
+  heroVisual &&
+  !reducedMotion &&
+  hasFinePointer
+) {
+  heroVisual.addEventListener(
+    "pointermove",
+    (event) => {
+      const bounds =
+        heroVisual.getBoundingClientRect();
+
+      const centreX =
+        bounds.left + bounds.width / 2;
+
+      const centreY =
+        bounds.top + bounds.height / 2;
+
+      const rotateY =
+        (event.clientX - centreX) / 35;
+
+      const rotateX =
+        (centreY - event.clientY) / 35;
+
+      heroVisual.style.transform = `
+        perspective(900px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+      `;
+    }
+  );
+
+  heroVisual.addEventListener(
+    "pointerleave",
+    () => {
+      heroVisual.style.transform = `
+        perspective(900px)
+        rotateX(0deg)
+        rotateY(0deg)
+      `;
+    }
+  );
+}
+
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
+
+const progressBar = document.querySelector(
+  ".scroll-progress"
+);
+
+function updateScrollProgress() {
+  if (!progressBar) {
+    return;
+  }
+
+  const pageHeight =
+    document.documentElement.scrollHeight -
+    window.innerHeight;
+
+  const scrollAmount =
+    pageHeight > 0
+      ? (window.scrollY / pageHeight) * 100
+      : 0;
+
+  progressBar.style.width = `${scrollAmount}%`;
+}
+
+updateScrollProgress();
+
+window.addEventListener(
+  "scroll",
+  updateScrollProgress,
+  {
+    passive: true,
+  }
+);
+
+/* =========================================================
+   ACTIVE SECTION TRACKING
+========================================================= */
+
+const pageSections =
+  document.querySelectorAll("main section[id]");
+
+if (
+  pageSections.length &&
+  "IntersectionObserver" in window
+) {
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const sectionId = entry.target.id;
+
+        document
+          .querySelectorAll('.menu a[href^="#"]')
+          .forEach((link) => {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href") ===
+                `#${sectionId}`
+            );
+          });
+      });
+    },
+    {
+      threshold: 0.45,
+    }
+  );
+
+  pageSections.forEach((section) => {
+    sectionObserver.observe(section);
+  });
+}
+
+/* =========================================================
+   CARD POINTER EFFECT
+========================================================= */
+
+const interactiveCards = document.querySelectorAll(
+  ".project-card, .skill-card, .edu-card, .exp-item"
+);
+
+if (!reducedMotion && hasFinePointer) {
+  interactiveCards.forEach((card) => {
+    card.addEventListener(
+      "pointermove",
+      (event) => {
+        const bounds =
+          card.getBoundingClientRect();
+
+        const x =
+          event.clientX - bounds.left;
+
+        const y =
+          event.clientY - bounds.top;
+
+        card.style.setProperty(
+          "--card-pointer-x",
+          `${x}px`
+        );
+
+        card.style.setProperty(
+          "--card-pointer-y",
+          `${y}px`
+        );
+      }
+    );
+  });
+}
+
+/* =========================================================
+   CONTACT FORM
+========================================================= */
+
+const contactForm =
+  document.querySelector(".contact-form");
+
+contactForm?.addEventListener(
+  "submit",
+  (event) => {
+    const submitButton =
+      contactForm.querySelector(
+        'button[type="submit"]'
+      );
+
+    if (!contactForm.checkValidity()) {
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.textContent = "Sending...";
+      submitButton.disabled = true;
+    }
+  }
+);
+
+/* =========================================================
+   COPYRIGHT YEAR
+========================================================= */
+
+const year =
+  document.getElementById("currentYear");
+
+if (year) {
+  year.textContent = String(
+    new Date().getFullYear()
+  );
+}
