@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The ultimate collection of useful random generators: wheels, teams, numbers, cards, decisions, games, passwords, colours and more."
+    />
+    <meta name="theme-color" content="#f4f1e8" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Oddly — Leave it to chance." />
+    <meta
+      property="og:description"
+      content="20 random tools. Zero overthinking."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Oddly — Leave it to chance." />
+    <meta
+      name="twitter:description"
+      content="20 random tools. Zero overthinking."
+    />
+    <title>Oddly — The Ultimate Random Toolkit</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
+  </head>
+  <body>
+    <div id="nav-placeholder"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Oddly home">
+        <span class="brand-mark">O</span>
+        <span>ODDLY</span>
+      </a>
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#big-tools">Big tools</a>
+        <a href="#toolbox">Toolbox</a>
+      </nav>
+      <button class="small-button surprise-button" id="surpriseMe" type="button">
+        <span aria-hidden="true">✦</span> Surprise me
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot"></span> CHAOS, ON DEMAND</p>
+          <h1>Leave it to<br /><em>chance.</em></h1>
+          <p class="hero-intro">
+            One delightfully over-equipped page for every decision you do not
+            want to make yourself.
+          </p>
+        </div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="orbit-center">
+            <span class="orbit-number" id="heroNumber">73</span>
+            <span>YOUR LUCKY NUMBER</span>
+          </div>
+          <span class="orbit-chip chip-a">YES</span>
+          <span class="orbit-chip chip-b">♣ A</span>
+          <span class="orbit-chip chip-c">#7B61FF</span>
+        </div>
+      </section>
+
+      <section class="featured-section" id="big-tools">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">THE CROWD PLEASERS</p>
+            <h2>Big decisions, made fun.</h2>
+          </div>
+          <span class="section-index">01 — 02</span>
+        </div>
+
+        <div class="featured-grid">
+          <article class="tool-card wheel-card" data-tool data-category="groups decide">
+            <div class="card-heading">
+              <div class="tool-number">01</div>
+              <div>
+                <p class="tool-kicker">PICK A WINNER</p>
+                <h3>Spin the wheel</h3>
+              </div>
+              <span class="card-sticker coral">NO BIAS</span>
+            </div>
+
+            <div class="wheel-layout">
+              <div class="wheel-stage">
+                <div class="wheel-pointer" aria-hidden="true"></div>
+                <canvas
+                  id="nameWheel"
+                  width="720"
+                  height="720"
+                  aria-label="Wheel containing the entered names"
+                ></canvas>
+                <button class="wheel-center" id="spinWheel" type="button">
+                  SPIN
+                </button>
+              </div>
+
+              <div class="wheel-controls">
+                <label for="wheelNames">Names or options</label>
+                <textarea id="wheelNames" rows="7">Jack
+Kaci
+Jamie
+John
+Prashant
+Michael
+Tom
+Luke</textarea>
+                <p class="input-help">One per line — duplicates are welcome.</p>
+                <div class="button-row">
+                  <button class="primary-button" id="spinWheelAlt" type="button">
+                    <span>Spin it</span><span aria-hidden="true">↗</span>
+                  </button>
+                  <button class="icon-button" id="shuffleWheelNames" type="button" title="Shuffle names" aria-label="Shuffle names">
+                    ⇄
+                  </button>
+                  <button class="icon-button" id="clearWheelNames" type="button" title="Clear names" aria-label="Clear names">
+                    ×
+                  </button>
+                </div>
+                <div class="result-strip" id="wheelResult" aria-live="polite">
+                  <span class="result-label">WINNER</span>
+                  <strong>Ready when you are</strong>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tool-card teams-card" data-tool data-category="groups">
+            <div class="card-heading">
+              <div class="tool-number">02</div>
+              <div>
+                <p class="tool-kicker">SPLIT THE SQUAD</p>
+                <h3>Team maker</h3>
+              </div>
+              <span class="card-sticker yellow">FAIR &amp; SQUARE</span>
+            </div>
+
+            <div class="teams-layout">
+              <div class="team-inputs">
+                <label for="teamNames">People</label>
+                <textarea id="teamNames" rows="7">Jack
+Kaci
+Jamie
+John
+Prashant
+Michael
+Tom
+Luke</textarea>
+                <div class="field-pair">
+                  <div>
+                    <label for="teamMode">Split by</label>
+                    <select id="teamMode">
+                      <option value="count">Number of teams</option>
+                      <option value="size">People per team</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="teamAmount" id="teamAmountLabel">Teams</label>
+                    <input id="teamAmount" type="number" min="2" value="2" />
+                  </div>
+                </div>
+                <button class="primary-button full-button" id="makeTeams" type="button">
+                  <span>Make the teams</span><span aria-hidden="true">↗</span>
+                </button>
+              </div>
+              <div class="teams-output" id="teamsOutput" aria-live="polite">
+                <div class="empty-state">
+                  <span class="empty-icon">↯</span>
+                  <strong>Your teams will land here</strong>
+                  <small>Randomised and evenly distributed.</small>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="toolbox-section" id="toolbox">
+        <div class="section-heading toolbox-heading">
+          <div>
+            <p class="eyebrow">THE DEEP BENCH</p>
+            <h2>A tool for every toss-up.</h2>
+          </div>
+          <span class="section-index">03 — 20</span>
+        </div>
+
+        <div class="tool-filters">
+          <label class="search-box" for="toolSearch">
+            <span aria-hidden="true">⌕</span>
+            <input id="toolSearch" type="search" placeholder="Find a randomiser…" autocomplete="off" />
+          </label>
+          <div class="filter-chips" aria-label="Filter tools">
+            <button class="filter-chip active" type="button" data-filter="all">All tools</button>
+            <button class="filter-chip" type="button" data-filter="decide">Decide</button>
+            <button class="filter-chip" type="button" data-filter="games">Games</button>
+            <button class="filter-chip" type="button" data-filter="utilities">Utilities</button>
+          </div>
+        </div>
+
+        <div class="tool-grid">
+          <article class="tool-card compact-card number-card" data-tool data-category="utilities" data-name="random number range integer">
+            <div class="compact-heading">
+              <span class="mini-icon mint">#</span>
+              <div><p>03 / NUMBER</p><h3>Random number</h3></div>
+            </div>
+            <div class="field-pair">
+              <div><label for="numberMin">From</label><input id="numberMin" type="number" value="1" /></div>
+              <div><label for="numberMax">To</label><input id="numberMax" type="number" value="100" /></div>
+            </div>
+            <div class="field-pair">
+              <div><label for="numberCount">How many</label><input id="numberCount" type="number" min="1" max="50" value="1" /></div>
+              <label class="check-field"><input id="uniqueNumbers" type="checkbox" /><span>Unique only</span></label>
+            </div>
+            <button class="primary-button full-button" id="generateNumbers" type="button">Generate numbers</button>
+            <div class="large-result number-result" id="numberResult" aria-live="polite">73</div>
+          </article>
+
+          <article class="tool-card compact-card dice-card" data-tool data-category="games" data-name="dice roller d20 tabletop">
+            <div class="compact-heading">
+              <span class="mini-icon violet">⚄</span>
+              <div><p>04 / DICE</p><h3>Dice roller</h3></div>
+            </div>
+            <div class="field-pair">
+              <div><label for="diceCount">Dice</label><input id="diceCount" type="number" min="1" max="20" value="2" /></div>
+              <div><label for="diceSides">Sides</label><select id="diceSides"><option>4</option><option selected>6</option><option>8</option><option>10</option><option>12</option><option>20</option><option>100</option></select></div>
+            </div>
+            <button class="primary-button full-button" id="rollDice" type="button">Roll the dice</button>
+            <div class="dice-result" id="diceResult" aria-live="polite">
+              <div class="die">3</div><div class="die">5</div>
+              <span class="dice-total">TOTAL <strong>8</strong></span>
+            </div>
+          </article>
+
+          <article class="tool-card compact-card coin-card" data-tool data-category="decide games" data-name="coin flip heads tails">
+            <div class="compact-heading">
+              <span class="mini-icon yellow">◐</span>
+              <div><p>05 / COIN</p><h3>Flip a coin</h3></div>
+            </div>
+            <div class="coin-stage">
+              <div class="coin" id="coin" aria-hidden="true"><span>O</span></div>
+              <div><span class="result-label">THE COIN SAYS</span><strong id="coinResult" aria-live="polite">Heads</strong></div>
+            </div>
+            <button class="primary-button full-button" id="flipCoin" type="button">Flip it</button>
+          </article>
+
+          <article class="tool-card compact-card card-drawer-card" data-tool data-category="games" data-name="playing card deck draw shuffle">
+            <div class="compact-heading">
+              <span class="mini-icon coral">A♠</span>
+              <div><p>06 / CARDS</p><h3>Draw a card</h3></div>
+            </div>
+            <div class="playing-card-stage">
+              <div class="card-back" id="cardBack" aria-hidden="true"><span>ODDLY</span></div>
+              <div class="drawn-card" id="cardFace" role="img" aria-label="Drawn playing card" hidden>
+                <span class="card-corner card-corner-top" aria-hidden="true">
+                  <strong data-card-rank>A</strong><span data-card-suit>♠</span>
+                </span>
+                <span class="card-suit-large" data-card-suit aria-hidden="true">♠</span>
+                <span class="card-corner card-corner-bottom" aria-hidden="true">
+                  <strong data-card-rank>A</strong><span data-card-suit>♠</span>
+                </span>
+              </div>
+              <div class="card-meta"><strong id="cardName">Fresh deck</strong><span id="cardsLeft">52 cards left</span></div>
+            </div>
+            <div class="button-row">
+              <button class="primary-button grow-button" id="drawCard" type="button">Draw a card</button>
+              <button class="icon-button" id="resetDeck" type="button" title="Reset deck" aria-label="Reset deck">↻</button>
+            </div>
+          </article>
+
+          <article class="tool-card compact-card picker-card" data-tool data-category="decide" data-name="quick picker choose list options">
+            <div class="compact-heading">
+              <span class="mini-icon blue">↗</span>
+              <div><p>07 / PICKER</p><h3>Quick picker</h3></div>
+            </div>
+            <label for="quickOptions">Options</label>
+            <textarea id="quickOptions" rows="4" placeholder="Pizza&#10;Chicken&#10;Burger">Pizza
+Chicken
+Burger</textarea>
+            <button class="primary-button full-button" id="quickPick" type="button">Pick one</button>
+            <div class="medium-result" id="quickResult" aria-live="polite">Sushi</div>
+          </article>
+
+          <article class="tool-card compact-card answer-card" data-tool data-category="decide" data-name="yes no maybe magic eight ball answer">
+            <div class="compact-heading">
+              <span class="mini-icon navy">8</span>
+              <div><p>08 / ANSWER</p><h3>Ask the oracle</h3></div>
+            </div>
+            <label for="oracleQuestion">Your question</label>
+            <input id="oracleQuestion" type="text" placeholder="Should I order dessert?" />
+            <div class="oracle-ball"><span id="oracleResult" aria-live="polite">ASK</span></div>
+            <button class="primary-button full-button" id="askOracle" type="button">Reveal the answer</button>
+          </article>
+
+          <article class="tool-card compact-card shuffle-card" data-tool data-category="groups utilities" data-name="shuffle list order randomise">
+            <div class="compact-heading">
+              <span class="mini-icon lime">⇄</span>
+              <div><p>09 / SHUFFLE</p><h3>List shuffler</h3></div>
+            </div>
+            <label for="shuffleInput">One item per line</label>
+            <textarea id="shuffleInput" rows="5" placeholder="First&#10;Second&#10;Third"></textarea>
+            <button class="primary-button full-button" id="shuffleList" type="button">Shuffle list</button>
+            <button class="text-button" id="copyShuffle" type="button">Copy shuffled list</button>
+          </article>
+
+          <article class="tool-card compact-card lottery-card" data-tool data-category="games utilities" data-name="lottery bingo unique numbers">
+            <div class="compact-heading">
+              <span class="mini-icon pink">●</span>
+              <div><p>10 / LOTTERY</p><h3>Lucky numbers</h3></div>
+            </div>
+            <div class="field-pair">
+              <div><label for="lotteryCount">Balls</label><input id="lotteryCount" type="number" min="1" max="20" value="6" /></div>
+              <div><label for="lotteryMax">Highest</label><input id="lotteryMax" type="number" min="2" max="999" value="59" /></div>
+            </div>
+            <button class="primary-button full-button" id="drawLottery" type="button">Draw numbers</button>
+            <div class="lottery-result" id="lotteryResult" aria-live="polite">
+              <span>4</span><span>12</span><span>19</span><span>27</span><span>38</span><span>51</span>
+            </div>
+          </article>
+
+          <article class="tool-card compact-card password-card" data-tool data-category="utilities" data-name="password generator secure string">
+            <div class="compact-heading">
+              <span class="mini-icon orange">✱</span>
+              <div><p>11 / PASSWORD</p><h3>Password maker</h3></div>
+            </div>
+            <label for="passwordLength">Length <span id="passwordLengthValue">16</span></label>
+            <input id="passwordLength" type="range" min="6" max="40" value="16" />
+            <div class="toggle-row">
+              <label><input id="passwordSymbols" type="checkbox" checked /><span>Symbols</span></label>
+              <label><input id="passwordNumbers" type="checkbox" checked /><span>Numbers</span></label>
+            </div>
+            <div class="copy-result"><code id="passwordResult">m7!Qp2#Vx9@Lr4$K</code><button type="button" data-copy-target="passwordResult" aria-label="Copy password">COPY</button></div>
+            <button class="primary-button full-button" id="makePassword" type="button">Make password</button>
+          </article>
+
+          <article class="tool-card compact-card colour-card" data-tool data-category="utilities" data-name="random colour hex rgb palette">
+            <div class="compact-heading">
+              <span class="mini-icon blue">◒</span>
+              <div><p>12 / COLOUR</p><h3>Colour generator</h3></div>
+            </div>
+            <div class="colour-swatch" id="colourSwatch"><span id="colourResult">#7B61FF</span></div>
+            <div class="button-row">
+              <button class="primary-button grow-button" id="makeColour" type="button">New colour</button>
+              <button class="icon-button" type="button" data-copy-target="colourResult" aria-label="Copy colour">⧉</button>
+            </div>
+          </article>
+
+          <article class="tool-card compact-card date-card" data-tool data-category="utilities" data-name="random date day calendar">
+            <div class="compact-heading">
+              <span class="mini-icon mint">31</span>
+              <div><p>13 / DATE</p><h3>Random date</h3></div>
+            </div>
+            <div class="field-pair">
+              <div><label for="dateStart">Between</label><input id="dateStart" type="date" value="2026-01-01" /></div>
+              <div><label for="dateEnd">And</label><input id="dateEnd" type="date" value="2026-12-31" /></div>
+            </div>
+            <button class="primary-button full-button" id="makeDate" type="button">Pick a date</button>
+            <div class="date-result" id="dateResult" aria-live="polite"><strong>29 July</strong><span>Wednesday, 2026</span></div>
+          </article>
+
+          <article class="tool-card compact-card uuid-card" data-tool data-category="utilities" data-name="uuid unique id token identifier">
+            <div class="compact-heading">
+              <span class="mini-icon violet">ID</span>
+              <div><p>14 / IDENTIFIER</p><h3>UUID generator</h3></div>
+            </div>
+            <div class="copy-result tall-copy"><code id="uuidResult">3f2a7b91-5d8e-4c12-a6f0-9e1b27c84d35</code><button type="button" data-copy-target="uuidResult" aria-label="Copy UUID">COPY</button></div>
+            <button class="primary-button full-button" id="makeUuid" type="button">Generate UUID</button>
+          </article>
+
+          <article class="tool-card compact-card text-card" data-tool data-category="utilities games" data-name="letter word emoji text">
+            <div class="compact-heading">
+              <span class="mini-icon yellow">Aa</span>
+              <div><p>15 / TEXT</p><h3>Letter, word, emoji</h3></div>
+            </div>
+            <div class="triple-result">
+              <div><span>LETTER</span><strong id="letterResult">G</strong></div>
+              <div><span>WORD</span><strong id="wordResult">Wander</strong></div>
+              <div><span>EMOJI</span><strong id="emojiResult">🪩</strong></div>
+            </div>
+            <button class="primary-button full-button" id="makeTextBits" type="button">Mix them up</button>
+          </article>
+
+          <article class="tool-card compact-card rps-card" data-tool data-category="games decide" data-name="rock paper scissors game">
+            <div class="compact-heading">
+              <span class="mini-icon coral">✊</span>
+              <div><p>16 / RPS</p><h3>Rock paper scissors</h3></div>
+            </div>
+            <div class="rps-result" id="rpsResult" aria-live="polite"><span>✊</span><strong>Rock</strong></div>
+            <button class="primary-button full-button" id="playRps" type="button">Throw</button>
+          </article>
+
+          <article class="tool-card compact-card location-card" data-tool data-category="utilities" data-name="coordinates location latitude longitude globe">
+            <div class="compact-heading">
+              <span class="mini-icon blue">◎</span>
+              <div><p>17 / LOCATION</p><h3>Point on Earth</h3></div>
+            </div>
+            <div class="location-result">
+              <div><span>LATITUDE</span><strong id="latitudeResult">51.5074°</strong></div>
+              <div><span>LONGITUDE</span><strong id="longitudeResult">−0.1278°</strong></div>
+            </div>
+            <button class="primary-button full-button" id="makeLocation" type="button">Drop a pin</button>
+          </article>
+
+          <article class="tool-card compact-card idea-card" data-tool data-category="decide" data-name="activity food film idea inspiration">
+            <div class="compact-heading">
+              <span class="mini-icon pink">✦</span>
+              <div><p>18 / IDEA</p><h3>Inspiration spark</h3></div>
+            </div>
+            <label for="ideaType">I need an idea for…</label>
+            <select id="ideaType"><option value="activity">Something to do</option><option value="food">What to eat</option><option value="film">What to watch</option><option value="creative">A creative prompt</option></select>
+            <div class="idea-result" id="ideaResult" aria-live="polite">Take a camera walk with one colour as your theme.</div>
+            <button class="primary-button full-button" id="makeIdea" type="button">Give me an idea</button>
+          </article>
+
+          <article class="tool-card compact-card truth-card" data-tool data-category="games" data-name="truth dare party question">
+            <div class="compact-heading">
+              <span class="mini-icon orange">?!</span>
+              <div><p>19 / PARTY</p><h3>Truth or dare</h3></div>
+            </div>
+            <div class="segmented-control" id="truthDareMode">
+              <button class="active" type="button" data-mode="mix">Mix</button>
+              <button type="button" data-mode="truth">Truth</button>
+              <button type="button" data-mode="dare">Dare</button>
+            </div>
+            <div class="idea-result" id="truthDareResult" aria-live="polite">What harmless thing are you irrationally afraid of?</div>
+            <button class="primary-button full-button" id="makeTruthDare" type="button">Next one</button>
+          </article>
+
+          <article class="tool-card compact-card timer-card" data-tool data-category="utilities games" data-name="random time duration timer challenge">
+            <div class="compact-heading">
+              <span class="mini-icon lime">◷</span>
+              <div><p>20 / TIMER</p><h3>Random timer</h3></div>
+            </div>
+            <div class="field-pair">
+              <div><label for="timerMin">Min seconds</label><input id="timerMin" type="number" min="1" value="30" /></div>
+              <div><label for="timerMax">Max seconds</label><input id="timerMax" type="number" min="1" value="120" /></div>
+            </div>
+            <div class="timer-result" id="timerResult" aria-live="polite">01:13</div>
+            <div class="button-row">
+              <button class="primary-button grow-button" id="makeTimer" type="button">Pick time</button>
+              <button class="icon-button" id="startTimer" type="button" title="Start timer" aria-label="Start timer">▶</button>
+            </div>
+          </article>
+        </div>
+
+        <p class="no-results" id="noResults" hidden>No tools found. Apparently, that was too random.</p>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <a class="brand footer-brand" href="#top"><span class="brand-mark">O</span><span>ODDLY</span></a>
+        <p>Built for indecisive people everywhere.</p>
+      </div>
+      <button class="small-button" id="backToTop" type="button">↑ Back to top</button>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Copied!</div>
+  </body>
+</html>

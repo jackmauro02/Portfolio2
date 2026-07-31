@@ -1,0 +1,161 @@
+/* Portfolio navbar
+   Everything is scoped to #nav-placeholder so it cannot alter the Oddly page. */
+
+#nav-placeholder {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+}
+
+#nav-placeholder .nav {
+  width: 100%;
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 16px;
+  background: #000;
+  color: #fff;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+#nav-placeholder .brand {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  text-decoration: none;
+}
+
+#nav-placeholder .brand-logo {
+  width: 36px;
+  height: 36px;
+  display: block;
+  flex: 0 0 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#nav-placeholder .brand-text {
+  white-space: nowrap;
+}
+
+#nav-placeholder .menu {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  gap: 32px;
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+#nav-placeholder .menu li {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+#nav-placeholder .menu a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 21px 0 20px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#nav-placeholder .menu a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+  left: 0;
+  height: 2px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 160ms ease;
+}
+
+#nav-placeholder .menu a:hover::after,
+#nav-placeholder .menu a:focus-visible::after,
+#nav-placeholder .menu a.active::after {
+  transform: scaleX(1);
+}
+
+#nav-placeholder .nav-toggle {
+  display: none;
+  margin-left: auto;
+  padding: 9px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 7px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+#nav-placeholder .nav-toggle:hover {
+  background: #fff;
+  color: #000;
+}
+
+@media (max-width: 780px) {
+  #nav-placeholder .nav {
+    flex-wrap: wrap;
+    gap: 0;
+    min-height: 62px;
+    padding: 12px 16px;
+  }
+
+  #nav-placeholder .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #nav-placeholder .menu {
+    display: none;
+    width: 100%;
+    flex: 0 0 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 12px 0 0;
+    padding: 8px 0 2px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  #nav-placeholder .menu.open {
+    display: flex;
+  }
+
+  #nav-placeholder .menu li,
+  #nav-placeholder .menu a {
+    width: 100%;
+  }
+
+  #nav-placeholder .menu a {
+    padding: 12px 4px;
+  }
+
+  #nav-placeholder .menu a::after {
+    right: auto;
+    bottom: 5px;
+    width: 42px;
+  }
+}
