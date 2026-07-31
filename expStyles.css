@@ -1,51 +1,68 @@
-/* ===== Base ===== */
+/* =========================================================
+   EXPERIENCE PAGE — FULL STANDALONE STYLESHEET
+   Featured Surelock card spans the width of two normal cards
+========================================================= */
+
+/* ---------- Reset / base ---------- */
 * {
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial,
-    sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Arial, sans-serif;
   color: #333;
   background: #fff;
   line-height: 1.6;
 }
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
 .skip-link {
   position: absolute;
-  left: -999px;
+  left: -9999px;
+  top: 1rem;
+  z-index: 9999;
 }
+
 .skip-link:focus {
   left: 1rem;
-  top: 1rem;
   background: #ff3333;
   color: #fff;
   padding: 8px 10px;
   border-radius: 6px;
-  z-index: 999;
 }
 
-/* ===== Shared navbar (matches the rest of the site) ===== */
+/* ---------- Navbar ---------- */
 .nav {
-  background: #000;
   position: sticky;
   top: 0;
   z-index: 50;
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
-  padding: 12px 16px;
+  padding: 12px 20px;
+  background: #000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  color: #fff;
   text-decoration: none;
 }
+
 .brand-badge {
   width: 36px;
   height: 36px;
@@ -56,249 +73,393 @@ body {
   color: #fff;
   font-weight: 800;
 }
+
 .brand-logo {
-  height: 40px;   /* adjust size */
   width: auto;
-  vertical-align: middle;
-  margin-right: 8px;
+  height: 40px;
 }
+
 .brand-text {
   color: #fff;
   font-weight: 700;
 }
+
 .nav-toggle {
   display: none;
-  background: #222;
-  color: #fff;
+  padding: 8px 10px;
   border: 1px solid #333;
   border-radius: 8px;
-  padding: 8px 10px;
+  background: #222;
+  color: #fff;
   cursor: pointer;
 }
+
 .menu {
-  list-style: none;
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
   gap: 8px;
-  justify-self: end;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
+
 .menu a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
+  display: block;
   padding: 8px 12px;
   border-radius: 8px;
-  transition: background 0.2s;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
 }
+
 .menu a:hover,
 .menu a.active {
   background: #ff3333;
 }
 
-/* ===== Sections ===== */
+/* ---------- Experience section ---------- */
 .section {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
 .section.visible {
   opacity: 1;
   transform: none;
 }
+
 .section-dark {
+  min-height: calc(100vh - 70px);
   background: #3a3a3a;
   color: #eee;
 }
+
 .wrap {
-  max-width: 1300px;
+  width: min(100%, 1360px);
   margin: 0 auto;
-  padding: 48px 20px;
-}
-.section-head h1 {
-  color: #fff;
-  font-size: 2.2rem;
-  margin: 0 0 18px;
-}
-.section-head-invert h1 {
-  color: #fff;
+  padding: 48px 24px 56px;
 }
 
-/* Accent underline */
+.section-head h1 {
+  margin: 0 0 22px;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 1.15;
+}
+
 .section::after {
   content: "";
   display: block;
   height: 3px;
-  margin-top: 8px;
   background: linear-gradient(90deg, transparent, #ff3333, transparent);
 }
 
-/* ===== Experience grid/cards ===== */
-.experience-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-  gap: 18px;
+/* ---------- Main two-column card grid ---------- */
+#experience .experience-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 20px;
+  align-items: start;
 }
-.experience-item {
+
+/* ---------- Standard cards ---------- */
+#experience .experience-item {
+  min-width: 0;
   display: grid;
-  grid-template-columns: 84px 1fr;
+  grid-template-columns: 76px minmax(0, 1fr);
   grid-template-areas:
     "logo content"
     "media media";
-  gap: 18px;
+  align-content: start;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid rgba(20, 20, 20, 0.08);
+  border-radius: 12px;
   background: #fff;
   color: #222;
-  border: 1px solid rgba(20,20,20,0.06);
-  border-radius: 12px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.experience-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transform: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.company-logo {
-  width: 84px;
-  height: 84px;
-  object-fit: contain;
-  grid-area: logo;
+#experience .experience-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.15);
 }
-.experience-content h3 {
+
+#experience .company-logo {
+  grid-area: logo;
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+}
+
+#experience .experience-content {
+  grid-area: content;
+  min-width: 0;
+}
+
+#experience .experience-content h3 {
   margin: 0 0 6px;
   color: #c60000;
-  font-size: 1.2rem;
+  font-size: 1.08rem;
+  line-height: 1.35;
 }
-.experience-content h3 a {
+
+#experience .experience-content h3 a {
   color: #c60000;
   text-decoration: none;
 }
-.experience-content h3 a:hover {
+
+#experience .experience-content h3 a:hover {
   text-decoration: underline;
 }
-.experience-content p {
-  margin: 0 0 6px;
+
+#experience .experience-content p {
+  margin: 0 0 10px;
+}
+
+#experience .muted {
   color: #666;
 }
-.experience-content ul {
+
+#experience .experience-content ul {
   margin: 0;
-  padding-left: 18px;
+  padding-left: 20px;
   color: #444;
 }
 
-/* New media block for a larger photo per card */
-.exp-media {
+#experience .experience-content li {
+  margin-bottom: 7px;
+}
+
+#experience .exp-media {
   grid-area: media;
-  grid-column: 1 / -1;
-  margin-bottom: 12px;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #f7f8fb;
-  border: 1px solid rgba(20,20,20,0.03);
-}
-.exp-media img {
   width: 100%;
-  height: 220px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(20, 20, 20, 0.06);
+  border-radius: 10px;
+  background: #f7f8fb;
+}
+
+#experience .exp-media img {
+  width: 100%;
+  height: 210px;
   object-fit: cover;
-  display: block;
 }
-.exp-media figcaption {
-  font-size: 0.9rem;
-  color: #666;
+
+#experience .exp-media figcaption {
   padding: 8px 10px;
-}
-
-@media (min-width: 880px) {
-  /* layout: logo | content | media(right) using grid areas */
-  .experience-item {
-    grid-template-columns: 84px 1fr 40%;
-    grid-template-areas: "logo content media";
-    align-items: start;
-    gap: 22px;
-    padding: 20px;
-  }
-  .exp-media {
-    grid-area: media;
-    grid-column: auto;
-    margin: 0;
-  }
-  .exp-media img { height: 100%; min-height: 220px; border-radius: 8px }
-  .company-logo { grid-area: logo }
-  .experience-content { grid-area: content }
-}
-.muted {
   color: #666;
+  font-size: 0.84rem;
+  line-height: 1.4;
 }
 
-/* ===== Footer ===== */
+/* ---------- Featured Surelock card ---------- */
+/* Uses both the ID and the class so it still works if one is forgotten. */
+#experience #surelock-card,
+#experience .experience-item--featured,
+#experience .experience-grid > .experience-item:first-child {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  max-width: none !important;
+  justify-self: stretch !important;
+  display: grid !important;
+  grid-template-columns: 96px minmax(0, 1fr) minmax(320px, 38%) !important;
+  grid-template-areas: "logo content media" !important;
+  gap: 26px !important;
+  padding: 28px !important;
+}
+
+#experience #surelock-card .company-logo,
+#experience .experience-item--featured .company-logo,
+#experience .experience-grid > .experience-item:first-child .company-logo {
+  width: 96px;
+  height: 96px;
+}
+
+#experience #surelock-card .experience-content h3,
+#experience .experience-item--featured .experience-content h3,
+#experience .experience-grid > .experience-item:first-child .experience-content h3 {
+  font-size: 1.35rem;
+}
+
+#experience #surelock-card .experience-content ul,
+#experience .experience-item--featured .experience-content ul,
+#experience .experience-grid > .experience-item:first-child .experience-content ul {
+  columns: 2;
+  column-gap: 36px;
+}
+
+#experience #surelock-card .experience-content li,
+#experience .experience-item--featured .experience-content li,
+#experience .experience-grid > .experience-item:first-child .experience-content li {
+  break-inside: avoid;
+  margin-bottom: 10px;
+}
+
+#experience #surelock-card .exp-media,
+#experience .experience-item--featured .exp-media,
+#experience .experience-grid > .experience-item:first-child .exp-media {
+  align-self: stretch;
+  min-height: 360px;
+}
+
+#experience #surelock-card .exp-media img,
+#experience .experience-item--featured .exp-media img,
+#experience .experience-grid > .experience-item:first-child .exp-media img {
+  height: calc(100% - 46px);
+  min-height: 312px;
+  object-fit: cover;
+}
+
+/* Centre the final Primark card instead of leaving it awkwardly on the left. */
+#experience .experience-grid > .experience-item:last-child:not(:first-child) {
+  grid-column: 1 / -1;
+  width: calc(50% - 10px);
+  justify-self: center;
+}
+
+/* ---------- Footer ---------- */
 .site-footer {
+  margin: 0;
+  padding: 20px;
   background: #000;
   color: #fff;
   text-align: center;
-  padding: 20px;
 }
 
-/* ===== Responsive navbar ===== */
-@media (max-width: 860px) {
-  .nav {
-    grid-template-columns: auto auto;
+.site-footer p {
+  margin: 0;
+}
+
+/* ---------- Medium screens ---------- */
+@media (max-width: 1050px) {
+  #experience .experience-grid {
+    grid-template-columns: 1fr !important;
   }
+
+  #experience .experience-grid > .experience-item:last-child:not(:first-child) {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  #experience #surelock-card,
+  #experience .experience-item--featured,
+  #experience .experience-grid > .experience-item:first-child,
+  #experience .experience-item {
+    grid-column: auto !important;
+    grid-template-columns: 84px minmax(0, 1fr) minmax(250px, 35%) !important;
+    grid-template-areas: "logo content media" !important;
+    gap: 20px !important;
+  }
+
+  #experience #surelock-card .experience-content ul,
+  #experience .experience-item--featured .experience-content ul,
+  #experience .experience-grid > .experience-item:first-child .experience-content ul {
+    columns: 1;
+  }
+
+  #experience .exp-media,
+  #experience #surelock-card .exp-media,
+  #experience .experience-item--featured .exp-media {
+    min-height: 260px;
+  }
+
+  #experience .exp-media img,
+  #experience #surelock-card .exp-media img,
+  #experience .experience-item--featured .exp-media img {
+    height: 100%;
+    min-height: 260px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 760px) {
+  .wrap {
+    padding: 32px 14px 40px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+  }
+
   .nav-toggle {
     display: inline-block;
   }
+
   .menu {
     display: none;
-    flex-wrap: wrap;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 8px;
   }
+
   .menu.open {
     display: flex;
   }
-}
 
-
-/* ===== Mobile fixes ===== */
-@media (max-width: 700px) {
-  .wrap {
-    padding: 32px 14px;
+  #experience .experience-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
   }
 
-  /* Fix experience cards going off screen */
-  .experience-grid {
-    grid-template-columns: 1fr; /* single column layout */
-  }
-
-  .experience-item {
-    grid-template-columns: 1fr; /* stack logo above text */
+  #experience .experience-item,
+  #experience #surelock-card,
+  #experience .experience-item--featured,
+  #experience .experience-grid > .experience-item:first-child {
+    grid-column: auto !important;
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
     grid-template-areas:
       "logo"
       "content"
-      "media";
-    padding: 18px;
+      "media" !important;
+    gap: 14px !important;
+    padding: 18px !important;
   }
 
-  .company-logo {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 10px;
+  #experience .company-logo,
+  #experience #surelock-card .company-logo,
+  #experience .experience-item--featured .company-logo {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto;
   }
 
-  .exp-media img {
-    height: auto;
-    max-height: 220px;
-  }
-
-  .experience-content h3 {
-    font-size: 1.05rem;
+  #experience .experience-content h3,
+  #experience #surelock-card .experience-content h3,
+  #experience .experience-item--featured .experience-content h3 {
+    font-size: 1.1rem;
     text-align: center;
   }
 
-  .experience-content ul {
-    padding-left: 20px;
+  #experience .experience-content p {
+    text-align: center;
   }
 
-  .exp-media figcaption {
-    text-align: center;
+  #experience .experience-content ul,
+  #experience #surelock-card .experience-content ul,
+  #experience .experience-item--featured .experience-content ul {
+    columns: 1;
+  }
+
+  #experience .exp-media,
+  #experience #surelock-card .exp-media,
+  #experience .experience-item--featured .exp-media {
+    min-height: 0;
+  }
+
+  #experience .exp-media img,
+  #experience #surelock-card .exp-media img,
+  #experience .experience-item--featured .exp-media img {
+    height: 210px;
+    min-height: 0;
   }
 }
-

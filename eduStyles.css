@@ -1,9 +1,22 @@
 /* =========================================================
-   EXPERIENCE PAGE — FULL STANDALONE STYLESHEET
-   Featured Surelock card spans the width of two normal cards
+   EDUCATION PAGE — eduStyles.css
 ========================================================= */
 
-/* ---------- Reset / base ---------- */
+:root {
+  --red: #ff3333;
+  --red-dark: #cf2027;
+  --black: #080808;
+  --text: #252525;
+  --muted: #68707d;
+  --background: #f4f6f8;
+  --card: #ffffff;
+  --border: #e2e6eb;
+  --shadow: 0 16px 40px rgba(22, 28, 36, 0.1);
+  --shadow-hover: 0 22px 50px rgba(22, 28, 36, 0.16);
+}
+
+/* ---------- Reset ---------- */
+
 * {
   box-sizing: border-box;
 }
@@ -14,11 +27,16 @@ html {
 
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Arial, sans-serif;
-  color: #333;
-  background: #fff;
+    sans-serif;
+  color: var(--text);
+  background: var(--background);
   line-height: 1.6;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 img {
@@ -26,31 +44,51 @@ img {
   max-width: 100%;
 }
 
+button,
+summary {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ---------- Skip link ---------- */
+
 .skip-link {
-  position: absolute;
+  position: fixed;
+  top: 12px;
   left: -9999px;
-  top: 1rem;
   z-index: 9999;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--red);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .skip-link:focus {
-  left: 1rem;
-  background: #ff3333;
-  color: #fff;
-  padding: 8px 10px;
-  border-radius: 6px;
+  left: 12px;
 }
 
-/* ---------- Navbar ---------- */
-.nav {
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+#navbar {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 1000;
+}
+
+.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 12px 20px;
+  gap: 20px;
+  width: 100%;
+  padding: 10px 22px;
   background: #000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -58,47 +96,38 @@ img {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  color: #fff;
-  text-decoration: none;
-}
-
-.brand-badge {
-  width: 36px;
-  height: 36px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #ff3333;
+  gap: 11px;
   color: #fff;
   font-weight: 800;
+  text-decoration: none;
 }
 
 .brand-logo {
   width: auto;
-  height: 40px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.brand-badge {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
 }
 
 .brand-text {
   color: #fff;
-  font-weight: 700;
-}
-
-.nav-toggle {
-  display: none;
-  padding: 8px 10px;
-  border: 1px solid #333;
-  border-radius: 8px;
-  background: #222;
-  color: #fff;
-  cursor: pointer;
+  font-weight: 800;
 }
 
 .menu {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -106,287 +135,597 @@ img {
 
 .menu a {
   display: block;
-  padding: 8px 12px;
+  padding: 9px 13px;
   border-radius: 8px;
   color: #fff;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   text-decoration: none;
-  transition: background 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
-.menu a:hover,
-.menu a.active {
-  background: #ff3333;
+.menu a:hover {
+  background: rgba(255, 51, 51, 0.72);
 }
 
-/* ---------- Experience section ---------- */
-.section {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+.menu a.active,
+.menu a[aria-current="page"] {
+  background: var(--red);
 }
 
-.section.visible {
-  opacity: 1;
-  transform: none;
-}
-
-.section-dark {
-  min-height: calc(100vh - 70px);
-  background: #3a3a3a;
-  color: #eee;
-}
-
-.wrap {
-  width: min(100%, 1360px);
-  margin: 0 auto;
-  padding: 48px 24px 56px;
-}
-
-.section-head h1 {
-  margin: 0 0 22px;
+.nav-toggle {
+  display: none;
+  padding: 8px 11px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: #1d1d1d;
   color: #fff;
-  font-size: clamp(2rem, 4vw, 2.6rem);
-  line-height: 1.15;
 }
 
-.section::after {
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 86% 30%,
+      rgba(255, 51, 51, 0.22),
+      transparent 32%
+    ),
+    linear-gradient(135deg, #111 0%, #242424 100%);
+  color: #fff;
+}
+
+.hero::before {
   content: "";
-  display: block;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #ff3333, transparent);
+  position: absolute;
+  right: -100px;
+  bottom: -180px;
+  width: 410px;
+  height: 410px;
+  border: 70px solid rgba(255, 255, 255, 0.035);
+  border-radius: 50%;
 }
 
-/* ---------- Main two-column card grid ---------- */
-#experience .experience-grid {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 20px;
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 76px 0 70px;
+}
+
+.hero h1 {
+  margin: 0 0 14px;
+  font-size: clamp(2.5rem, 6vw, 4.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.hero h1::after {
+  content: ".";
+  color: var(--red);
+}
+
+.hero .sub {
+  max-width: 720px;
+  margin: 0;
+  color: #d5d8dc;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+}
+
+.hero-accent {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--red),
+    #ff6868 42%,
+    transparent 90%
+  );
+}
+
+/* =========================================================
+   EDUCATION CONTENT
+========================================================= */
+
+#education {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 36px 0 70px;
+  scroll-margin-top: 80px;
+}
+
+/* ---------- Controls ---------- */
+
+.edu-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.btn-ghost {
+  padding: 9px 15px;
+  border: 1px solid #ccd2da;
+  border-radius: 9px;
+  background: #fff;
+  color: #343a44;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(20, 25, 31, 0.04);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-ghost:hover {
+  border-color: var(--red);
+  background: var(--red);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btn-ghost:focus-visible {
+  outline: 3px solid rgba(255, 51, 51, 0.25);
+  outline-offset: 2px;
+}
+
+/* ---------- Main grid ---------- */
+
+.education-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+  gap: 24px;
   align-items: start;
 }
 
-/* ---------- Standard cards ---------- */
-#experience .experience-item {
-  min-width: 0;
+/* ---------- Education card ---------- */
+
+.education-item {
   display: grid;
-  grid-template-columns: 76px minmax(0, 1fr);
-  grid-template-areas:
-    "logo content"
-    "media media";
-  align-content: start;
-  gap: 16px;
-  padding: 20px;
-  border: 1px solid rgba(20, 20, 20, 0.08);
-  border-radius: 12px;
-  background: #fff;
-  color: #222;
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.1);
-  opacity: 1;
-  transform: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 18px 22px;
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
-#experience .experience-item:hover {
+.education-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.15);
+  border-color: #d5d9df;
+  box-shadow: var(--shadow-hover);
 }
 
-#experience .company-logo {
-  grid-area: logo;
-  width: 76px;
-  height: 76px;
+/* ---------- Logos ---------- */
+
+.edu-logo {
+  display: grid;
+  width: 100px;
+  height: 100px;
+  place-items: center;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid #e4e8ed;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.edu-logo img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
-#experience .experience-content {
-  grid-area: content;
+/* ---------- Card header ---------- */
+
+.edu-head {
   min-width: 0;
+  align-self: center;
 }
 
-#experience .experience-content h3 {
-  margin: 0 0 6px;
-  color: #c60000;
-  font-size: 1.08rem;
-  line-height: 1.35;
+.edu-head h2 {
+  margin: 0 0 7px;
+  color: #17191d;
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 
-#experience .experience-content h3 a {
-  color: #c60000;
-  text-decoration: none;
+.edu-time {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
 }
 
-#experience .experience-content h3 a:hover {
-  text-decoration: underline;
-}
-
-#experience .experience-content p {
-  margin: 0 0 10px;
-}
-
-#experience .muted {
-  color: #666;
-}
-
-#experience .experience-content ul {
+.edu-cred {
   margin: 0;
-  padding-left: 20px;
-  color: #444;
+  color: #343943;
 }
 
-#experience .experience-content li {
-  margin-bottom: 7px;
+.edu-cred strong {
+  color: var(--red-dark);
 }
 
-#experience .exp-media {
-  grid-area: media;
-  width: 100%;
-  margin: 0;
+/* =========================================================
+   EXPANDABLE DETAILS
+========================================================= */
+
+.edu-details {
+  grid-column: 1 / -1;
   overflow: hidden;
-  border: 1px solid rgba(20, 20, 20, 0.06);
-  border-radius: 10px;
-  background: #f7f8fb;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fafbfc;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
-#experience .exp-media img {
-  width: 100%;
-  height: 210px;
-  object-fit: cover;
+.edu-details + .edu-details {
+  margin-top: -4px;
 }
 
-#experience .exp-media figcaption {
-  padding: 8px 10px;
-  color: #666;
-  font-size: 0.84rem;
+.edu-details[open] {
+  border-color: #d8dde4;
+  background: #fff;
+}
+
+.edu-details summary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 14px 48px 14px 17px;
+  color: #242832;
+  font-weight: 800;
+  list-style: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.edu-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.edu-details summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 17px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  background: #eceff3;
+  color: #313741;
+  font-size: 1.2rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.edu-details[open] summary::after {
+  content: "−";
+  background: var(--red);
+  color: #fff;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.edu-details summary:hover {
+  color: var(--red-dark);
+}
+
+.edu-details summary:focus-visible {
+  outline: 3px solid rgba(255, 51, 51, 0.2);
+  outline-offset: -3px;
+}
+
+/* ---------- Module lists ---------- */
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 4px 16px 18px;
+  list-style: none;
+}
+
+.list li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 45px;
+  padding: 10px 35px 10px 14px;
+  border: 1px solid #e4e7eb;
+  border-radius: 9px;
+  background: #fff;
+  color: #363b44;
+  font-size: 0.9rem;
+  font-weight: 600;
   line-height: 1.4;
 }
 
-/* ---------- Featured Surelock card ---------- */
-/* Uses both the ID and the class so it still works if one is forgotten. */
-#experience #surelock-card,
-#experience .experience-item--featured,
-#experience .experience-grid > .experience-item:first-child {
-  grid-column: 1 / -1 !important;
-  width: 100% !important;
-  max-width: none !important;
-  justify-self: stretch !important;
-  display: grid !important;
-  grid-template-columns: 96px minmax(0, 1fr) minmax(320px, 38%) !important;
-  grid-template-areas: "logo content media" !important;
-  gap: 26px !important;
-  padding: 28px !important;
+.list li[data-module] {
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-#experience #surelock-card .company-logo,
-#experience .experience-item--featured .company-logo,
-#experience .experience-grid > .experience-item:first-child .company-logo {
-  width: 96px;
-  height: 96px;
+.list li[data-module]::after {
+  content: "→";
+  position: absolute;
+  right: 13px;
+  color: #9aa0a9;
+  font-size: 1rem;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
-#experience #surelock-card .experience-content h3,
-#experience .experience-item--featured .experience-content h3,
-#experience .experience-grid > .experience-item:first-child .experience-content h3 {
-  font-size: 1.35rem;
+.list li[data-module]:hover {
+  z-index: 1;
+  border-color: rgba(255, 51, 51, 0.55);
+  color: var(--red-dark);
+  box-shadow: 0 8px 18px rgba(30, 35, 43, 0.08);
+  transform: translateY(-2px);
 }
 
-#experience #surelock-card .experience-content ul,
-#experience .experience-item--featured .experience-content ul,
-#experience .experience-grid > .experience-item:first-child .experience-content ul {
-  columns: 2;
-  column-gap: 36px;
+.list li[data-module]:hover::after {
+  color: var(--red);
+  transform: translateX(3px);
 }
 
-#experience #surelock-card .experience-content li,
-#experience .experience-item--featured .experience-content li,
-#experience .experience-grid > .experience-item:first-child .experience-content li {
-  break-inside: avoid;
-  margin-bottom: 10px;
+.list li[data-module]:focus-visible {
+  outline: 3px solid rgba(255, 51, 51, 0.22);
+  outline-offset: 2px;
 }
 
-#experience #surelock-card .exp-media,
-#experience .experience-item--featured .exp-media,
-#experience .experience-grid > .experience-item:first-child .exp-media {
-  align-self: stretch;
-  min-height: 360px;
+.muted {
+  margin: 0;
+  padding: 2px 17px 18px;
+  color: var(--muted);
 }
 
-#experience #surelock-card .exp-media img,
-#experience .experience-item--featured .exp-media img,
-#experience .experience-grid > .experience-item:first-child .exp-media img {
-  height: calc(100% - 46px);
-  min-height: 312px;
+/* School card uses a single-column list */
+
+.education-item:nth-child(2) .list {
+  grid-template-columns: 1fr;
+}
+
+/* =========================================================
+   MODULE MODAL
+========================================================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+}
+
+.modal[aria-hidden="true"] {
+  display: none;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 5, 8, 0.78);
+  backdrop-filter: blur(5px);
+}
+
+.modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  max-height: min(88vh, 900px);
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+  animation: modal-enter 0.25s ease both;
+}
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f0f2f5;
+  color: #25282d;
+  font-size: 1.7rem;
+  line-height: 1;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.modal__close:hover {
+  background: var(--red);
+  color: #fff;
+  transform: rotate(8deg);
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  min-height: 126px;
+  padding: 28px 70px 24px 28px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, #fafafa, #f1f3f5);
+}
+
+.modal__header h4 {
+  margin: 0 0 11px;
+  color: #17191d;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.modal__img:not(.modal__workimg) {
+  width: 76px;
+  height: 76px;
+  margin-right: 18px;
+  border-radius: 12px;
   object-fit: cover;
 }
 
-/* Centre the final Primark card instead of leaving it awkwardly on the left. */
-#experience .experience-grid > .experience-item:last-child:not(:first-child) {
-  grid-column: 1 / -1;
-  width: calc(50% - 10px);
-  justify-self: center;
+.modal__body {
+  padding: 26px 28px 30px;
 }
 
-/* ---------- Footer ---------- */
-.site-footer {
+.modal__body > p {
+  margin: 0 0 18px;
+  color: #4e5560;
+  line-height: 1.75;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 29px;
+  padding: 5px 10px;
+  border: 1px solid #dfe3e8;
+  border-radius: 999px;
+  background: #f5f6f8;
+  color: #454b54;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.modal__header .pill {
+  background: #fff;
+}
+
+#modalSkills {
+  margin-bottom: 20px;
+}
+
+.modal__workimg {
+  width: 100%;
+  max-height: 410px;
+  margin: 6px 0 22px;
+  border: 1px solid #e1e4e8;
+  border-radius: 13px;
+  background: #f2f3f5;
+  object-fit: contain;
+}
+
+.modal__list {
   margin: 0;
-  padding: 20px;
-  background: #000;
-  color: #fff;
+  padding: 0;
+  list-style: none;
+}
+
+.modal__list li {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 12px 14px 12px 39px;
+  border: 1px solid #e4e7eb;
+  border-radius: 10px;
+  background: #fafbfc;
+  color: #424851;
+}
+
+.modal__list li::before {
+  content: "✓";
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  color: var(--red);
+  font-weight: 800;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+  padding: 24px 20px;
+  background: #080808;
+  color: #c7c7c7;
   text-align: center;
 }
 
 .site-footer p {
   margin: 0;
+  font-size: 0.9rem;
 }
 
-/* ---------- Medium screens ---------- */
-@media (max-width: 1050px) {
-  #experience .experience-grid {
-    grid-template-columns: 1fr !important;
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 980px) {
+  .education-grid {
+    grid-template-columns: 1fr;
   }
 
-  #experience .experience-grid > .experience-item:last-child:not(:first-child) {
-    grid-column: auto;
-    width: 100%;
-  }
-
-  #experience #surelock-card,
-  #experience .experience-item--featured,
-  #experience .experience-grid > .experience-item:first-child,
-  #experience .experience-item {
-    grid-column: auto !important;
-    grid-template-columns: 84px minmax(0, 1fr) minmax(250px, 35%) !important;
-    grid-template-areas: "logo content media" !important;
-    gap: 20px !important;
-  }
-
-  #experience #surelock-card .experience-content ul,
-  #experience .experience-item--featured .experience-content ul,
-  #experience .experience-grid > .experience-item:first-child .experience-content ul {
-    columns: 1;
-  }
-
-  #experience .exp-media,
-  #experience #surelock-card .exp-media,
-  #experience .experience-item--featured .exp-media {
-    min-height: 260px;
-  }
-
-  #experience .exp-media img,
-  #experience #surelock-card .exp-media img,
-  #experience .experience-item--featured .exp-media img {
-    height: 100%;
-    min-height: 260px;
+  .education-item:nth-child(2) .list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-/* ---------- Mobile ---------- */
 @media (max-width: 760px) {
-  .wrap {
-    padding: 32px 14px 40px;
-  }
-
   .nav {
     flex-wrap: wrap;
+    padding: 10px 14px;
   }
 
   .nav-toggle {
@@ -398,68 +737,111 @@ img {
     width: 100%;
     flex-direction: column;
     align-items: stretch;
-    padding-top: 8px;
+    padding-top: 7px;
   }
 
   .menu.open {
     display: flex;
   }
 
-  #experience .experience-grid {
-    grid-template-columns: 1fr !important;
+  .menu a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-inner {
+    width: min(100% - 30px, 1180px);
+    padding: 55px 0 52px;
+  }
+
+  #education {
+    width: min(100% - 28px, 1180px);
+    padding: 25px 0 50px;
+  }
+
+  .edu-controls {
+    justify-content: stretch;
+  }
+
+  .btn-ghost {
+    flex: 1;
+  }
+
+  .education-item {
+    grid-template-columns: 76px minmax(0, 1fr);
     gap: 16px;
+    padding: 20px;
+    border-radius: 15px;
   }
 
-  #experience .experience-item,
-  #experience #surelock-card,
-  #experience .experience-item--featured,
-  #experience .experience-grid > .experience-item:first-child {
-    grid-column: auto !important;
-    width: 100% !important;
-    grid-template-columns: 1fr !important;
-    grid-template-areas:
-      "logo"
-      "content"
-      "media" !important;
-    gap: 14px !important;
-    padding: 18px !important;
+  .edu-logo {
+    width: 76px;
+    height: 76px;
+    padding: 7px;
+    border-radius: 12px;
   }
 
-  #experience .company-logo,
-  #experience #surelock-card .company-logo,
-  #experience .experience-item--featured .company-logo {
-    width: 72px;
-    height: 72px;
+  .list,
+  .education-item:nth-child(2) .list {
+    grid-template-columns: 1fr;
+  }
+
+  .modal {
+    padding: 12px;
+  }
+
+  .modal__header {
+    padding: 25px 58px 20px 20px;
+  }
+
+  .modal__body {
+    padding: 21px 20px 25px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .education-item {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .edu-logo {
+    width: 84px;
+    height: 84px;
     margin: 0 auto;
   }
 
-  #experience .experience-content h3,
-  #experience #surelock-card .experience-content h3,
-  #experience .experience-item--featured .experience-content h3 {
-    font-size: 1.1rem;
+  .edu-head {
     text-align: center;
   }
 
-  #experience .experience-content p {
-    text-align: center;
+  .edu-details {
+    grid-column: 1;
   }
 
-  #experience .experience-content ul,
-  #experience #surelock-card .experience-content ul,
-  #experience .experience-item--featured .experience-content ul {
-    columns: 1;
+  .edu-controls {
+    flex-direction: column;
   }
 
-  #experience .exp-media,
-  #experience #surelock-card .exp-media,
-  #experience .experience-item--featured .exp-media {
-    min-height: 0;
+  .modal__header {
+    min-height: 110px;
   }
 
-  #experience .exp-media img,
-  #experience #surelock-card .exp-media img,
-  #experience .experience-item--featured .exp-media img {
-    height: 210px;
-    min-height: 0;
+  .modal__header h4 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -13,8 +13,426 @@
       rel="stylesheet"
     />
 
-    <!-- New filename + version value prevents the browser using the old CSS. -->
-    <link rel="stylesheet" href="eduStyles.css" />
+    <!--
+      This page deliberately keeps its CSS inside the HTML file.
+      That removes stylesheet filename, path and browser-cache problems.
+    -->
+    <style>
+      :root {
+        --red: #ff3333;
+        --red-dark: #c90000;
+        --page-dark: #383838;
+        --card: #ffffff;
+        --text: #252525;
+        --muted: #666666;
+        --border: rgba(20, 20, 20, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 0;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background: var(--page-dark);
+        line-height: 1.55;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 12px;
+        left: -9999px;
+        z-index: 9999;
+        padding: 10px 14px;
+        border-radius: 8px;
+        background: var(--red);
+        color: #fff;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .skip-link:focus {
+        left: 12px;
+      }
+
+      /* Navbar injected from navbar.html */
+      #navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        min-height: 60px;
+        padding: 10px 24px;
+        background: #000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .brand-logo {
+        width: auto;
+        height: 38px;
+        object-fit: contain;
+      }
+
+      .brand-badge {
+        display: grid;
+        width: 36px;
+        height: 36px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--red);
+        color: #fff;
+        font-weight: 800;
+      }
+
+      .brand-text {
+        color: #fff;
+      }
+
+      .menu {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .menu a {
+        display: block;
+        padding: 9px 13px;
+        border-radius: 8px;
+        color: #fff;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+
+      .menu a:hover,
+      .menu a.active {
+        background: var(--red);
+      }
+
+      .nav-toggle {
+        display: none;
+        padding: 9px 12px;
+        border: 1px solid #3b3b3b;
+        border-radius: 8px;
+        background: #1d1d1d;
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      /* Page */
+      .section-dark {
+        min-height: calc(100vh - 60px);
+        background: var(--page-dark);
+        color: #eee;
+      }
+
+      .wrap {
+        width: min(100%, 1400px);
+        margin: 0 auto;
+        padding: 42px 24px 56px;
+      }
+
+      .section-head h1 {
+        margin: 0 0 24px;
+        color: #fff;
+        font-size: clamp(2rem, 4vw, 2.65rem);
+        line-height: 1.1;
+      }
+
+      .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      .experience-item {
+        display: grid;
+        grid-template-columns: 72px minmax(0, 1fr);
+        grid-template-areas:
+          "logo content"
+          "media media";
+        align-content: start;
+        gap: 16px;
+        min-width: 0;
+        padding: 20px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--card);
+        color: var(--text);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .experience-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 13px 30px rgba(0, 0, 0, 0.18);
+      }
+
+      .company-logo {
+        grid-area: logo;
+        width: 72px;
+        height: 72px;
+        object-fit: contain;
+      }
+
+      .experience-content {
+        grid-area: content;
+        min-width: 0;
+      }
+
+      .experience-content h3 {
+        margin: 0 0 6px;
+        font-size: 1.05rem;
+        line-height: 1.35;
+      }
+
+      .experience-content h3 a {
+        color: var(--red-dark);
+        text-decoration: none;
+      }
+
+      .experience-content h3 a:hover {
+        text-decoration: underline;
+      }
+
+      .experience-content p {
+        margin: 0 0 10px;
+      }
+
+      .muted {
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .experience-content ul {
+        margin: 0;
+        padding-left: 20px;
+        color: #454545;
+      }
+
+      .experience-content li {
+        margin-bottom: 7px;
+      }
+
+      .exp-media {
+        grid-area: media;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        border: 1px solid rgba(20, 20, 20, 0.06);
+        border-radius: 10px;
+        background: #f5f6f8;
+      }
+
+      .exp-media img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .exp-media figcaption {
+        padding: 8px 10px;
+        color: #666;
+        font-size: 0.82rem;
+        line-height: 1.4;
+      }
+
+      /* Surelock: full-width featured role */
+      #surelock-card {
+        grid-column: 1 / -1;
+        grid-template-columns: 94px minmax(0, 1.4fr) minmax(330px, 0.85fr);
+        grid-template-areas: "logo content media";
+        gap: 26px;
+        padding: 28px;
+      }
+
+      #surelock-card .company-logo {
+        width: 94px;
+        height: 94px;
+      }
+
+      #surelock-card .experience-content h3 {
+        font-size: 1.35rem;
+      }
+
+      #surelock-card .experience-content ul {
+        columns: 2;
+        column-gap: 38px;
+      }
+
+      #surelock-card .experience-content li {
+        break-inside: avoid;
+        margin-bottom: 10px;
+      }
+
+      #surelock-card .exp-media {
+        align-self: stretch;
+        min-height: 330px;
+      }
+
+      #surelock-card .exp-media img {
+        height: 285px;
+        object-position: center;
+      }
+
+      .site-footer {
+        padding: 20px;
+        background: #000;
+        color: #fff;
+        text-align: center;
+      }
+
+      .site-footer p {
+        margin: 0;
+      }
+
+      /* Two-column tablet layout */
+      @media (max-width: 1120px) {
+        .experience-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        #surelock-card {
+          grid-column: 1 / -1;
+          grid-template-columns: 84px minmax(0, 1fr) minmax(270px, 35%);
+          gap: 20px;
+          padding: 22px;
+        }
+
+        #surelock-card .experience-content ul {
+          columns: 1;
+        }
+
+        #surelock-card .exp-media {
+          min-height: 280px;
+        }
+
+        #surelock-card .exp-media img {
+          height: 235px;
+        }
+      }
+
+      /* Single-column mobile layout */
+      @media (max-width: 760px) {
+        .nav {
+          flex-wrap: wrap;
+          padding: 10px 14px;
+        }
+
+        .nav-toggle {
+          display: inline-block;
+        }
+
+        .menu {
+          display: none;
+          width: 100%;
+          flex-direction: column;
+          align-items: stretch;
+          padding-top: 8px;
+        }
+
+        .menu.open {
+          display: flex;
+        }
+
+        .wrap {
+          padding: 32px 14px 40px;
+        }
+
+        .experience-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .experience-item,
+        #surelock-card {
+          grid-column: auto;
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "logo"
+            "content"
+            "media";
+          gap: 14px;
+          padding: 18px;
+        }
+
+        .company-logo,
+        #surelock-card .company-logo {
+          width: 72px;
+          height: 72px;
+          margin: 0 auto;
+        }
+
+        .experience-content h3,
+        #surelock-card .experience-content h3 {
+          font-size: 1.08rem;
+          text-align: center;
+        }
+
+        .experience-content p {
+          text-align: center;
+        }
+
+        #surelock-card .experience-content ul {
+          columns: 1;
+        }
+
+        .exp-media,
+        #surelock-card .exp-media {
+          min-height: 0;
+        }
+
+        .exp-media img,
+        #surelock-card .exp-media img {
+          height: 210px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -22,207 +440,201 @@
 
     <header id="navbar"></header>
 
-    <section id="experience" class="section section-dark">
-      <div class="wrap">
-        <header class="section-head section-head-invert">
-          <h1>Work Experience</h1>
-        </header>
+    <main>
+      <section id="experience" class="section-dark">
+        <div class="wrap">
+          <header class="section-head">
+            <h1>Work Experience</h1>
+          </header>
 
-        <div class="experience-grid">
-          <!-- Surelock McGill -->
-          <article
-            id="surelock-card"
-            class="experience-item experience-item--featured"
-          >
-            <img
-              src="images/surelock.png"
-              alt="Surelock McGill logo"
-              class="company-logo"
-            />
-
-            <figure class="exp-media">
+          <div class="experience-grid">
+            <article id="surelock-card" class="experience-item experience-item--featured">
               <img
-                src="images/surelock.jpg"
-                alt="Working at Surelock McGill"
-                onerror="this.onerror=null; this.src='images/SoftwareDev.png';"
+                src="images/surelock.png"
+                alt="Surelock McGill logo"
+                class="company-logo"
               />
-              <figcaption>
-                Production planning, purchasing, stock management &amp; quality
-                control
-              </figcaption>
-            </figure>
 
-            <div class="experience-content">
-              <h3>
-                <a
-                  href="https://www.surelockmcgill.com/na/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Production Assistant — Surelock McGill
-                </a>
-              </h3>
+              <div class="experience-content">
+                <h3>
+                  <a
+                    href="https://www.surelockmcgill.com/na/"
+                    target="_blank"
+                    rel="noopener"
+                  >Production Assistant — Surelock McGill</a>
+                </h3>
 
-              <p class="muted">
-                Promoted from Assembly &amp; Collator | July 2024 – Present
-              </p>
+                <p class="muted">
+                  Promoted from Assembly &amp; Collator | July 2024 – Present
+                </p>
 
-              <ul>
-                <li>
-                  Promoted to Production Assistant after developing strong
-                  knowledge of the company’s production, stock, and assembly
-                  processes.
-                </li>
-                <li>
-                  Use Excel and internal systems to manage, move, track, and
-                  maintain accurate stock and production records.
-                </li>
-                <li>
-                  Order and purchase production resources, materials, castings,
-                  and manufactured parts required for ongoing jobs.
-                </li>
-                <li>
-                  Monitor stock availability and help ensure materials and
-                  components are ready for production deadlines.
-                </li>
-                <li>
-                  Review engineering drawings and part diagrams to confirm
-                  components meet the required dimensions, specifications, and
-                  quality standards.
-                </li>
-                <li>
-                  Identify stock, purchasing, drawing, or component issues and
-                  communicate them with production and engineering teams.
-                </li>
-                <li>
-                  Support the manufacture of high-security systems used in
-                  commercial and government-level environments.
-                </li>
-              </ul>
-            </div>
-          </article>
+                <ul>
+                  <li>
+                    Promoted to Production Assistant after developing strong
+                    knowledge of the company’s production, stock, and assembly
+                    processes.
+                  </li>
+                  <li>
+                    Use Excel and internal systems to manage, move, track, and
+                    maintain accurate stock and production records.
+                  </li>
+                  <li>
+                    Order and purchase production resources, materials,
+                    castings, and manufactured parts required for ongoing jobs.
+                  </li>
+                  <li>
+                    Monitor stock availability and help ensure materials and
+                    components are ready for production deadlines.
+                  </li>
+                  <li>
+                    Review engineering drawings and part diagrams to confirm
+                    components meet the required dimensions, specifications,
+                    and quality standards.
+                  </li>
+                  <li>
+                    Identify stock, purchasing, drawing, or component issues
+                    and communicate them with production and engineering teams.
+                  </li>
+                  <li>
+                    Support the manufacture of high-security systems used in
+                    commercial and government-level environments.
+                  </li>
+                </ul>
+              </div>
 
-          <!-- Wetherspoons -->
-          <article class="experience-item">
-            <img
-              src="images/wetherspoons.jfif"
-              alt="Wetherspoons logo"
-              class="company-logo"
-            />
+              <figure class="exp-media">
+                <img
+                  src="images/surelock.jpg"
+                  alt="Working at Surelock McGill"
+                  onerror="this.onerror=null; this.src='images/SoftwareDev.png';"
+                />
+                <figcaption>
+                  Production planning, purchasing, stock management &amp;
+                  quality control
+                </figcaption>
+              </figure>
+            </article>
 
-            <figure class="exp-media">
+            <article class="experience-item">
               <img
-                src="images/spoons.jpg"
-                alt="Working at Wetherspoons"
-                onerror="this.onerror=null; this.src='images/Wetherspoons.jfif';"
+                src="images/wetherspoons.jfif"
+                alt="Wetherspoons logo"
+                class="company-logo"
               />
-              <figcaption>Kitchen shifts — fast-paced service</figcaption>
-            </figure>
 
-            <div class="experience-content">
-              <h3>
-                <a
-                  href="https://www.jdwetherspoon.com/"
-                  target="_blank"
-                  rel="noopener"
-                >Kitchen Assistant - Wetherspoons</a>
-              </h3>
-              <p class="muted">
-                June 2022 - Sept 2022, July 2024 - December 2024
-              </p>
-              <ul>
-                <li>
-                  Managed time efficiently while preparing meals for customers.
-                </li>
-                <li>
-                  Worked in a fast-paced environment with a focus on teamwork
-                  and communication.
-                </li>
-                <li>Assisted with stock management and deliveries.</li>
-              </ul>
-            </div>
-          </article>
+              <div class="experience-content">
+                <h3>
+                  <a
+                    href="https://www.jdwetherspoon.com/"
+                    target="_blank"
+                    rel="noopener"
+                  >Kitchen Assistant — Wetherspoons</a>
+                </h3>
+                <p class="muted">
+                  June 2022 – Sept 2022, July 2024 – December 2024
+                </p>
+                <ul>
+                  <li>
+                    Managed time efficiently while preparing meals for
+                    customers.
+                  </li>
+                  <li>
+                    Worked in a fast-paced environment with a focus on teamwork
+                    and communication.
+                  </li>
+                  <li>Assisted with stock management and deliveries.</li>
+                </ul>
+              </div>
 
-          <!-- Coral Reef -->
-          <article class="experience-item">
-            <img
-              src="images/coral reef.png"
-              alt="Coral Reef Waterworld logo"
-              class="company-logo"
-            />
+              <figure class="exp-media">
+                <img
+                  src="images/spoons.jpg"
+                  alt="Working at Wetherspoons"
+                  onerror="this.onerror=null; this.src='images/Wetherspoons.jfif';"
+                />
+                <figcaption>Kitchen shifts — fast-paced service</figcaption>
+              </figure>
+            </article>
 
-            <figure class="exp-media">
+            <article class="experience-item">
               <img
-                src="images/coral reef.jpg"
-                alt="Working at Coral Reef Waterworld"
-                onerror="this.onerror=null; this.src='images/coral reef.png';"
+                src="images/coral reef.png"
+                alt="Coral Reef Waterworld logo"
+                class="company-logo"
               />
-              <figcaption>Customer assistance and safety</figcaption>
-            </figure>
 
-            <div class="experience-content">
-              <h3>
-                <a
-                  href="https://www.everyoneactive.com/centre/coral-reef-waterworld/"
-                  target="_blank"
-                  rel="noopener"
-                >General Assistant - Coral Reef Waterworld</a>
-              </h3>
-              <p class="muted">June 2023 - Aug 2024</p>
-              <ul>
-                <li>
-                  Assisting with customer queries and maintaining the
-                  cleanliness and safety of the water park.
-                </li>
-                <li>
-                  Administering first aid with my Lvl 3 emergency first aid
-                  qualification.
-                </li>
-              </ul>
-            </div>
-          </article>
+              <div class="experience-content">
+                <h3>
+                  <a
+                    href="https://www.everyoneactive.com/centre/coral-reef-waterworld/"
+                    target="_blank"
+                    rel="noopener"
+                  >General Assistant — Coral Reef Waterworld</a>
+                </h3>
+                <p class="muted">June 2023 – Aug 2024</p>
+                <ul>
+                  <li>
+                    Assisted with customer queries while maintaining the
+                    cleanliness and safety of the water park.
+                  </li>
+                  <li>
+                    Administered first aid using my Level 3 Emergency First Aid
+                    qualification.
+                  </li>
+                </ul>
+              </div>
 
-          <!-- Primark -->
-          <article class="experience-item">
-            <img
-              src="images/primark.png"
-              alt="Primark logo"
-              class="company-logo"
-            />
+              <figure class="exp-media">
+                <img
+                  src="images/coral reef.jpg"
+                  alt="Working at Coral Reef Waterworld"
+                  onerror="this.onerror=null; this.src='images/coral reef.png';"
+                />
+                <figcaption>Customer assistance and safety</figcaption>
+              </figure>
+            </article>
 
-            <figure class="exp-media">
+            <article class="experience-item">
               <img
-                src="images/primark.jpg"
-                alt="Working at Primark"
-                onerror="this.onerror=null; this.src='images/primark.png';"
+                src="images/primark.png"
+                alt="Primark logo"
+                class="company-logo"
               />
-              <figcaption>Customer service &amp; cash handling</figcaption>
-            </figure>
 
-            <div class="experience-content">
-              <h3>
-                <a
-                  href="https://www.primark.com/en-gb"
-                  target="_blank"
-                  rel="noopener"
-                >Retail Assistant - Primark</a>
-              </h3>
-              <p class="muted">Feb 2020 - Aug 2021</p>
-              <ul>
-                <li>
-                  Delivered excellent customer service while operating cash
-                  registers.
-                </li>
-                <li>Handled transactions and managed money.</li>
-              </ul>
-            </div>
-          </article>
+              <div class="experience-content">
+                <h3>
+                  <a
+                    href="https://www.primark.com/en-gb"
+                    target="_blank"
+                    rel="noopener"
+                  >Retail Assistant — Primark</a>
+                </h3>
+                <p class="muted">Feb 2020 – Aug 2021</p>
+                <ul>
+                  <li>
+                    Delivered excellent customer service while operating cash
+                    registers.
+                  </li>
+                  <li>Handled transactions and managed money accurately.</li>
+                </ul>
+              </div>
+
+              <figure class="exp-media">
+                <img
+                  src="images/primark.jpg"
+                  alt="Working at Primark"
+                  onerror="this.onerror=null; this.src='images/primark.png';"
+                />
+                <figcaption>Customer service &amp; cash handling</figcaption>
+              </figure>
+            </article>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer class="site-footer">
-      <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
+      <p>&copy; 2026 Jack Mauro. All rights reserved.</p>
     </footer>
 
     <script>
@@ -234,42 +646,37 @@
           return response.text();
         })
         .then((html) => {
-          document.getElementById("navbar").innerHTML = html;
+          const navbar = document.getElementById("navbar");
+          navbar.innerHTML = html;
 
-          const btn = document.querySelector(".nav-toggle");
-          const menu = document.getElementById("mainmenu");
+          const button = navbar.querySelector(".nav-toggle");
+          const menu = navbar.querySelector("#mainmenu");
 
-          btn?.addEventListener("click", () => {
-            const expanded = btn.getAttribute("aria-expanded") === "true";
-            btn.setAttribute("aria-expanded", String(!expanded));
+          button?.addEventListener("click", () => {
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
+            button.setAttribute("aria-expanded", String(!isExpanded));
             menu?.classList.toggle("open");
           });
 
-          const path =
-            window.location.pathname.split("/").pop() || "Experience.html";
+          const currentPage =
+            window.location.pathname.split("/").pop()?.toLowerCase() ||
+            "experience.html";
 
-          document.querySelectorAll(".menu a").forEach((link) => {
-            const href = link.getAttribute("href") || "";
-            if (href.toLowerCase() === path.toLowerCase()) {
+          navbar.querySelectorAll(".menu a").forEach((link) => {
+            const href = (link.getAttribute("href") || "")
+              .split("/")
+              .pop()
+              .toLowerCase();
+
+            if (href === currentPage) {
               link.classList.add("active");
               link.setAttribute("aria-current", "page");
             }
           });
         })
-        .catch((error) => console.error(error));
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) entry.target.classList.add("visible");
-          });
-        },
-        { threshold: 0.12 },
-      );
-
-      document
-        .querySelectorAll(".section")
-        .forEach((element) => observer.observe(element));
+        .catch((error) => {
+          console.error("Could not load navbar.html:", error);
+        });
     </script>
   </body>
 </html>
