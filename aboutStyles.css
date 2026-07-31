@@ -388,3 +388,6 @@ body {
     display: flex;
   }
 }
+main {
+  padding-top: 74px;
+}

@@ -463,3 +463,7 @@ img {
     min-height: 0;
   }
 }
+
+main {
+  padding-top: 74px;
+}

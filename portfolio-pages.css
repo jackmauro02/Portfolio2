@@ -1,0 +1,1350 @@
+/* =========================================================
+   JACK MAURO — PROJECTS + EXPERIENCE PAGES
+   Shared styling for projects2.html and Experience.html
+========================================================= */
+
+:root {
+  --page-bg: #08090c;
+  --page-bg-soft: #101116;
+  --page-surface: rgba(255, 255, 255, 0.055);
+  --page-surface-hover: rgba(255, 255, 255, 0.085);
+  --page-border: rgba(255, 255, 255, 0.1);
+  --page-border-strong: rgba(255, 255, 255, 0.17);
+
+  --page-text: #f7f7f8;
+  --page-text-soft: #b7b8c0;
+  --page-text-muted: #85868f;
+
+  --page-red: #ff3b3b;
+  --page-red-dark: #d91f2b;
+  --page-red-soft: rgba(255, 59, 59, 0.13);
+
+  --page-max-width: 1280px;
+
+  /*
+    This offsets the fixed navbar.
+
+    Using body padding fixes the problem even when the section
+    is not wrapped inside a main element.
+  */
+  --navbar-offset: 74px;
+}
+
+/* =========================================================
+   RESET + PAGE BASE
+========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--navbar-offset) + 24px);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding-top: var(--navbar-offset);
+
+  overflow-x: hidden;
+
+  color: var(--page-text);
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(255, 59, 59, 0.12),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at 88% 32%,
+      rgba(110, 60, 255, 0.08),
+      transparent 28rem
+    ),
+    var(--page-bg);
+
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  line-height: 1.65;
+}
+
+main {
+  /*
+    The offset is now handled by body.
+    This prevents double spacing on pages that contain main.
+  */
+  padding-top: 0;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Subtle graphical background */
+
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    );
+
+  background-size: 54px 54px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.9),
+      transparent 85%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.9),
+      transparent 85%
+    );
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: -9999px;
+  z-index: 9999;
+
+  padding: 10px 14px;
+
+  border-radius: 10px;
+
+  color: #fff;
+  background: var(--page-red);
+
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 12px;
+}
+
+/* =========================================================
+   SHARED SECTION LAYOUT
+========================================================= */
+
+.section {
+  position: relative;
+
+  /* Do not force every section to fill the screen */
+  min-height: 0;
+
+  opacity: 0;
+  transform: translateY(18px);
+
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*
+  Show the section normally when JavaScript is disabled
+  or before the observer runs.
+*/
+
+.no-js .section {
+  opacity: 1;
+  transform: none;
+}
+
+.section-light,
+.section-dark {
+  color: var(--page-text);
+  background: transparent;
+}
+
+.wrap {
+  width: min(
+    calc(100% - 40px),
+    var(--page-max-width)
+  );
+
+  margin: 0 auto;
+  padding: 64px 0 80px;
+}
+
+/* =========================================================
+   PAGE TITLE AREA
+========================================================= */
+
+.section-head {
+  position: relative;
+
+  max-width: 780px;
+
+  margin-bottom: 42px;
+  padding-left: 22px;
+}
+
+.section-head::after {
+  content: "";
+
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 0;
+
+  width: 4px;
+
+  border-radius: 99px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      var(--page-red),
+      rgba(255, 59, 59, 0.15)
+    );
+
+  box-shadow:
+    0 0 24px rgba(255, 59, 59, 0.42);
+}
+
+/* Automatically adds an eyebrow without changing HTML */
+
+#projects .section-head::before,
+#experience .section-head::before {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: var(--page-red);
+
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  line-height: 1;
+}
+
+#projects .section-head::before {
+  content: "SELECTED WORK";
+}
+
+#experience .section-head::before {
+  content: "CAREER JOURNEY";
+}
+
+.section-head h1,
+.section-head h2 {
+  margin: 0;
+
+  color: var(--page-text);
+
+  font-family:
+    "Space Grotesk",
+    "Inter",
+    system-ui,
+    sans-serif;
+
+  font-size: clamp(2.4rem, 6vw, 4.7rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.section-head h1::first-letter,
+.section-head h2::first-letter {
+  color: var(--page-red);
+}
+
+.lead {
+  max-width: 68ch;
+  margin: 18px 0 0;
+
+  color: var(--page-text-soft);
+
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.75;
+}
+
+/* Decorative line from existing pages */
+
+.section-accent {
+  width: min(
+    calc(100% - 40px),
+    var(--page-max-width)
+  );
+
+  height: 1px;
+  margin: 0 auto;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 59, 59, 0.8),
+      transparent
+    );
+}
+
+/* =========================================================
+   PROJECTS PAGE
+========================================================= */
+
+#projects {
+  isolation: isolate;
+}
+
+#projects::before {
+  content: "";
+
+  position: absolute;
+  top: 80px;
+  right: -180px;
+  z-index: -1;
+
+  width: 450px;
+  height: 450px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 59, 59, 0.09);
+
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* Projects grid */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 24px;
+
+  align-items: stretch;
+}
+
+/* Project card */
+
+.project-card {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  min-width: 0;
+  height: 100%;
+  padding: 22px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--page-border);
+  border-radius: 22px;
+
+  color: var(--page-text);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.22);
+
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+/* Red graphical corner */
+
+.project-card::before {
+  content: "";
+
+  position: absolute;
+  top: -75px;
+  right: -75px;
+  z-index: -1;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 59, 59, 0.25),
+      transparent 68%
+    );
+
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+/* Thin red top line */
+
+.project-card::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  right: 22px;
+  left: 22px;
+
+  height: 2px;
+
+  border-radius: 99px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--page-red),
+      transparent
+    );
+
+  opacity: 0.4;
+
+  transition:
+    opacity 0.28s ease,
+    right 0.28s ease,
+    left 0.28s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-7px);
+
+  border-color: rgba(255, 59, 59, 0.38);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.095),
+      rgba(255, 255, 255, 0.04)
+    );
+
+  box-shadow:
+    0 30px 75px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 59, 59, 0.04);
+}
+
+.project-card:hover::before {
+  transform: scale(1.25);
+}
+
+.project-card:hover::after {
+  right: 12px;
+  left: 12px;
+
+  opacity: 1;
+}
+
+.project-card h3 {
+  margin: 0;
+
+  color: var(--page-text);
+
+  font-family:
+    "Space Grotesk",
+    "Inter",
+    system-ui,
+    sans-serif;
+
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.project-card p {
+  margin: 0;
+
+  color: var(--page-text-soft);
+}
+
+.project-card p strong {
+  color: var(--page-text);
+  font-weight: 700;
+}
+
+/* Push buttons to the bottom */
+
+.project-card .btn-row {
+  margin-top: auto;
+}
+
+/* Project images and videos */
+
+.project-media {
+  order: -1;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  max-height: none;
+
+  margin: 0 0 6px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--page-border);
+  border-radius: 15px;
+
+  background: #15161b;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.45s ease,
+    filter 0.35s ease;
+}
+
+.project-card:hover .project-media {
+  transform: scale(1.015);
+  filter: saturate(1.08) contrast(1.03);
+}
+
+/* Project buttons */
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  padding-top: 8px;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 44px;
+
+  padding: 10px 17px;
+
+  border: 1px solid var(--page-red);
+  border-radius: 999px;
+
+  color: #fff;
+  background:
+    linear-gradient(
+      135deg,
+      var(--page-red),
+      var(--page-red-dark)
+    );
+
+  box-shadow:
+    0 10px 24px rgba(255, 59, 59, 0.18);
+
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff5757,
+      var(--page-red-dark)
+    );
+
+  box-shadow:
+    0 14px 32px rgba(255, 59, 59, 0.3);
+}
+
+.cta-button:focus-visible {
+  outline: 3px solid rgba(255, 59, 59, 0.45);
+  outline-offset: 4px;
+}
+
+/* Make a second project button darker automatically */
+
+.btn-row .cta-button:nth-child(2) {
+  border-color: var(--page-border-strong);
+
+  background: rgba(255, 255, 255, 0.07);
+
+  box-shadow: none;
+}
+
+.btn-row .cta-button:nth-child(2):hover {
+  border-color: rgba(255, 59, 59, 0.5);
+
+  background: rgba(255, 59, 59, 0.12);
+}
+
+/* =========================================================
+   EXPERIENCE PAGE
+========================================================= */
+
+#experience {
+  isolation: isolate;
+}
+
+#experience::before {
+  content: "";
+
+  position: absolute;
+  top: 30%;
+  left: -230px;
+  z-index: -1;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 59, 59, 0.08);
+
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/*
+  Surelock spans the complete top row.
+  The other three cards form a balanced row underneath.
+*/
+
+#experience .experience-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 22px;
+
+  align-items: stretch;
+}
+
+/* Standard experience cards */
+
+#experience .experience-item {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+
+  min-width: 0;
+  height: 100%;
+  padding: 22px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--page-border);
+  border-radius: 22px;
+
+  color: var(--page-text);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.24);
+
+  opacity: 1;
+  transform: none;
+
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+#experience .experience-item::before {
+  content: "";
+
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  z-index: -1;
+
+  width: 190px;
+  height: 190px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 59, 59, 0.2),
+      transparent 68%
+    );
+}
+
+#experience .experience-item:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(255, 59, 59, 0.4);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.095),
+      rgba(255, 255, 255, 0.04)
+    );
+
+  box-shadow:
+    0 30px 75px rgba(0, 0, 0, 0.35);
+}
+
+/* Company logo */
+
+#experience .company-logo {
+  width: 76px;
+  height: 76px;
+
+  padding: 9px;
+
+  border: 1px solid var(--page-border);
+  border-radius: 17px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  object-fit: contain;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* Experience content */
+
+#experience .experience-content {
+  min-width: 0;
+}
+
+#experience .experience-content h3 {
+  margin: 0 0 7px;
+
+  color: var(--page-text);
+
+  font-family:
+    "Space Grotesk",
+    "Inter",
+    system-ui,
+    sans-serif;
+
+  font-size: 1.22rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+}
+
+#experience .experience-content h3 a {
+  color: inherit;
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+#experience .experience-content h3 a:hover {
+  color: var(--page-red);
+}
+
+#experience .experience-content p {
+  margin: 0 0 12px;
+}
+
+#experience .muted {
+  color: var(--page-text-muted);
+}
+
+#experience .experience-content ul {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+#experience .experience-content li {
+  position: relative;
+
+  margin: 0 0 9px;
+  padding-left: 18px;
+
+  color: var(--page-text-soft);
+}
+
+#experience .experience-content li::before {
+  content: "";
+
+  position: absolute;
+  top: 0.68em;
+  left: 0;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: var(--page-red);
+
+  box-shadow:
+    0 0 10px rgba(255, 59, 59, 0.5);
+}
+
+/* Experience images */
+
+#experience .exp-media {
+  width: 100%;
+  margin: auto 0 0;
+
+  overflow: hidden;
+
+  border: 1px solid var(--page-border);
+  border-radius: 15px;
+
+  background: #14151a;
+}
+
+#experience .exp-media img {
+  width: 100%;
+  height: 205px;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.45s ease,
+    filter 0.35s ease;
+}
+
+#experience .experience-item:hover .exp-media img {
+  transform: scale(1.035);
+  filter: saturate(1.08) contrast(1.03);
+}
+
+#experience .exp-media figcaption {
+  padding: 9px 12px;
+
+  border-top: 1px solid var(--page-border);
+
+  color: var(--page-text-muted);
+  background: rgba(255, 255, 255, 0.035);
+
+  font-size: 0.79rem;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   FEATURED SURELOCK CARD
+========================================================= */
+
+#experience #surelock-card,
+#experience .experience-item--featured,
+#experience .experience-grid > .experience-item:first-child {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns:
+    96px minmax(0, 1fr) minmax(320px, 40%);
+
+  grid-template-areas:
+    "logo content media";
+
+  align-items: start;
+  gap: 28px;
+
+  padding: 30px;
+
+  border-color: rgba(255, 59, 59, 0.24);
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 59, 59, 0.13),
+      rgba(255, 255, 255, 0.065) 42%,
+      rgba(255, 255, 255, 0.025)
+    );
+}
+
+#experience #surelock-card::after,
+#experience .experience-item--featured::after,
+#experience
+  .experience-grid
+  > .experience-item:first-child::after {
+  content: "CURRENT ROLE";
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  padding: 7px 11px;
+
+  border: 1px solid rgba(255, 59, 59, 0.35);
+  border-radius: 999px;
+
+  color: #ff7b7b;
+  background: rgba(255, 59, 59, 0.09);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+#experience #surelock-card .company-logo,
+#experience .experience-item--featured .company-logo,
+#experience
+  .experience-grid
+  > .experience-item:first-child
+  .company-logo {
+  grid-area: logo;
+
+  width: 96px;
+  height: 96px;
+}
+
+#experience #surelock-card .experience-content,
+#experience .experience-item--featured .experience-content,
+#experience
+  .experience-grid
+  > .experience-item:first-child
+  .experience-content {
+  grid-area: content;
+
+  padding-right: 10px;
+}
+
+#experience #surelock-card .experience-content h3,
+#experience
+  .experience-item--featured
+  .experience-content
+  h3,
+#experience
+  .experience-grid
+  > .experience-item:first-child
+  .experience-content
+  h3 {
+  padding-right: 110px;
+
+  font-size: clamp(1.45rem, 2.5vw, 2rem);
+}
+
+#experience #surelock-card .experience-content ul,
+#experience
+  .experience-item--featured
+  .experience-content
+  ul,
+#experience
+  .experience-grid
+  > .experience-item:first-child
+  .experience-content
+  ul {
+  columns: 2;
+  column-gap: 34px;
+}
+
+#experience #surelock-card .experience-content li,
+#experience
+  .experience-item--featured
+  .experience-content
+  li,
+#experience
+  .experience-grid
+  > .experience-item:first-child
+  .experience-content
+  li {
+  break-inside: avoid;
+}
+
+#experience #surelock-card .exp-media,
+#experience .experience-item--featured .exp-media,
+#experience
+  .experience-grid
+  > .experience-item:first-child
+  .exp-media {
+  grid-area: media;
+
+  align-self: stretch;
+  margin: 0;
+}
+
+#experience #surelock-card .exp-media img,
+#experience .experience-item--featured .exp-media img,
+#experience
+  .experience-grid
+  > .experience-item:first-child
+  .exp-media
+  img {
+  height: 100%;
+  min-height: 310px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+  position: relative;
+
+  margin: 0;
+  padding: 24px 20px;
+
+  border-top: 1px solid var(--page-border);
+
+  color: var(--page-text-muted);
+  background: rgba(5, 5, 7, 0.92);
+
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSIVE — LARGE TABLETS
+========================================================= */
+
+@media (max-width: 1100px) {
+  .projects-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  #experience .experience-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  #experience #surelock-card,
+  #experience .experience-item--featured,
+  #experience
+    .experience-grid
+    > .experience-item:first-child {
+    grid-column: 1 / -1;
+
+    grid-template-columns:
+      84px minmax(0, 1fr) minmax(280px, 38%);
+
+    gap: 22px;
+  }
+
+  /*
+    If exactly three smaller jobs exist, centre the last one
+    on two-column tablet layouts.
+  */
+
+  #experience
+    .experience-grid
+    > .experience-item:last-child:not(:first-child) {
+    grid-column: 1 / -1;
+
+    width: calc(50% - 11px);
+    justify-self: center;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — TABLETS
+========================================================= */
+
+@media (max-width: 820px) {
+  :root {
+    --navbar-offset: 66px;
+  }
+
+  .wrap {
+    width: min(calc(100% - 28px), var(--page-max-width));
+    padding: 48px 0 64px;
+  }
+
+  .section-head {
+    margin-bottom: 32px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #experience .experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #experience
+    .experience-grid
+    > .experience-item:last-child:not(:first-child) {
+    grid-column: auto;
+
+    width: 100%;
+  }
+
+  #experience #surelock-card,
+  #experience .experience-item--featured,
+  #experience
+    .experience-grid
+    > .experience-item:first-child {
+    grid-column: auto;
+
+    grid-template-columns: 76px minmax(0, 1fr);
+    grid-template-areas:
+      "logo content"
+      "media media";
+
+    gap: 18px;
+
+    padding: 23px;
+  }
+
+  #experience #surelock-card .experience-content h3,
+  #experience
+    .experience-item--featured
+    .experience-content
+    h3,
+  #experience
+    .experience-grid
+    > .experience-item:first-child
+    .experience-content
+    h3 {
+    padding-right: 96px;
+
+    font-size: 1.4rem;
+  }
+
+  #experience #surelock-card .experience-content ul,
+  #experience
+    .experience-item--featured
+    .experience-content
+    ul,
+  #experience
+    .experience-grid
+    > .experience-item:first-child
+    .experience-content
+    ul {
+    columns: 1;
+  }
+
+  #experience #surelock-card .exp-media img,
+  #experience .experience-item--featured .exp-media img,
+  #experience
+    .experience-grid
+    > .experience-item:first-child
+    .exp-media
+    img {
+    min-height: 260px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — PHONES
+========================================================= */
+
+@media (max-width: 560px) {
+  .wrap {
+    width: min(calc(100% - 22px), var(--page-max-width));
+    padding: 40px 0 52px;
+  }
+
+  .section-head {
+    padding-left: 17px;
+  }
+
+  .section-head h1,
+  .section-head h2 {
+    font-size: clamp(2.15rem, 13vw, 3.2rem);
+  }
+
+  .project-card,
+  #experience .experience-item {
+    padding: 17px;
+
+    border-radius: 18px;
+  }
+
+  .project-media {
+    border-radius: 12px;
+  }
+
+  .btn-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+
+  #experience #surelock-card,
+  #experience .experience-item--featured,
+  #experience
+    .experience-grid
+    > .experience-item:first-child {
+    display: flex;
+    flex-direction: column;
+
+    padding: 18px;
+  }
+
+  #experience #surelock-card::after,
+  #experience .experience-item--featured::after,
+  #experience
+    .experience-grid
+    > .experience-item:first-child::after {
+    position: static;
+
+    align-self: flex-start;
+
+    order: -2;
+  }
+
+  #experience #surelock-card .company-logo,
+  #experience .experience-item--featured .company-logo,
+  #experience
+    .experience-grid
+    > .experience-item:first-child
+    .company-logo {
+    width: 76px;
+    height: 76px;
+  }
+
+  #experience #surelock-card .experience-content h3,
+  #experience
+    .experience-item--featured
+    .experience-content
+    h3,
+  #experience
+    .experience-grid
+    > .experience-item:first-child
+    .experience-content
+    h3 {
+    padding-right: 0;
+
+    font-size: 1.3rem;
+  }
+
+  #experience #surelock-card .exp-media img,
+  #experience .experience-item--featured .exp-media img,
+  #experience
+    .experience-grid
+    > .experience-item:first-child
+    .exp-media
+    img,
+  #experience .exp-media img {
+    height: 215px;
+    min-height: 0;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .section,
+  .project-card,
+  .project-card::before,
+  .project-card::after,
+  .project-media,
+  #experience .experience-item,
+  #experience .exp-media img,
+  .cta-button {
+    transition: none;
+  }
+
+  .section {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =========================================================
+   PROJECTS PAGE SPACING FIX
+========================================================= */
+
+#overview .wrap,
+.projects-overview .wrap {
+  padding-bottom: 38px;
+}
+
+#projects .wrap {
+  padding-top: 38px;
+}
+
+/* Reduce the space between Overview and Selected Work */
+#overview + #projects,
+.projects-overview + #projects {
+  margin-top: 0;
+}
+
+/* Optional divider below the overview introduction */
+#overview .section-accent,
+.projects-overview .section-accent {
+  margin-top: 34px;
+}
