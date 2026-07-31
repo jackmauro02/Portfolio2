@@ -6,22 +6,22 @@
     <meta name="description" content="Jack Mauro — Work Experience" />
     <title>Experience — Jack Mauro</title>
 
-    <!-- Fonts + Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="expStyles.css" />
+
+    <!-- New filename + version value prevents the browser using the old CSS. -->
+    <link rel="stylesheet" href="eduStyles.css" />
   </head>
+
   <body>
     <a class="skip-link" href="#experience">Skip to content</a>
 
-    <!-- Navbar (injected) -->
     <header id="navbar"></header>
 
-    <!-- Experience -->
     <section id="experience" class="section section-dark">
       <div class="wrap">
         <header class="section-head section-head-invert">
@@ -29,51 +29,74 @@
         </header>
 
         <div class="experience-grid">
-          <!-- Surelock -->
-          <!-- Surelock -->
-          <article class="experience-item">
+          <!-- Surelock McGill -->
+          <article
+            id="surelock-card"
+            class="experience-item experience-item--featured"
+          >
             <img
               src="images/surelock.png"
               alt="Surelock McGill logo"
               class="company-logo"
             />
+
             <figure class="exp-media">
               <img
                 src="images/surelock.jpg"
                 alt="Working at Surelock McGill"
-                onerror="
-                  this.onerror = null;
-                  this.src = 'images/SoftwareDev.png';
-                "
+                onerror="this.onerror=null; this.src='images/SoftwareDev.png';"
               />
-              <figcaption>Assembly, stock systems & quality control</figcaption>
+              <figcaption>
+                Production planning, purchasing, stock management &amp; quality
+                control
+              </figcaption>
             </figure>
+
             <div class="experience-content">
               <h3>
                 <a
                   href="https://www.surelockmcgill.com/na/"
                   target="_blank"
                   rel="noopener"
-                  >Assembly and Stock Systems - Surelock McGill</a
                 >
+                  Production Assistant — Surelock McGill
+                </a>
               </h3>
-              <p class="muted">July 2024 - Current</p>
+
+              <p class="muted">
+                Promoted from Assembly &amp; Collator | July 2024 – Present
+              </p>
+
               <ul>
                 <li>
-                  Manufacturing and engineering high-security systems for
-                  commercial and government-level use.
+                  Promoted to Production Assistant after developing strong
+                  knowledge of the company’s production, stock, and assembly
+                  processes.
                 </li>
                 <li>
-                  Manage and track stock using internal systems, updating,
-                  moving, and maintaining accurate database records.
+                  Use Excel and internal systems to manage, move, track, and
+                  maintain accurate stock and production records.
                 </li>
                 <li>
-                  Support order fulfilment by linking physical assembly with
-                  system-based stock control and inventory accuracy.
+                  Order and purchase production resources, materials, castings,
+                  and manufactured parts required for ongoing jobs.
                 </li>
                 <li>
-                  Maintain high standards of quality, precision, and efficiency
-                  in a fast-paced production environment.
+                  Monitor stock availability and help ensure materials and
+                  components are ready for production deadlines.
+                </li>
+                <li>
+                  Review engineering drawings and part diagrams to confirm
+                  components meet the required dimensions, specifications, and
+                  quality standards.
+                </li>
+                <li>
+                  Identify stock, purchasing, drawing, or component issues and
+                  communicate them with production and engineering teams.
+                </li>
+                <li>
+                  Support the manufacture of high-security systems used in
+                  commercial and government-level environments.
                 </li>
               </ul>
             </div>
@@ -86,25 +109,23 @@
               alt="Wetherspoons logo"
               class="company-logo"
             />
+
             <figure class="exp-media">
               <img
                 src="images/spoons.jpg"
                 alt="Working at Wetherspoons"
-                onerror="
-                  this.onerror = null;
-                  this.src = 'images/Wetherspoons.jfif';
-                "
+                onerror="this.onerror=null; this.src='images/Wetherspoons.jfif';"
               />
               <figcaption>Kitchen shifts — fast-paced service</figcaption>
             </figure>
+
             <div class="experience-content">
               <h3>
                 <a
                   href="https://www.jdwetherspoon.com/"
                   target="_blank"
                   rel="noopener"
-                  >Kitchen Assistant - Wetherspoons</a
-                >
+                >Kitchen Assistant - Wetherspoons</a>
               </h3>
               <p class="muted">
                 June 2022 - Sept 2022, July 2024 - December 2024
@@ -129,25 +150,23 @@
               alt="Coral Reef Waterworld logo"
               class="company-logo"
             />
+
             <figure class="exp-media">
               <img
                 src="images/coral reef.jpg"
                 alt="Working at Coral Reef Waterworld"
-                onerror="
-                  this.onerror = null;
-                  this.src = 'images/coral reef.png';
-                "
+                onerror="this.onerror=null; this.src='images/coral reef.png';"
               />
               <figcaption>Customer assistance and safety</figcaption>
             </figure>
+
             <div class="experience-content">
               <h3>
                 <a
                   href="https://www.everyoneactive.com/centre/coral-reef-waterworld/"
                   target="_blank"
                   rel="noopener"
-                  >General Assistant - Coral Reef Waterworld</a
-                >
+                >General Assistant - Coral Reef Waterworld</a>
               </h3>
               <p class="muted">June 2023 - Aug 2024</p>
               <ul>
@@ -170,25 +189,23 @@
               alt="Primark logo"
               class="company-logo"
             />
+
             <figure class="exp-media">
               <img
                 src="images/primark.jpg"
                 alt="Working at Primark"
-                onerror="
-                  this.onerror = null;
-                  this.src = 'images/primark.png';
-                "
+                onerror="this.onerror=null; this.src='images/primark.png';"
               />
               <figcaption>Customer service &amp; cash handling</figcaption>
             </figure>
+
             <div class="experience-content">
               <h3>
                 <a
                   href="https://www.primark.com/en-gb"
                   target="_blank"
                   rel="noopener"
-                  >Retail Assistant - Primark</a
-                >
+                >Retail Assistant - Primark</a>
               </h3>
               <p class="muted">Feb 2020 - Aug 2021</p>
               <ul>
@@ -208,46 +225,51 @@
       <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
     </footer>
 
-    <!-- Inject navbar + small UX -->
     <script>
-      // Inject navbar
       fetch("navbar.html")
-        .then((r) => r.text())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Navbar request failed: ${response.status}`);
+          }
+          return response.text();
+        })
         .then((html) => {
           document.getElementById("navbar").innerHTML = html;
 
-          // Mobile toggle
           const btn = document.querySelector(".nav-toggle");
           const menu = document.getElementById("mainmenu");
+
           btn?.addEventListener("click", () => {
             const expanded = btn.getAttribute("aria-expanded") === "true";
             btn.setAttribute("aria-expanded", String(!expanded));
-            menu.classList.toggle("open");
+            menu?.classList.toggle("open");
           });
 
-          // Active link highlight
           const path =
             window.location.pathname.split("/").pop() || "Experience.html";
-          document.querySelectorAll(".menu a").forEach((a) => {
-            if (a.getAttribute("href").toLowerCase() === path.toLowerCase()) {
-              a.classList.add("active");
-              a.setAttribute("aria-current", "page");
+
+          document.querySelectorAll(".menu a").forEach((link) => {
+            const href = link.getAttribute("href") || "";
+            if (href.toLowerCase() === path.toLowerCase()) {
+              link.classList.add("active");
+              link.setAttribute("aria-current", "page");
             }
           });
-        });
+        })
+        .catch((error) => console.error(error));
 
-      // Reveal on scroll
       const observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach(
-            (e) => e.isIntersecting && e.target.classList.add("visible"),
-          );
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
         },
         { threshold: 0.12 },
       );
+
       document
-        .querySelectorAll(".section, .experience-item")
-        .forEach((el) => observer.observe(el));
+        .querySelectorAll(".section")
+        .forEach((element) => observer.observe(element));
     </script>
   </body>
 </html>
