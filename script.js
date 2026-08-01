@@ -125,7 +125,13 @@ window.addEventListener("DOMContentLoaded", () => {
    REVEAL ANIMATIONS
 ========================================================= */
 
-const revealElements = document.querySelectorAll(".reveal");
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealElements = document.querySelectorAll(
+  ".project-card, .experience-item, .reveal"
+);
 
 if ("IntersectionObserver" in window) {
   const revealObserver = new IntersectionObserver(
@@ -140,8 +146,9 @@ if ("IntersectionObserver" in window) {
       });
     },
     {
-      threshold: 0.12,
-      rootMargin: "0px 0px -55px",
+      // A tiny amount only needs to enter the screen
+      threshold: 0.01,
+      rootMargin: "0px 0px -30px 0px",
     }
   );
 
@@ -149,12 +156,10 @@ if ("IntersectionObserver" in window) {
     revealObserver.observe(element);
   });
 } else {
-  // Fallback for older browsers
   revealElements.forEach((element) => {
     element.classList.add("visible");
   });
 }
-
 /* =========================================================
    SMOOTH INTERNAL LINKS
 ========================================================= */

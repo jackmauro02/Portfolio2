@@ -734,3 +734,40 @@ dialog::backdrop {
     padding: 24px 17px;
   }
 }
+
+/* =========================================================
+   MOBILE JACKIME HEADER VISIBILITY
+   Portfolio navbar remains permanently visible.
+========================================================= */
+
+@media (max-width: 760px) {
+  .header {
+    transition:
+      transform 220ms ease,
+      opacity 170ms ease,
+      visibility 170ms ease;
+
+    will-change: transform;
+  }
+
+  /*
+    Move the Jackime title and filters behind the permanent
+    portfolio navbar after the user leaves the top.
+  */
+  .header.header-hidden {
+    transform: translateY(calc(-100% - 8px));
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* Prevent the header remaining hidden after resizing to desktop */
+@media (min-width: 761px) {
+  .header {
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+}

@@ -2,22 +2,23 @@
   'use strict';
 
   const elements = {
-    grid: document.getElementById('grid'),
-    empty: document.getElementById('empty'),
-    query: document.getElementById('q'),
-    sortBy: document.getElementById('sortBy'),
-    sortDir: document.getElementById('sortDir'),
-    statusFilter: document.getElementById('statusFilter'),
-    genreFilter: document.getElementById('genreFilter'),
-    picker: document.getElementById('csvPicker'),
-    loaderPanel: document.getElementById('loaderPanel'),
-    loadStatus: document.getElementById('loadStatus'),
-    loadMessage: document.getElementById('loadMessage'),
-    totalCount: document.getElementById('totalCount'),
-    visibleCount: document.getElementById('visibleCount'),
-    watchedCount: document.getElementById('watchedCount'),
-    detail: document.getElementById('detail')
-  };
+  appHeader: document.querySelector('.header'),
+  grid: document.getElementById('grid'),
+  empty: document.getElementById('empty'),
+  query: document.getElementById('q'),
+  sortBy: document.getElementById('sortBy'),
+  sortDir: document.getElementById('sortDir'),
+  statusFilter: document.getElementById('statusFilter'),
+  genreFilter: document.getElementById('genreFilter'),
+  picker: document.getElementById('csvPicker'),
+  loaderPanel: document.getElementById('loaderPanel'),
+  loadStatus: document.getElementById('loadStatus'),
+  loadMessage: document.getElementById('loadMessage'),
+  totalCount: document.getElementById('totalCount'),
+  visibleCount: document.getElementById('visibleCount'),
+  watchedCount: document.getElementById('watchedCount'),
+  detail: document.getElementById('detail')
+};
 
   const PLACEHOLDER_IMAGE =
     'data:image/svg+xml;charset=UTF-8,' +
@@ -1431,7 +1432,90 @@
   ).textContent =
     new Date().getFullYear();
 
+
+
+
+/* =========================================================
+   MOBILE JACKIME HEADER
+   Only visible when the page is at the top.
+========================================================= */
+
+const mobileHeaderQuery =
+  window.matchMedia('(max-width: 760px)');
+
+let mobileHeaderFrame = null;
+
+function updateMobileJackimeHeader() {
+  if (!elements.appHeader) {
+    return;
+  }
+
+  /*
+    A small threshold prevents mobile browser bounce or tiny
+    accidental movements from immediately hiding the controls.
+  */
+  const shouldHide =
+    mobileHeaderQuery.matches &&
+    window.scrollY > 12;
+
+  elements.appHeader.classList.toggle(
+    'header-hidden',
+    shouldHide
+  );
+
+  /*
+    Stop keyboard focus entering controls that are currently
+    hidden from view.
+  */
+  elements.appHeader.inert = shouldHide;
+
+  mobileHeaderFrame = null;
+}
+
+function requestMobileHeaderUpdate() {
+  if (mobileHeaderFrame !== null) {
+    return;
+  }
+
+  mobileHeaderFrame =
+    window.requestAnimationFrame(
+      updateMobileJackimeHeader
+    );
+}
+
+window.addEventListener(
+  'scroll',
+  requestMobileHeaderUpdate,
+  {
+    passive: true
+  }
+);
+
+window.addEventListener(
+  'resize',
+  requestMobileHeaderUpdate
+);
+
+mobileHeaderQuery.addEventListener?.(
+  'change',
+  updateMobileJackimeHeader
+);
+
+updateMobileJackimeHeader();
+
+
+
+
+
+
+
+
+
+
+
   setSortDirectionLabel();
   loadNavbar();
   autoLoadCsv();
 })();
+
+

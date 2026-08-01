@@ -1,4 +1,4 @@
-/* =========================================================
+/* =========================================================random
    JACK MAURO — PROJECTS + EXPERIENCE PAGES
    Shared styling for projects2.html and Experience.html
 ========================================================= */
@@ -172,21 +172,29 @@ body::before {
    SHARED SECTION LAYOUT
 ========================================================= */
 
+/* Sections must always remain visible */
 .section {
   position: relative;
-
-  /* Do not force every section to fill the screen */
   min-height: 0;
-
-  opacity: 0;
-  transform: translateY(18px);
-
-  transition:
-    opacity 0.65s ease,
-    transform 0.65s ease;
+  opacity: 1;
+  transform: none;
 }
 
-.section.visible {
+/* Animate individual cards instead of the entire large section */
+.project-card,
+.experience-item {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease,
+    border-color 0.28s ease,
+    background 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.project-card.visible,
+.experience-item.visible {
   opacity: 1;
   transform: translateY(0);
 }
