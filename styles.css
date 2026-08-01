@@ -1703,3 +1703,916 @@ a {
     transform: none;
   }
 }
+
+/* =========================================================
+   INTERACTIVE HERO PORTRAIT — CONSOLIDATED
+========================================================= */
+
+.hero-visual {
+  --portrait-pointer-x: 62%;
+  --portrait-pointer-y: 28%;
+
+  min-height: 650px;
+  perspective: 1400px;
+  transform: none !important;
+  transform-style: preserve-3d;
+  isolation: isolate;
+}
+
+/* =========================================================
+   ORBIT
+========================================================= */
+
+.portrait-orbit {
+  z-index: 0;
+
+  width: 560px;
+  height: 560px;
+
+  pointer-events: none;
+
+  transition:
+    border-color 0.5s ease,
+    box-shadow 0.5s ease,
+    transform 0.5s ease;
+}
+
+.portrait-orbit::before {
+  pointer-events: none;
+
+  transition:
+    border-color 0.5s ease,
+    animation-duration 0.5s ease;
+}
+
+.portrait-orbit::after {
+  pointer-events: none;
+}
+
+.hero-visual.skills-revealed .portrait-orbit {
+  border-color: rgba(255, 59, 59, 0.28);
+
+  box-shadow:
+    inset 0 0 90px rgba(255, 59, 59, 0.055),
+    0 0 80px rgba(255, 59, 59, 0.08);
+}
+
+.hero-visual.skills-revealed .portrait-orbit::before {
+  border-color: rgba(255, 59, 59, 0.55);
+  animation-duration: 6s;
+}
+
+.hero-visual.portrait-activated .portrait-orbit {
+  animation: portraitOrbitBurst 0.9s ease;
+}
+
+/* =========================================================
+   STABLE CLICKABLE CARD
+========================================================= */
+
+.portrait-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+
+  width: min(380px, 84vw);
+  height: 570px;
+
+  padding: 0;
+  overflow: visible;
+
+  border: 0;
+  border-radius: 30px;
+
+  color: inherit;
+  background: transparent;
+  box-shadow: none;
+
+  cursor: pointer;
+  touch-action: manipulation;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  transform: translate(-50%, -50%) !important;
+  transform-style: preserve-3d;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.portrait-card:focus-visible {
+  outline: 3px solid rgba(255, 59, 59, 0.78);
+  outline-offset: 8px;
+}
+
+/*
+  All content passes pointer input to the stable outer card.
+  This prevents the hover/click vibration.
+*/
+
+.portrait-card * {
+  pointer-events: none;
+}
+
+.portrait-card img {
+  pointer-events: none;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Cursor-following glow */
+
+.portrait-card::before {
+  content: "";
+
+  position: absolute;
+  inset: -24px;
+  z-index: -2;
+
+  border-radius: 42px;
+
+  background:
+    radial-gradient(
+      circle at
+        var(--portrait-pointer-x)
+        var(--portrait-pointer-y),
+      rgba(255, 59, 59, 0.28),
+      rgba(255, 59, 59, 0.08) 26%,
+      transparent 58%
+    );
+
+  opacity: 0.72;
+  filter: blur(17px);
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.3s ease,
+    filter 0.3s ease;
+}
+
+.portrait-card:hover::before,
+.portrait-card:focus-visible::before {
+  opacity: 1;
+  filter: blur(21px);
+}
+
+/* =========================================================
+   INNER CARD MOVEMENT AND FLIP
+========================================================= */
+
+.portrait-card-inner {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  transform:
+    translateZ(0)
+    rotateZ(3deg)
+    rotateY(0deg);
+
+  transform-origin: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  transition:
+    transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.35s ease;
+}
+
+.portrait-card.is-flipped .portrait-card-inner {
+  transform:
+    translateZ(0)
+    rotateZ(-3deg)
+    scale(1.015)
+    rotateY(540deg);
+}
+
+.portrait-card:active .portrait-card-inner {
+  filter: brightness(0.94);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .portrait-card:not(.is-flipped):hover .portrait-card-inner {
+    transform:
+      translateZ(0)
+      rotateZ(-1deg)
+      scale(1.025)
+      rotateY(0deg);
+
+    filter:
+      drop-shadow(0 30px 34px rgba(0, 0, 0, 0.24));
+  }
+
+  .portrait-card.is-flipped:hover .portrait-card-inner {
+    transform:
+      translateZ(0)
+      rotateZ(-2deg)
+      scale(1.02)
+      rotateY(540deg);
+  }
+}
+
+/* =========================================================
+   BOTH CARD FACES
+========================================================= */
+
+.portrait-face {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 30px;
+
+  box-shadow:
+    0 38px 90px rgba(0, 0, 0, 0.42);
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* =========================================================
+   FRONT FACE
+========================================================= */
+
+.portrait-front {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.035)
+    );
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.portrait-front::after {
+  content: "";
+
+  position: absolute;
+  top: -110px;
+  right: -100px;
+
+  width: 270px;
+  height: 270px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 59, 59, 0.26),
+      transparent 68%
+    );
+
+  pointer-events: none;
+}
+
+.portrait-front .portrait-topline,
+.portrait-front .portrait-caption {
+  position: relative;
+  z-index: 2;
+
+  flex: 0 0 auto;
+}
+
+.portrait-front .portrait-caption {
+  padding: 15px 17px 17px;
+}
+
+.portrait-front img {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+  flex: 1;
+
+  width: calc(100% - 18px);
+  min-height: 0;
+  height: auto;
+  aspect-ratio: auto;
+
+  margin: 0 9px;
+
+  border-radius: 21px;
+
+  object-fit: cover;
+  object-position: center top;
+
+  filter:
+    saturate(0.9)
+    contrast(1.04);
+
+  transform: translateZ(0);
+
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .portrait-card:not(.is-flipped):hover .portrait-front img {
+    transform:
+      translateZ(0)
+      scale(1.025);
+
+    filter:
+      saturate(1)
+      contrast(1.045);
+  }
+}
+
+.portrait-caption > div {
+  display: grid;
+  gap: 2px;
+}
+
+.portrait-caption > div strong,
+.portrait-caption > div span {
+  display: block;
+}
+
+.portrait-click-icon {
+  display: grid !important;
+  place-items: center;
+
+  width: 35px;
+  height: 35px;
+
+  flex: 0 0 auto;
+
+  border: 1px solid rgba(255, 59, 59, 0.28);
+  border-radius: 50%;
+
+  color: #ff8585;
+  background: rgba(255, 59, 59, 0.1);
+
+  font-size: 1rem;
+
+  transition:
+    transform 0.35s ease,
+    color 0.35s ease,
+    background 0.35s ease;
+}
+
+.portrait-card:hover .portrait-click-icon {
+  color: #fff;
+  background: var(--red);
+
+  transform: rotate(150deg);
+}
+
+/* =========================================================
+   BACK FACE
+========================================================= */
+
+.portrait-back {
+  justify-content: space-between;
+
+  padding: 27px;
+
+  color: #fff;
+
+  background:
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(255, 59, 59, 0.3),
+      transparent 18rem
+    ),
+    linear-gradient(
+      145deg,
+      #17171d,
+      #0b0b0f 58%,
+      #190b0f
+    );
+
+  transform: rotateY(180deg);
+}
+
+.portrait-back::before {
+  content: "JM";
+
+  position: absolute;
+  right: -15px;
+  bottom: -58px;
+
+  color: rgba(255, 255, 255, 0.025);
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12rem;
+  font-weight: 700;
+  letter-spacing: -0.12em;
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+.portrait-back-top {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding-bottom: 16px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.portrait-back-top p {
+  margin: 0;
+
+  color: #ff9494;
+
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.portrait-back-top > span {
+  color: var(--red);
+  font-size: 1.1rem;
+}
+
+.portrait-back-intro {
+  position: relative;
+  z-index: 1;
+
+  margin-top: 17px;
+}
+
+.portrait-back-number {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.portrait-back-intro h2 {
+  margin: 0;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.15rem;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.portrait-back-intro p {
+  margin: 12px 0 0;
+
+  color: rgba(255, 255, 255, 0.58);
+
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+/* Skill rows */
+
+.portrait-skill-list {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  gap: 8px;
+
+  margin-top: 16px;
+}
+
+.portrait-skill {
+  display: grid;
+  grid-template-columns: 33px minmax(0, 1fr);
+  align-items: center;
+  gap: 11px;
+
+  padding: 10px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.portrait-skill-number {
+  display: grid;
+  place-items: center;
+
+  width: 33px;
+  height: 33px;
+
+  border-radius: 10px;
+
+  color: #ff9292;
+  background: rgba(255, 59, 59, 0.11);
+
+  font-size: 0.63rem;
+  font-weight: 800;
+}
+
+.portrait-skill strong,
+.portrait-skill small {
+  display: block;
+}
+
+.portrait-skill strong {
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+.portrait-skill small {
+  margin-top: 2px;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 0.62rem;
+  line-height: 1.35;
+}
+
+.portrait-flip-back {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+
+  margin: 14px 0 0;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 0.64rem;
+  font-weight: 700;
+}
+
+/* =========================================================
+   CLICK HINT
+========================================================= */
+
+.portrait-hint {
+  position: absolute;
+  top: calc(50% + 307px);
+  left: 50%;
+  z-index: 10;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin: 0;
+  padding: 7px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 999px;
+
+  color: rgba(255, 255, 255, 0.54);
+  background: rgba(10, 10, 14, 0.65);
+
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  pointer-events: none;
+
+  transform: translateX(-50%);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition: opacity 0.3s ease;
+}
+
+.portrait-hint span {
+  color: var(--red);
+}
+
+.hero-visual.skills-revealed .portrait-hint {
+  opacity: 0.25;
+}
+
+/* =========================================================
+   FLOATING SKILL CARDS
+========================================================= */
+
+.floating-card {
+  z-index: 8;
+
+  pointer-events: none;
+
+  border-color: rgba(255, 255, 255, 0.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25, 25, 31, 0.96),
+      rgba(10, 10, 14, 0.92)
+    );
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(255, 59, 59, 0.04);
+}
+
+.floating-card::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(255, 59, 59, 0.13),
+      transparent 46%
+    );
+
+  pointer-events: none;
+}
+
+.floating-card-code {
+  top: 10%;
+  right: -13%;
+}
+
+.floating-card-work {
+  bottom: 17%;
+  left: -18%;
+}
+
+.floating-card-design {
+  right: -17%;
+  bottom: 2%;
+}
+
+/* Move Production Systems away while the skills face is open */
+
+.hero-visual.skills-revealed .floating-card-work {
+  left: -36%;
+  bottom: 16%;
+}
+
+/* Other decorative elements */
+
+.hero-glow,
+.portrait-glow {
+  pointer-events: none;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1060px) {
+  .floating-card-code {
+    top: 8%;
+    right: -5%;
+  }
+
+  .floating-card-work {
+    bottom: 15%;
+    left: -6%;
+  }
+
+  .floating-card-design {
+    right: -5%;
+    bottom: 0;
+  }
+
+  .hero-visual.skills-revealed .floating-card-work {
+    left: -22%;
+    bottom: 14%;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero-visual {
+    min-height: 670px;
+  }
+
+  .portrait-card {
+    width: min(370px, 76vw);
+    height: 555px;
+  }
+
+  .portrait-orbit {
+    width: 530px;
+    height: 530px;
+  }
+
+  .portrait-hint {
+    top: calc(50% + 299px);
+  }
+}
+
+@media (max-width: 620px) {
+  .hero-visual {
+    min-height: 570px;
+  }
+
+  .portrait-card {
+    width: min(310px, 80vw);
+    height: 480px;
+  }
+
+  .portrait-card-inner {
+    transform:
+      translateZ(0)
+      rotateZ(2deg)
+      rotateY(0deg);
+  }
+
+  .portrait-card.is-flipped .portrait-card-inner {
+    transform:
+      translateZ(0)
+      rotateZ(-2deg)
+      rotateY(540deg);
+  }
+
+  .portrait-orbit {
+    width: 405px;
+    height: 405px;
+  }
+
+  .portrait-hint {
+    top: calc(50% + 258px);
+    font-size: 0.58rem;
+  }
+
+  .portrait-back {
+    padding: 20px;
+  }
+
+  .portrait-back-intro {
+    margin-top: 12px;
+  }
+
+  .portrait-back-intro h2 {
+    font-size: 1.72rem;
+  }
+
+  .portrait-back-intro p {
+    margin-top: 8px;
+    font-size: 0.7rem;
+  }
+
+  .portrait-skill-list {
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .portrait-skill {
+    grid-template-columns: 29px minmax(0, 1fr);
+    padding: 7px 8px;
+  }
+
+  .portrait-skill-number {
+    width: 29px;
+    height: 29px;
+  }
+
+  .portrait-skill strong {
+    font-size: 0.68rem;
+  }
+
+  .portrait-skill small {
+    font-size: 0.56rem;
+  }
+
+  .portrait-flip-back {
+    margin-top: 8px;
+  }
+
+  .floating-card {
+    min-width: 160px;
+    max-width: 175px;
+
+    padding: 9px 10px;
+
+    border-radius: 13px;
+  }
+
+  .floating-card strong {
+    font-size: 0.7rem;
+  }
+
+  .floating-card div > span {
+    font-size: 0.56rem;
+  }
+
+  .floating-icon {
+    width: 31px;
+    height: 31px;
+
+    font-size: 0.78rem;
+  }
+
+  .floating-card-code {
+    top: 3%;
+    right: -1%;
+  }
+
+  .floating-card-work {
+    bottom: 12%;
+    left: -1%;
+  }
+
+  .floating-card-design {
+    right: 0;
+    bottom: -2%;
+  }
+
+  .hero-visual.skills-revealed .floating-card-work {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 410px) {
+  .floating-card {
+    min-width: 145px;
+    max-width: 155px;
+  }
+
+  .floating-card-design {
+    display: none;
+  }
+
+  .floating-card-code {
+    right: -4px;
+  }
+
+  .floating-card-work {
+    left: -4px;
+  }
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes portraitOrbitBurst {
+  0%,
+  100% {
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+  45% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.08);
+
+    border-color: rgba(255, 59, 59, 0.7);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-card-inner {
+    transform:
+      rotateZ(2deg)
+      rotateY(0deg);
+
+    transition: none;
+  }
+
+  .portrait-card.is-flipped .portrait-card-inner {
+    transform:
+      rotateZ(-2deg)
+      rotateY(180deg);
+  }
+
+  .portrait-card::before,
+  .portrait-front img,
+  .portrait-click-icon,
+  .portrait-orbit {
+    animation: none;
+    transition: none;
+  }
+}
+

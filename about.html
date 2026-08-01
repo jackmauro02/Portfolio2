@@ -1,212 +1,688 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About — Jack Mauro</title>
-  <meta name="description" content="About Jack Mauro" />
 
-  <!-- Fonts + Styles -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>About Me — Jack Mauro</title>
+
+  <meta
+    name="description"
+    content="Learn more about Jack Mauro — a Business Information Technology graduate, Production Assistant and practical technology enthusiast based in Bracknell."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="aboutStyles.css" />
+  <link rel="stylesheet" href="navbar.css" />
 </head>
-<body>
-  <a class="skip-link" href="#about">Skip to content</a>
 
-  <!-- Navbar injected -->
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Shared navbar is inserted here -->
   <header id="navbar"></header>
 
-  <main id="about">
-    <!-- Hero -->
-    <section class="section section-light">
-      <div class="wrap">
-        <header class="section-head">
-          <h1>About Me</h1>
-          <p class="lead">
-            I’m Jack Mauro — a Business Information Technology graduate who enjoys building useful software,
-            solving problems, and learning how things work. I like the space where business goals meet
-            practical technology.
+  <main id="main-content">
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
+
+    <section id="about" class="about-hero hero-section">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="availability-pill">
+            <span class="availability-dot" aria-hidden="true"></span>
+            Business Information Technology graduate
+          </div>
+
+          <p class="eyebrow">About Jack Mauro</p>
+
+          <h1>
+            A practical technologist who enjoys
+            <span>building, fixing and improving things.</span>
+          </h1>
+
+          <p class="hero-lead">
+            I combine technology, business understanding, visual creativity
+            and hands-on workplace experience to create useful solutions that
+            are clear, reliable and genuinely practical.
+          </p>
+
+          <p class="hero-summary">
+            I am currently working as a Production Assistant at Surelock
+            McGill, where I support stock control, purchasing, production
+            planning and quality checks. Outside of work, I build websites,
+            applications, creative coding projects and tools that help me
+            develop my technical ability.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="projects2.html">
+              Explore my projects
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="images/CV.pdf"
+              target="_blank"
+              rel="noopener"
+            >
+              View my CV
+            </a>
+          </div>
+
+          <div class="hero-details">
+            <div class="hero-detail">
+              <strong>Based in</strong>
+              <span>Bracknell, Berkshire</span>
+            </div>
+
+            <div class="hero-detail">
+              <strong>Current role</strong>
+              <span>Production Assistant</span>
+            </div>
+
+            <div class="hero-detail">
+              <strong>Degree</strong>
+              <span>BSc Business Information Technology</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="portrait-glow" aria-hidden="true"></div>
+
+          <div class="portrait-card">
+            <div class="portrait-top">
+              <span>Profile</span>
+              <span class="portrait-status">Open to opportunities</span>
+            </div>
+
+            <div class="portrait-image">
+              <img
+                src="images/smart.jpg"
+                alt="Portrait of Jack Mauro"
+              />
+            </div>
+
+            <div class="portrait-content">
+              <p class="portrait-name">Jack Mauro</p>
+
+              <p class="portrait-role">
+                Technology graduate • Production Assistant
+              </p>
+
+              <div class="portrait-tags">
+                <span>Front-end</span>
+                <span>IT support</span>
+                <span>Hardware</span>
+                <span>UI design</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-card floating-card-code">
+            <span class="floating-icon">&lt;/&gt;</span>
+            <div>
+              <strong>Web development</strong>
+              <small>HTML, CSS & JavaScript</small>
+            </div>
+          </div>
+
+          <div class="floating-card floating-card-design">
+            <span class="floating-icon">✦</span>
+            <div>
+              <strong>Creative thinking</strong>
+              <small>UI, Photoshop & ideas</small>
+            </div>
+          </div>
+
+          <div class="floating-card floating-card-hardware">
+            <span class="floating-icon">⚙</span>
+            <div>
+              <strong>Hands-on mindset</strong>
+              <small>Hardware & troubleshooting</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#my-story">
+        <span>Discover more</span>
+        <span class="scroll-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- ===================================================
+         MY STORY
+    ==================================================== -->
+
+    <section id="my-story" class="content-section">
+      <div class="page-wrap">
+        <header class="section-heading reveal">
+          <p class="section-eyebrow">Who I am</p>
+          <h2>Technology skills backed by real-world experience.</h2>
+
+          <p>
+            My route into technology has combined university projects,
+            independent learning, customer-facing work and practical
+            manufacturing experience.
           </p>
         </header>
-        <div class="profile-grid">
-          <!-- Profile card -->
-          <article class="profile-card">
-            <img src="images/smart.jpg" alt="Portrait of Jack Mauro">
-            <h2>Jack Mauro</h2>
-            <p class="tagline">B.I.T Graduate • Aspiring IT Professional</p>
-            <ul class="facts">
-              <li><strong>Based:</strong> Bracknell, Berkshire, UK</li>
-              <li><strong>Degree:</strong> Business Information Technology (2:2), University of Kent</li>
-              <li><strong>Transport:</strong> Own car & full UK driving licence</li>
-              <li><strong>Email:</strong> <a href="mailto:jackmauro02@gmail.com">jackmauro02@gmail.com</a></li>
-              <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jackmauro02" target="_blank" rel="noopener">linkedin.com/in/jackmauro02</a></li>
-            </ul>
-            <div class="btn-row">
-              <a class="cta-button" href="projects2.html">See my projects</a>
-              <a class="cta-secondary" href="education.html">Education</a>
-            </div>
-            <div class="btn-row">
-              <a class="cta-button2" href="images/CV.pdf">View my CV</a>
-            </div>
+
+        <div class="story-grid">
+          <article class="story-copy reveal">
+            <p>
+              I graduated from the University of Kent with a degree in
+              Business Information Technology. The course allowed me to
+              explore software development, web technologies, databases,
+              algorithms, project management, entrepreneurship and the way
+              technology supports organisations.
+            </p>
+
+            <p>
+              What interests me most is using technology to solve a genuine
+              problem. I enjoy taking an idea, breaking it into manageable
+              parts and gradually turning it into something that works,
+              whether that is a website, an application, a dashboard, a small
+              game or a workflow improvement.
+            </p>
+
+            <p>
+              My employment history has also given me experience in
+              manufacturing, hospitality, leisure and retail. Those roles
+              helped me develop communication, reliability, teamwork,
+              customer awareness and the ability to remain calm in busy
+              environments.
+            </p>
+
+            <p>
+              I am especially interested in roles involving IT support,
+              technical operations, hardware, front-end development and user
+              experience. I enjoy learning new systems and I am comfortable
+              asking questions, investigating problems and working towards a
+              practical answer.
+            </p>
           </article>
 
-          <!-- Quick highlights -->
-          <article class="highlights-card">
-            <h3>What I’m about</h3>
-            <ul class="checklist">
-              <li>Enjoy turning ideas into working apps, websites, and prototypes.</li>
-              <li>Comfortable across both technical and business topics.</li>
-              <li>Keen interest in hardware, building my own computers</li>
-              <li>Hands-on with <strong>Java</strong>, <strong>JavaScript</strong>, <strong>HTML/CSS</strong>, <strong>Firebase</strong>, <strong>SQL</strong>, and <strong>Unity/C#</strong>.</li>
-              <li>Experience from roles in manufacturing, hospitality, leisure, and retail — strong teamwork & communication.</li>
-            </ul>
-
-            <div class="pill-row">
-              <span class="pill">Java</span>
-              <span class="pill">JavaScript</span>
-              <span class="pill">HTML</span>
-              <span class="pill">CSS</span>
-              <span class="pill">Firebase</span>
-              <span class="pill">SQL</span>
-              <span class="pill">Unity</span>
-              <span class="pill">C#</span>
-              <span class="pill">Webflow</span>
+          <aside class="snapshot-card reveal">
+            <div class="snapshot-header">
+              <p>Quick profile</p>
+              <span>01</span>
             </div>
 
-            <div class="two-col">
+            <dl class="snapshot-list">
               <div>
-                <h4>Currently exploring</h4>
-                <ul class="bullets">
-                  <li>React best practices & component design</li>
-                  <li>Cloud-backed apps (Firebase/Serverless)</li>
-                  <li>Creative coding & small game prototypes</li>
-                </ul>
+                <dt>Current position</dt>
+                <dd>Production Assistant at Surelock McGill</dd>
               </div>
+
               <div>
-                <h4>Values & strengths</h4>
-                <ul class="bullets">
-                  <li>Clear communication & reliability</li>
-                  <li>Problem-solving & learning quickly</li>
-                  <li>Customer focus from real-world roles</li>
-                </ul>
+                <dt>Education</dt>
+                <dd>
+                  Business Information Technology, University of Kent
+                </dd>
               </div>
-            </div>
-          </article>
-        </div>
-      </div>
-      <div class="section-accent" aria-hidden="true"></div>
-    </section>
 
-    <!-- Personal side -->
-    <section class="section section-white">
-      <div class="wrap">
-        <header class="section-head">
-          <h2>Outside of work</h2>
-          <p class="muted">A few things I enjoy in my free time.</p>
-        </header>
+              <div>
+                <dt>Location</dt>
+                <dd>Bracknell, Berkshire, United Kingdom</dd>
+              </div>
 
-        <div class="personal-grid">
-          <article class="card">
-            <h3>Side projects</h3>
-            <p>I like tinkering — from creative coding experiments (p5.js) to building small Unity prototypes or
-              improving my portfolio site. Learning by making is how i learn best and keeps me motivated.</p>
-          </article>
+              <div>
+                <dt>Transport</dt>
+                <dd>Full UK driving licence and own car</dd>
+              </div>
 
-          <article class="card">
-            <h3>Tech & gadgets</h3>
-            <p>I’m curious about how things work - whether that’s exploring new frameworks, trying tools that boost
-              productivity, or keeping up with computing trends.</p>
-          </article>
+              <div>
+                <dt>Email</dt>
+                <dd>
+                  <a href="mailto:jackmauro02@gmail.com">
+                    jackmauro02@gmail.com
+                  </a>
+                </dd>
+              </div>
 
-          <article class="card">
-            <h3>Getting around</h3>
-            <p>I have a full UK driving licence and a car. I enjoy the flexibility to travel, visit friends and family,
-              and take local road trips.</p>
-          </article>
-
-          <article class="card">
-            <h3>Staying active</h3>
-            <p>I like keeping active and balancing screen time with time outdoors. It helps me reset and stay focused
-              for projects. Especially teams sports like basketball and football.</p>
-          </article>
+              <div>
+                <dt>LinkedIn</dt>
+                <dd>
+                  <a
+                    href="https://www.linkedin.com/in/jackmauro02"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    linkedin.com/in/jackmauro02
+                  </a>
+                </dd>
+              </div>
+            </dl>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- Experience snapshot -->
-    <section class="section section-grey">
-      <div class="wrap">
-        <header class="section-head">
-          <h2>Experience at a glance</h2>
+    <!-- ===================================================
+         WHAT I BRING
+    ==================================================== -->
+
+    <section class="content-section section-dark">
+      <div class="page-wrap">
+        <header class="section-heading reveal">
+          <p class="section-eyebrow">What I bring</p>
+          <h2>A useful combination of technical and people skills.</h2>
+
+          <p>
+            My strongest work comes from combining problem-solving, visual
+            thinking and practical awareness rather than treating them as
+            separate skills.
+          </p>
         </header>
-        <div class="exp-grid">
-          <article class="exp-item">
-            <img src="images/surelock.png" alt="Surelock McGill logo">
-            <div>
-              <h4>Assembly & Collations — Surelock McGill</h4>
-              <p class="muted">Jul 2024 – Current</p>
+
+        <div class="strength-grid">
+          <article class="strength-card reveal">
+            <span class="strength-number">01</span>
+            <div class="strength-icon">&lt;/&gt;</div>
+
+            <h3>Building useful products</h3>
+
+            <p>
+              I enjoy developing responsive websites, applications and
+              prototypes that have a clear purpose and are straightforward
+              for people to use.
+            </p>
+          </article>
+
+          <article class="strength-card reveal">
+            <span class="strength-number">02</span>
+            <div class="strength-icon">↔</div>
+
+            <h3>Bridging business and technology</h3>
+
+            <p>
+              My degree taught me to consider both the technical solution and
+              the wider business need, including usability, value, resources
+              and implementation.
+            </p>
+          </article>
+
+          <article class="strength-card reveal">
+            <span class="strength-number">03</span>
+            <div class="strength-icon">⚙</div>
+
+            <h3>Practical problem-solving</h3>
+
+            <p>
+              I like investigating how systems work, identifying where
+              something is going wrong and taking a methodical approach to
+              finding a solution.
+            </p>
+          </article>
+
+          <article class="strength-card reveal">
+            <span class="strength-number">04</span>
+            <div class="strength-icon">✦</div>
+
+            <h3>Visual and creative thinking</h3>
+
+            <p>
+              My experience with Photoshop, UI design and creative coding
+              helps me present information clearly and give projects a more
+              considered visual identity.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         TOOLKIT
+    ==================================================== -->
+
+    <section class="content-section">
+      <div class="page-wrap">
+        <header class="section-heading reveal">
+          <p class="section-eyebrow">Technical toolkit</p>
+          <h2>The technologies and tools I work with.</h2>
+        </header>
+
+        <div class="toolkit-grid">
+          <article class="toolkit-card reveal">
+            <div class="toolkit-heading">
+              <span>01</span>
+              <h3>Front-end development</h3>
+            </div>
+
+            <p>
+              Responsive interfaces, interactive pages and accessible,
+              maintainable website layouts.
+            </p>
+
+            <div class="skill-pills">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Responsive design</span>
+              <span>Webflow</span>
             </div>
           </article>
-          <article class="exp-item">
-            <img src="images/wetherspoons.jfif" alt="Wetherspoons logo">
-            <div>
-              <h4>Kitchen Assistant — Wetherspoons</h4>
-              <p class="muted">Jun 2022 – Sep 2022, Jul 2024 – Dec 2024</p>
+
+          <article class="toolkit-card reveal">
+            <div class="toolkit-heading">
+              <span>02</span>
+              <h3>Applications and data</h3>
+            </div>
+
+            <p>
+              Experience developing projects using databases, authentication
+              and cloud-backed application features.
+            </p>
+
+            <div class="skill-pills">
+              <span>Firebase</span>
+              <span>SQL</span>
+              <span>Java</span>
+              <span>React Native</span>
+              <span>APIs</span>
             </div>
           </article>
-          <article class="exp-item">
-            <img src="images/coral reef.png" alt="Coral Reef logo">
-            <div>
-              <h4>General Assistant — Coral Reef Waterworld</h4>
-              <p class="muted">Jun 2023 – Aug 2024</p>
+
+          <article class="toolkit-card reveal">
+            <div class="toolkit-heading">
+              <span>03</span>
+              <h3>Creative development</h3>
+            </div>
+
+            <p>
+              Creative coding, interface design, image manipulation and small
+              interactive game projects.
+            </p>
+
+            <div class="skill-pills">
+              <span>Photoshop</span>
+              <span>p5.js</span>
+              <span>Unity</span>
+              <span>C#</span>
+              <span>UI design</span>
             </div>
           </article>
-          <article class="exp-item">
-            <img src="images/primark.png" alt="Primark logo">
-            <div>
-              <h4>Retail Assistant — Primark</h4>
-              <p class="muted">Feb 2020 – Aug 2021</p>
+
+          <article class="toolkit-card reveal">
+            <div class="toolkit-heading">
+              <span>04</span>
+              <h3>Workplace tools</h3>
+            </div>
+
+            <p>
+              Practical use of digital tools for stock control, purchasing,
+              documentation, organisation and communication.
+            </p>
+
+            <div class="skill-pills">
+              <span>Excel</span>
+              <span>Microsoft Office</span>
+              <span>GitHub</span>
+              <span>Stock systems</span>
+              <span>Technical drawings</span>
             </div>
           </article>
         </div>
-        <div class="cta-row">
-          <a class="cta-link" href="Experience.html">See full experience →</a>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         CURRENT ROLE
+    ==================================================== -->
+
+    <section class="content-section current-role-section">
+      <div class="page-wrap">
+        <article class="current-role-card reveal">
+          <div class="role-logo">
+            <img
+              src="images/surelock.png"
+              alt="Surelock McGill logo"
+            />
+          </div>
+
+          <div class="role-content">
+            <div class="role-title-row">
+              <div>
+                <p class="section-eyebrow">Current role</p>
+                <h2>Production Assistant</h2>
+                <p class="role-company">
+                  Surelock McGill • July 2024 – Present
+                </p>
+              </div>
+
+              <span class="current-badge">Current</span>
+            </div>
+
+            <p class="role-introduction">
+              My current position has developed from hands-on assembly and
+              stock work into a role with more responsibility across
+              purchasing, stock management, production support and quality.
+            </p>
+
+            <div class="role-responsibilities">
+              <div>
+                <strong>Stock and purchasing</strong>
+                <p>
+                  Moving and recording stock, reviewing requirements and
+                  helping purchase materials, parts and castings.
+                </p>
+              </div>
+
+              <div>
+                <strong>Planning and organisation</strong>
+                <p>
+                  Monitoring orders, deadlines and availability to help
+                  production remain organised.
+                </p>
+              </div>
+
+              <div>
+                <strong>Quality and specifications</strong>
+                <p>
+                  Reviewing drawings and specifications, checking components
+                  and raising concerns when something does not meet the
+                  expected standard.
+                </p>
+              </div>
+            </div>
+
+            <a class="text-link" href="Experience.html">
+              Read my full work experience
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         PROJECT PROOF
+    ==================================================== -->
+
+    <section class="content-section">
+      <div class="page-wrap">
+        <header class="section-heading reveal">
+          <p class="section-eyebrow">Learning by building</p>
+          <h2>Projects that demonstrate how I work.</h2>
+        </header>
+
+        <div class="project-proof-grid">
+          <article class="proof-card reveal">
+            <p class="proof-type">Mobile application</p>
+
+            <h3>Sports club booking platform</h3>
+
+            <p>
+              A university dissertation project designed to support sports
+              club bookings, training schedules, fitness plans and member
+              accounts using React Native and Firebase.
+            </p>
+
+            <div class="proof-tags">
+              <span>React Native</span>
+              <span>Firebase</span>
+              <span>UX</span>
+            </div>
+          </article>
+
+          <article class="proof-card reveal">
+            <p class="proof-type">Creative development</p>
+
+            <h3>Image-to-shape generator</h3>
+
+            <p>
+              An interactive p5.js project that transforms images into
+              customisable patterns using different shapes, colours and
+              levels of randomness.
+            </p>
+
+            <div class="proof-tags">
+              <span>JavaScript</span>
+              <span>p5.js</span>
+              <span>Creative coding</span>
+            </div>
+          </article>
+
+          <article class="proof-card reveal">
+            <p class="proof-type">Personal project</p>
+
+            <h3>Jackime anime tracker</h3>
+
+            <p>
+              A client-side anime tracker that combines a personal list with
+              AniList data, filters, ratings, progress tracking and a
+              responsive interface.
+            </p>
+
+            <div class="proof-tags">
+              <span>JavaScript</span>
+              <span>GraphQL API</span>
+              <span>Local storage</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-action reveal">
+          <a class="button button-primary" href="projects2.html">
+            View all projects
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         OUTSIDE WORK
+    ==================================================== -->
+
+    <section class="content-section section-dark">
+      <div class="page-wrap">
+        <header class="section-heading reveal">
+          <p class="section-eyebrow">Outside of work</p>
+          <h2>The interests that keep me curious.</h2>
+        </header>
+
+        <div class="interest-grid">
+          <article class="interest-card reveal">
+            <span class="interest-icon">PC</span>
+            <h3>Computers and hardware</h3>
+
+            <p>
+              I enjoy building computers, researching components,
+              troubleshooting problems and understanding how hardware and
+              software work together.
+            </p>
+          </article>
+
+          <article class="interest-card reveal">
+            <span class="interest-icon">UI</span>
+            <h3>Websites and design</h3>
+
+            <p>
+              I regularly improve my portfolio and experiment with new
+              website ideas, layouts, interactions and visual styles.
+            </p>
+          </article>
+
+          <article class="interest-card reveal">
+            <span class="interest-icon">♟</span>
+            <h3>Chess and strategy</h3>
+
+            <p>
+              Chess gives me another way to practise planning, pattern
+              recognition, decision-making and learning from mistakes.
+            </p>
+          </article>
+
+          <article class="interest-card reveal">
+            <span class="interest-icon">+</span>
+            <h3>Sport and staying active</h3>
+
+            <p>
+              I enjoy balancing screen time with sport and outdoor activity,
+              particularly football, basketball and getting out with friends
+              and family.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         FINAL CTA
+    ==================================================== -->
+
+    <section class="about-cta">
+      <div class="page-wrap">
+        <div class="cta-panel reveal">
+          <div>
+            <p class="section-eyebrow">What comes next</p>
+
+            <h2>
+              Looking for someone practical, curious and ready to develop?
+            </h2>
+
+            <p>
+              I am interested in opportunities across IT support, technical
+              operations, front-end development, hardware and user-focused
+              technology.
+            </p>
+          </div>
+
+          <div class="cta-panel-actions">
+            <a class="button button-primary" href="contact.html">
+              Contact me
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="images/CV.pdf"
+              target="_blank"
+              rel="noopener"
+            >
+              View my CV
+            </a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <p>&copy; 2025 Jack Mauro. All rights reserved.</p>
-  </footer>
+  <div id="footer-placeholder"></div>
+    <script src="/footer.js?v=2.1"></script>
 
-  <!-- Inject navbar + active link + mobile toggle -->
-  <script>
-    fetch("navbar.html")
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById("navbar").innerHTML = html;
-
-        // Mobile toggle
-        const btn = document.querySelector(".nav-toggle");
-        const menu = document.getElementById("mainmenu");
-        btn?.addEventListener("click", () => {
-          const expanded = btn.getAttribute("aria-expanded") === "true";
-          btn.setAttribute("aria-expanded", String(!expanded));
-          menu?.classList.toggle("open");
-        });
-
-        // Active link highlight
-        const path = (location.pathname.split("/").pop() || "about.html").toLowerCase();
-        document.querySelectorAll(".menu a").forEach(a => {
-          if (a.getAttribute("href").toLowerCase() === path) {
-            a.classList.add("active");
-            a.setAttribute("aria-current", "page");
-          }
-        });
-      });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

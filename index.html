@@ -78,46 +78,144 @@
           </dl>
         </div>
 
-        <div class="hero-visual hero-reveal" aria-label="Portrait and skills summary">
-          <div class="portrait-orbit" aria-hidden="true"></div>
+        <div
+  class="hero-visual hero-reveal"
+  aria-label="Interactive portrait and skills summary"
+>
+  <div class="portrait-orbit" aria-hidden="true"></div>
 
-          <div class="portrait-card">
-            <div class="portrait-topline">
-              <span>Portfolio / 2026</span>
-              <span class="portrait-light" aria-hidden="true"></span>
-            </div>
-            <img src="images/smart.jpg" alt="Portrait of Jack Mauro" />
-            <div class="portrait-caption">
-              <strong>Jack Mauro</strong>
-              <span>IT · Web · Design</span>
+  <!-- Interactive portrait Easter egg -->
+  <div
+    class="portrait-card portrait-flip-card"
+    role="button"
+    tabindex="0"
+    aria-pressed="false"
+    aria-label="Reveal Jack Mauro's skills"
+  >
+    <div class="portrait-card-inner">
+      <!-- Front of card -->
+      <div class="portrait-face portrait-front">
+        <div class="portrait-topline">
+          <span>Portfolio / 2026</span>
+
+          <span class="portrait-light" aria-hidden="true"></span>
+        </div>
+
+        <img
+          src="images/smart.jpg"
+          alt="Portrait of Jack Mauro"
+        />
+
+        <div class="portrait-caption">
+          <div>
+            <strong>Jack Mauro</strong>
+            <span>IT · Web · Design</span>
+          </div>
+
+          <span class="portrait-click-icon" aria-hidden="true">
+            ↻
+          </span>
+        </div>
+      </div>
+
+      <!-- Back of card -->
+      <div class="portrait-face portrait-back">
+        <div class="portrait-back-top">
+          <p>Easter egg unlocked</p>
+          <span aria-hidden="true">✦</span>
+        </div>
+
+        <div class="portrait-back-intro">
+          <span class="portrait-back-number">JM / 04</span>
+
+          <h2>What I bring</h2>
+
+          <p>
+            A combination of practical technology, visual creativity
+            and real workplace responsibility.
+          </p>
+        </div>
+
+        <div class="portrait-skill-list">
+          <div class="portrait-skill">
+            <span class="portrait-skill-number">01</span>
+
+            <div>
+              <strong>Front-end development</strong>
+              <small>HTML, CSS, JavaScript and responsive UI</small>
             </div>
           </div>
 
-          <div class="floating-card floating-card-code">
-            <span class="floating-icon" aria-hidden="true">&lt;/&gt;</span>
+          <div class="portrait-skill">
+            <span class="portrait-skill-number">02</span>
+
             <div>
-              <strong>Front-end</strong>
-              <span>HTML · CSS · JavaScript</span>
+              <strong>Business systems</strong>
+              <small>Excel, stock control, purchasing and planning</small>
             </div>
           </div>
 
-          <div class="floating-card floating-card-work">
-            <span class="floating-icon" aria-hidden="true">↗</span>
+          <div class="portrait-skill">
+            <span class="portrait-skill-number">03</span>
+
             <div>
-              <strong>Production systems</strong>
-              <span>Excel · Stock · Purchasing</span>
+              <strong>Creative design</strong>
+              <small>Photoshop, interfaces and visual concepts</small>
             </div>
           </div>
 
-          <div class="floating-card floating-card-design">
-            <span class="floating-icon" aria-hidden="true">✦</span>
+          <div class="portrait-skill">
+            <span class="portrait-skill-number">04</span>
+
             <div>
-              <strong>Visual design</strong>
-              <span>Photoshop · UI · Branding</span>
+              <strong>Practical problem-solving</strong>
+              <small>Hardware, troubleshooting and learning quickly</small>
             </div>
           </div>
         </div>
+
+        <p class="portrait-flip-back">
+          Click again to return
+          <span aria-hidden="true">↻</span>
+        </p>
       </div>
+    </div>
+  </div>
+
+  <p class="portrait-hint">
+    <span aria-hidden="true">✦</span>
+    Click my portrait
+  </p>
+
+  <div class="floating-card floating-card-code">
+    <span class="floating-icon" aria-hidden="true">
+      &lt;/&gt;
+    </span>
+
+    <div>
+      <strong>Front-end</strong>
+      <span>HTML · CSS · JavaScript</span>
+    </div>
+  </div>
+
+  <div class="floating-card floating-card-work">
+    <span class="floating-icon" aria-hidden="true">↗</span>
+
+    <div>
+      <strong>Production systems</strong>
+      <span>Excel · Stock · Purchasing</span>
+    </div>
+  </div>
+
+  <div class="floating-card floating-card-design">
+    <span class="floating-icon" aria-hidden="true">✦</span>
+
+    <div>
+      <strong>Visual design</strong>
+      <span>Photoshop · UI · Branding</span>
+    </div>
+  </div>
+</div>
 
       <a class="scroll-cue" href="#about" aria-label="Scroll to about section">
         <span>Scroll</span>
@@ -464,15 +562,7 @@
       </div>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>
-        <a href="#home" class="footer-name">Jack Mauro</a>
-        <p>Technology, systems and design.</p>
-      </div>
-      <p>© <span id="currentYear">2026</span> Jack Mauro. Built with HTML, CSS and JavaScript.</p>
-    </div>
-  </footer>
+<div id="footer-placeholder"></div>
+    <script src="/footer.js?v=2.1"></script>
 </body>
 </html>

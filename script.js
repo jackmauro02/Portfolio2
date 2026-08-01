@@ -518,3 +518,220 @@ if (year) {
     new Date().getFullYear()
   );
 }
+
+
+/* =========================================================
+   INTERACTIVE PORTRAIT EASTER EGG
+========================================================= */
+
+const portraitFlipCard = document.querySelector(
+  ".portrait-flip-card"
+);
+
+if (portraitFlipCard) {
+  const portraitVisual =
+    portraitFlipCard.closest(".hero-visual");
+
+  let portraitIsAnimating = false;
+
+  function togglePortraitSkills() {
+    // Prevent repeated clicks interrupting the spin
+    if (portraitIsAnimating) {
+      return;
+    }
+
+    portraitIsAnimating = true;
+
+    const isCurrentlyFlipped =
+      portraitFlipCard.classList.contains("is-flipped");
+
+    const willBeFlipped = !isCurrentlyFlipped;
+
+    portraitFlipCard.classList.toggle(
+      "is-flipped",
+      willBeFlipped
+    );
+
+    portraitVisual?.classList.toggle(
+      "skills-revealed",
+      willBeFlipped
+    );
+
+    portraitFlipCard.setAttribute(
+      "aria-pressed",
+      String(willBeFlipped)
+    );
+
+    portraitFlipCard.setAttribute(
+      "aria-label",
+      willBeFlipped
+        ? "Hide Jack Mauro's skills"
+        : "Reveal Jack Mauro's skills"
+    );
+
+    // Brief orbit burst each time the card is clicked
+    portraitVisual?.classList.remove(
+      "portrait-activated"
+    );
+
+    // Restart the CSS animation
+    void portraitVisual?.offsetWidth;
+
+    portraitVisual?.classList.add(
+      "portrait-activated"
+    );
+
+    window.setTimeout(() => {
+      portraitVisual?.classList.remove(
+        "portrait-activated"
+      );
+    }, 950);
+
+    window.setTimeout(() => {
+      portraitIsAnimating = false;
+    }, 1000);
+  }
+
+  portraitFlipCard.addEventListener(
+    "click",
+    togglePortraitSkills
+  );
+
+  // Keyboard accessibility
+  portraitFlipCard.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        event.key !== "Enter" &&
+        event.key !== " "
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+      togglePortraitSkills();
+    }
+  );
+}
+
+async function loadFooter() {
+  const footerPlaceholder = document.getElementById("footer-placeholder");
+
+  if (!footerPlaceholder) {
+    return;
+  }
+
+  // Change this number whenever footer.html or footer.css is updated.
+  const footerVersion = "2.1";
+
+  // Automatically load the footer stylesheet once.
+  if (!document.querySelector('link[data-footer-styles]')) {
+    const footerStyles = document.createElement("link");
+
+    footerStyles.rel = "stylesheet";
+    footerStyles.href = `/footer.css?v=${footerVersion}`;
+    footerStyles.dataset.footerStyles = "true";
+
+    document.head.appendChild(footerStyles);
+  }
+
+  try {
+    const response = await fetch(`/footer.html?v=${footerVersion}`, {
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Footer request failed: ${response.status}`);
+    }
+
+    const footerHTML = await response.text();
+
+    footerPlaceholder.innerHTML = footerHTML;
+
+    highlightCurrentFooterPage(footerPlaceholder);
+    initialiseFooterTopButton(footerPlaceholder);
+  } catch (error) {
+    console.error("Unable to load the portfolio footer:", error);
+
+    footerPlaceholder.innerHTML = `
+      <footer
+        style="
+          padding: 2rem;
+          color: #aaa;
+          text-align: center;
+          background: #050505;
+          border-top: 1px solid #e50914;
+        "
+      >
+        <p>© 2026 Jack Mauro. All rights reserved.</p>
+      </footer>
+    `;
+  }
+}
+
+function normaliseFooterPath(pathname) {
+  let path = pathname.toLowerCase();
+
+  // Remove query strings and hashes if supplied.
+  path = path.split("?")[0].split("#")[0];
+
+  // Treat the root URL as the homepage.
+  if (path === "/" || path === "") {
+    return "/index.html";
+  }
+
+  // Remove trailing slashes.
+  path = path.replace(/\/+$/, "");
+
+  return path || "/index.html";
+}
+
+function highlightCurrentFooterPage(footer) {
+  const currentPath = normaliseFooterPath(window.location.pathname);
+  const footerLinks = footer.querySelectorAll(".footer-nav-links a");
+
+  footerLinks.forEach((link) => {
+    const linkURL = new URL(link.href, window.location.origin);
+    const linkPath = normaliseFooterPath(linkURL.pathname);
+
+    link.classList.remove("is-active");
+    link.removeAttribute("aria-current");
+
+    if (linkPath === currentPath) {
+      link.classList.add("is-active");
+      link.setAttribute("aria-current", "page");
+    }
+  });
+}
+
+function initialiseFooterTopButton(footer) {
+  const topButton = footer.querySelector("[data-footer-top]");
+
+  if (!topButton) {
+    return;
+  }
+
+  topButton.addEventListener("click", () => {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+  });
+}
+
+function initialiseFooter() {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadFooter, {
+      once: true,
+    });
+  } else {
+    loadFooter();
+  }
+}
+
+initialiseFooter();
